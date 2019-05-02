@@ -1,7 +1,5 @@
 <!doctype html>
 <html lang="en" class="no-js">
-
-<!-- Mirrored from nunforest.com/hotmagazine/default/autor-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Apr 2019 07:02:52 GMT -->
 <head>
 	<title>HotMagazine</title>
 

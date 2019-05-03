@@ -45,9 +45,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img
-                            src="public/images/logo.png"
-                            alt=""></a>
+                    <a class="navbar-brand" href="/iHeartCoding"><img src="public/images/logo.png" alt=""></a>
                 </div>
             </div>
         </div>
@@ -90,7 +88,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-left">
 
-                        <li><a href="index.html" style="content: none !important">Home</a></li>
+                        <li><a href="/iHeartCoding" style="content: none !important">Home</a></li>
                         
                         <li><a class="world" href="news-category4.html">World</a></li>
 
@@ -155,10 +153,6 @@
                         </li>
 
                     </ul>
-                    <form class="navbar-form navbar-right" role="search">
-                        <input type="text" id="search" name="search" placeholder="Search here">
-                        <button type="submit" id="search-submit"><i class="fa fa-search"></i></button>
-                    </form>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>

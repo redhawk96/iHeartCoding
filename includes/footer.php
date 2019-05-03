@@ -1,6 +1,5 @@
 
-<!-- footer 
-================================================== -->
+<!-- footer -->
 <footer>
     <div class="container">
         <div class="footer-widgets-part">

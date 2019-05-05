@@ -1,16 +1,23 @@
 <?php 
 
-    if(isset($_GET['ecat'])){
+// If ecat valiable is shown then content will be show to update existing category
+// eg: categories.php?ecat=1
 
-        $ecat_id = $_GET['ecat'];
+if(isset($_GET['ecat'])){
 
-        $query = "SELECT * FROM categories WHERE cat_id = $ecat_id";
-        $selectEditCategoryQuery = mysqli_query($serverConnection, $query);
+    // Getting the value of ecat variable. ecat variable hold the values of the id of a specific category
+    $ecat_id = $_GET['ecat'];
 
-        while($row = mysqli_fetch_assoc($selectEditCategoryQuery)){
-            $cat_title = $row['cat_title'];
+    // Calling displayOneCategory method of Category class
+    $displayOneCategory = $category->displayOneCategory($ecat_id);
+
+    // Stating while loop to display specific category
+    while($row = mysqli_fetch_assoc($displayOneCategory)){
+    
+    $cat_title = $row['cat_title'];
 ?>
 
+    <!-- Displaying specific category [HTML Content] -->
     <form class="form-horizontal" action="../controllers/categoryController.php" method="POST">
     <div class="form-group">
         <label class="col-sm-3 control-label">Category Title</label>
@@ -25,13 +32,20 @@
         </div>
     </div>
     </form>
+    <!-- End Displaying specific category [HTML Content] -->
 
 <?php  
 
-        }
-    }else{
+    }
+    // End of while loop to display specific category
+
+// Else if the ecat is not shown and the url is as below, then content will be show to add new category
+// eg: categories.php
+
+}else{
 
 ?>
+
     <form class="form-horizontal" action="../controllers/categoryController.php" method="POST">
     <div class="form-group">
         <label class="col-sm-3 control-label">Category Title</label>
@@ -47,5 +61,6 @@
     </form>
 
 <?php
-    }
+}
+// End of displaying add new category content
 ?>

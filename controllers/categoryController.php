@@ -1,12 +1,13 @@
 <?php ob_start(); ?>
 
 <?php
+// Including Category model
+include '../models/category.php';
 
-include "../models/db.php";
-$dbConnection = new DBConnect();
-$serverConnection = $dbConnection->connectToServer();
+// Creating a object of Category class
+$category = new Category();
 
-// Adding Category
+// To add new category
 if(isset($_POST['add_category'])){
 
     $cat_title = $_POST['cat_title'];
@@ -16,11 +17,10 @@ if(isset($_POST['add_category'])){
         echo "Required firlds are missing";
     
     }else{
-        $query = "INSERT INTO categories (cat_title) VALUES ('{$cat_title}')";
+        
+        $addCategory = $category->addCategory($cat_title);
 
-        $createCategoryQuery = mysqli_query($serverConnection, $query);
-
-        if(!$createCategoryQuery){
+        if(!$addCategory){
             die('QUERY FAILED '. mysqli_error($serverConnection));
         }else{
             header('Location: ../Admin/categories.php');
@@ -28,25 +28,7 @@ if(isset($_POST['add_category'])){
     }
 }
 
-// Deleting Category
-if(isset($_POST['delete_category'])){
-
-    $cat_id = $_POST['delete_category'];
-
-    $query = "DELETE FROM categories WHERE categories.cat_id = {$cat_id}";
-
-    $deleteCategoryQuery = mysqli_query($serverConnection, $query);
-
-    if(!$deleteCategoryQuery){
-        die('QUERY FAILED '. mysqli_error($serverConnection));
-    }else{
-        header('Location: ../Admin/categories.php');
-    }
-
-}
-
-
-// Updating Category
+// To update existing category
 if(isset($_POST['update_category'])){
 
     $cat_id = $_POST['update_category'];
@@ -58,11 +40,9 @@ if(isset($_POST['update_category'])){
         
         }else{
 
-        $query = "UPDATE categories SET cat_title = '{$cat_title}' WHERE categories.cat_id = {$cat_id}";
+        $updateCategory = $category->updateCategory($cat_id, $cat_title);
 
-        $updateCategoryQuery = mysqli_query($serverConnection, $query);
-
-        if(!$updateCategoryQuery){
+        if(!$updateCategory){
             die('QUERY FAILED '. mysqli_error($serverConnection));
         }else{
             header('Location: ../Admin/categories.php');
@@ -70,5 +50,21 @@ if(isset($_POST['update_category'])){
     }
 
 }
+
+// To delete existing category
+if(isset($_POST['delete_category'])){
+
+    $cat_id = $_POST['delete_category'];
+
+    $deleteCategory = $category->deleteCategory($cat_id);
+
+    if(!$deleteCategory){
+        die('QUERY FAILED '. mysqli_error($serverConnection));
+    }else{
+        header('Location: ../Admin/categories.php');
+    }
+
+}
+
 
 ?>

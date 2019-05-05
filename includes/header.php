@@ -1,11 +1,5 @@
 <?php ob_start(); ?>
-
-<?php
-    include "models/db.php";
-    $dbConnection = new DBConnect();
-    $serverConnection = $dbConnection->connectToServer();
-?>
-
+<?php include 'models/db.php'; ?>
 <!doctype html>
 <html lang="en" class="no-js">
 

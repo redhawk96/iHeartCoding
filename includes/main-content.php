@@ -26,6 +26,9 @@ if(isset($_POST['search_btn'])){
                         </div>
 
                         <?php 
+
+                        $dbConnection = new DBConnect();
+                        $serverConnection = $dbConnection->serverInstance();
             
                         $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_keyword%' OR post_title LIKE '%$search_keyword%' ORDER BY posts.post_date DESC LIMIT 3";
                         $selectQuery = mysqli_query($serverConnection, $query);
@@ -138,6 +141,9 @@ else{
                         </div>
 
                         <?php 
+
+                        $dbConnection = new DBConnect();
+                        $serverConnection = $dbConnection->serverInstance();
             
                         $query = "SELECT * FROM posts ORDER BY posts.post_date DESC LIMIT 3";
                         $selectQuery = mysqli_query($serverConnection, $query);

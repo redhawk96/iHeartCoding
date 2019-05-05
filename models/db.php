@@ -2,24 +2,29 @@
 
 <?php
 
-class DBConnect
-{
+class DBConnect{
+
+    public static $instance;
     const DB_HOST = "localhost";
     const DB_USER = "root";
     const DB_PASS = "";
     const DB_NAME = "codeblog";
 
-    function connectToServer() {
+    public function __construct() {
+
         $connection = mysqli_connect(self::DB_HOST, self::DB_USER, self::DB_PASS, self::DB_NAME);
 
         if($connection){
-            return $connection;
+            return static::$instance = $connection;
         }else{
             header('Location: ./error.php');
             die();
         }
+    }
 
+    public static function serverInstance()
+    {
+        return static::$instance;
     }
 }
-
 ?>

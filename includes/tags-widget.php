@@ -7,7 +7,10 @@
 <ul class="tag-list">
 
 <?php 
-    
+
+$dbConnection = new DBConnect();
+    $serverConnection = $dbConnection->serverInstance();
+
 $query = "SELECT cat_title FROM categories";
 $selectQuery = mysqli_query($serverConnection, $query);
 

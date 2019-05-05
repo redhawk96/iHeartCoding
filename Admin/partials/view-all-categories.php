@@ -6,30 +6,37 @@
         </tr>
     </thead>
     <tbody>
-        <?php
-        $query = "SELECT * FROM categories";
-        $selectQuery = mysqli_query($serverConnection, $query);
+    
+    <?php
 
-        while($row = mysqli_fetch_assoc($selectQuery)){
-            $cat_id = $row['cat_id'];
-            $cat_title = $row['cat_title'];
-        ?>
+    // Calling displayAllCategories method of Category class
+    $displayAllCategories = $category->displayAllCategories();
 
-        <tr>
-            <td><?php echo $cat_id;?></td>
-            <td><?php echo $cat_title;?></td>
-            <td>
-                <form action="../controllers/categoryController.php" method="POST">
-                    <button type="submit" class="btn btn-primary" name="delete_category" value="<?php echo $cat_id; ?>">Delete</button>
-                </form>
-            </td>
-            <td>
-                <a href="categories.php?ecat=<?php echo $cat_id; ?>" class="btn btn-warning">Edit</a>
-            </td>
-        </tr>
+    // Stating while loop to display all categories
+    while($row = mysqli_fetch_assoc($displayAllCategories)){
+        $cat_id = $row['cat_id'];
+        $cat_title = $row['cat_title'];
+    ?>
 
-        <?php
-        }
-        ?>
+    <!-- Starting display of categories [HTML Content] -->
+    <tr>
+        <td><?php echo $cat_id;?></td>
+        <td><?php echo $cat_title;?></td>
+        <td>
+            <form action="../controllers/categoryController.php" method="POST">
+                <button type="submit" class="btn btn-primary" name="delete_category" value="<?php echo $cat_id; ?>">Delete</button>
+            </form>
+        </td>
+        <td>
+            <a href="categories.php?ecat=<?php echo $cat_id; ?>" class="btn btn-warning">Edit</a>
+        </td>
+    </tr>
+
+    <!-- End of displaying categories [HTML Content] -->
+    <?php
+    }
+    // End of while loop to display all categories
+    ?>
+
     <tbody>
 </table>

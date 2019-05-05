@@ -1,13 +1,6 @@
 <?php ob_start(); ?>
-
-<?php
-    include "../models/db.php";
-    $dbConnection = new DBConnect();
-    $serverConnection = $dbConnection->connectToServer();
-?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">

@@ -42,31 +42,6 @@
 </div>
 <!-- /#page-wrapper -->
 
-<script>
-
-    function validateAddCategory(){
-        var cat_title = document.newCategoryForm.cat_title.value;
-        if(cat_title == "" || cat_title == null){
-        $("#catAddTitleinput").addClass("has-error");
-        return false;
-        }else{
-            return true;
-        }
-    }
-
-    function validateUpdateCategory(){
-        var cat_title = document.updateCategoryForm.cat_title.value;
-        if(cat_title == "" || cat_title == null){
-        $("#catUpdateTitleinput").addClass("has-error");
-        return false;
-        }else{
-            return true;
-        }
-    }
-
-</script>
-
-
 <!-- Footer -->
 <?php include 'includes/footer.php'; ?>
 

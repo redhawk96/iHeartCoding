@@ -14,7 +14,7 @@ if(isset($_POST['add_category'])){
 
     if($cat_title == "" || empty($cat_title)){
     
-        echo "Required firlds are missing";
+        header('Location: ../Admin/categories.php?a=false');
     
     }else{
         
@@ -36,7 +36,7 @@ if(isset($_POST['update_category'])){
 
         if($cat_title == "" || empty($cat_title)){
         
-            echo "Required firlds are missing";
+            header('Location: ../Admin/categories.php?u=false');
         
         }else{
 

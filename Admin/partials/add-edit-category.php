@@ -18,8 +18,8 @@ if(isset($_GET['ecat'])){
 ?>
 
     <!-- Displaying specific category [HTML Content] -->
-    <form class="form-horizontal" action="../controllers/categoryController.php" method="POST">
-    <div class="form-group">
+    <form class="form-horizontal" name="updateCategoryForm" action="../controllers/categoryController.php" method="POST" onsubmit="return validateUpdateCategory()">
+    <div class="form-group" id="catUpdateTitleinput">
         <label class="col-sm-3 control-label">Category Title</label>
         <div class="col-sm-9">
         <input type="text" class="form-control" name="cat_title" value="<?php echo $cat_title; ?>">
@@ -46,11 +46,11 @@ if(isset($_GET['ecat'])){
 
 ?>
 
-    <form class="form-horizontal" action="../controllers/categoryController.php" method="POST">
-    <div class="form-group">
+    <form class="form-horizontal" name="newCategoryForm" action="../controllers/categoryController.php" method="POST" onsubmit="return validateAddCategory()" >
+    <div class="form-group" id="catAddTitleinput">
         <label class="col-sm-3 control-label">Category Title</label>
         <div class="col-sm-9">
-        <input type="text" class="form-control" placeholder="JavaScript" name="cat_title">
+        <input type="text" class="form-control has-error" placeholder="JavaScript" name="cat_title">
         </div>
     </div>
     <div class="form-group">
@@ -59,7 +59,6 @@ if(isset($_GET['ecat'])){
         </div>
     </div>
     </form>
-
 <?php
 }
 // End of displaying add new category content

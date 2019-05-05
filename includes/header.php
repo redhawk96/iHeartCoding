@@ -1,4 +1,6 @@
-<?php 
+<?php ob_start(); ?>
+
+<?php
     include "models/db.php";
     $dbConnection = new DBConnect();
     $serverConnection = $dbConnection->connectToServer();

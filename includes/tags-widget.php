@@ -8,14 +8,14 @@
 
 <?php 
     
-$query = "SELECT cat_sub_title FROM categories GROUP BY cat_sub_title";
+$query = "SELECT cat_title FROM categories";
 $selectQuery = mysqli_query($serverConnection, $query);
 
     while($row = mysqli_fetch_assoc($selectQuery)){
-        $cat_sub_title = $row['cat_sub_title'];
+        $cat_title = $row['cat_title'];
     ?>
 
-    <li><a href="#"><?php echo $cat_sub_title; ?></a></li>
+    <li><a href="#"><?php echo $cat_title; ?></a></li>
 
     <?php
     }

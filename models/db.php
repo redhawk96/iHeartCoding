@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+
 <?php
 
 class DBConnect
@@ -13,7 +15,7 @@ class DBConnect
         if($connection){
             return $connection;
         }else{
-            header('Location: ./504.php');
+            header('Location: ./error.php');
             die();
         }
 

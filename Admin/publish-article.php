@@ -10,14 +10,6 @@
 
         <div class="row" style="padding-top:40px">
 
-            <?php
-            // Including Article model
-            include '../models/article.php';
-
-            // Creating a object of Article class
-                $article = new Article();
-            ?>
-            
             <div class="col-lg-4">
 
             <!-- Add / Edit Category -->

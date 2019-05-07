@@ -9,15 +9,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8">
-
-			<?php
-			// Including Article model
-			include 'models/article.php';
-
-			// Creating a object of Category class
-			$article = new Article();
-			?>
-		
+			
 			<!-- View All Articles -->
 			<?php include "partials/view-article.php"; ?>
 			<!-- End View All Articles -->

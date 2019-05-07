@@ -20,11 +20,7 @@
 
                     <?php 
 
-                    // Including Article model
-                    include 'models/article.php';
-
-                    // Creating a object of Category class
-                    $article = new Article();
+                    
 
                     // Calling displayAllArticles method of Article class
                     $displayAllArticles = $article->displayAllArticles();

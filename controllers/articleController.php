@@ -1,6 +1,9 @@
 <?php ob_start(); ?>
 
 <?php
+// Including Database model
+include '../models/db.php';
+
 // Including Article model
 include '../models/article.php';
 

@@ -1,5 +1,14 @@
 <?php ob_start(); ?>
 <?php
+include "models/db.php";
+
+// Including models
+include 'models/article.php';
+include 'models/category.php';
+
+// Creating a object of model classes
+$article = new Article();
+$category = new Category();
 
 ?>
 <!doctype html>

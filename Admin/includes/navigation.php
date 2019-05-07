@@ -131,7 +131,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-tags"></i> Categories</a>
+                <a href="categories"><i class="fa fa-fw fa-tags"></i> Categories</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><i class="fa fa-fw fa-users"></i> Members <i class="fa fa-fw fa-caret-down"></i></a>

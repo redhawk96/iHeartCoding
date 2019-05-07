@@ -1,6 +1,6 @@
 <?php 
 
-if(isset($_POST['search_btn'] || $_GET['c'])){
+if(isset($_POST['search_btn']) || isset($_GET['t'])){
 
     if(isset($_POST['search_keyword'])){
         $search_keyword = $_POST['search_keyword'];
@@ -10,8 +10,8 @@ if(isset($_POST['search_btn'] || $_GET['c'])){
             $search_keyword = "";
         }
     }
-    else if(isset($_GET['c'])){
-        $search_keyword = $_GET['c'];
+    else if(isset($_GET['t'])){
+        $search_keyword = $_GET['t'];
     }
     
 ?>

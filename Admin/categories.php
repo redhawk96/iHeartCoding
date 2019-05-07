@@ -9,14 +9,6 @@
     <div class="container-fluid">
 
         <div class="row" style="padding-top:40px">
-
-            <?php
-            // Including Category model
-            include '../models/category.php';
-
-            // Creating a object of Category class
-            $category = new Category();
-            ?>
             
             <div class="col-lg-6">
             

@@ -19,12 +19,6 @@
 
                     <?php 
 
-                    // Including Article model
-                    include 'models/article.php';
-
-                    // Creating a object of Category class
-                    $article = new Article();
-    
                     // Calling displaySearchedeArticles method of Article class
                     $displaySearchedArticleCount = $article->displaySearchedeArticleCount($search_keyword);
 

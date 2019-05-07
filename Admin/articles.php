@@ -12,14 +12,6 @@
 
             <div class="col-lg-12">
 
-                <?php
-                // Including Article model
-                include '../models/article.php';
-
-                // Creating a object of article class
-                $article = new Article();
-                ?>
-            
                 <!-- View All Articles -->
                 <?php include "partials/view-all-articles.php"; ?>
                 <!-- End View All Articles -->

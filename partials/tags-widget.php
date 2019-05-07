@@ -8,17 +8,15 @@
 
 <?php 
 
-$dbConnection = new DBConnect();
-    $serverConnection = $dbConnection->serverInstance();
+    // Calling displayAllCategories method of Category class
+    $displayAllCategories = $category->displayAllCategories();
 
-$query = "SELECT cat_title FROM categories";
-$selectQuery = mysqli_query($serverConnection, $query);
-
-    while($row = mysqli_fetch_assoc($selectQuery)){
+    // Stating while loop to display all categories
+    while($row = mysqli_fetch_assoc($displayAllCategories)){
         $cat_title = $row['cat_title'];
     ?>
 
-    <li><a href="#"><?php echo $cat_title; ?></a></li>
+    <li><a href="Search?t=<?php echo $cat_title; ?>"><?php echo $cat_title; ?></a></li>
 
     <?php
     }

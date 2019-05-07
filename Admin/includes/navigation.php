@@ -123,10 +123,10 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#articles_dropdown"><i class="fa fa-fw fa-newspaper-o"></i> Articles <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="articles_dropdown" class="collapse">
                     <li>
-                        <a href="#">View All Articles</a>
+                        <a href="./articles">View All Articles</a>
                     </li>
                     <li>
-                        <a href="#">Add New Article</a>
+                        <a href="./publish-article">Add New Article</a>
                     </li>
                 </ul>
             </li>

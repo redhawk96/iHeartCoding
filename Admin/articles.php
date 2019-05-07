@@ -16,7 +16,7 @@
                 // Including Article model
                 include '../models/article.php';
 
-                // Creating a object of Category class
+                // Creating a object of article class
                 $article = new Article();
                 ?>
             

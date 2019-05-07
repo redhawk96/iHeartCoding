@@ -43,6 +43,26 @@ class Article
         return $queryResult;
     }
 
+    // To display searched article from the database
+    public static function displaySearchedeArticles($s_keyword) {
+
+        $query = "SELECT * FROM articles WHERE article_tags LIKE '%$s_keyword%' OR article_title LIKE '%$s_keyword%' ORDER BY articles.article_date DESC LIMIT 3";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return $queryResult;
+    }
+
+    // To display searched article count from the database
+    public static function displaySearchedeArticleCount($s_keyword) {
+
+        $query = "SELECT * FROM articles WHERE article_tags LIKE '%$s_keyword%' OR article_title LIKE '%$s_keyword%'";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
     // To add new article to the database
     public static function addArticle($a_cat_id, $a_title, $a_author, $a_image, $a_content, $a_tags, $a_com_count, $a_status) {
 

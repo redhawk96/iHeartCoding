@@ -1,3 +1,21 @@
+<?php 
+
+if(isset($_POST['search_btn'] || $_GET['c'])){
+
+    if(isset($_POST['search_keyword'])){
+        $search_keyword = $_POST['search_keyword'];
+
+        // If user has not type anything, all articles will be displayed
+        if($search_keyword == null){
+            $search_keyword = "";
+        }
+    }
+    else if(isset($_GET['c'])){
+        $search_keyword = $_GET['c'];
+    }
+    
+?>
+
 <?php include "includes/header.php"; ?>
 
 <!-- Header -->
@@ -11,7 +29,7 @@
 			<div class="col-sm-8">
 	
 			<!-- main content -->
-			<?php include "partials/main-content.php"; ?>
+			<?php include "partials/search-content.php"; ?>
 			<!-- End main content -->
 				
 			</div>
@@ -48,3 +66,13 @@
 <!-- footer -->
 <?php include "includes/footer.php"; ?>
 <!-- End footer -->
+
+
+
+<?php
+}else{
+
+    // If no search keyword is entered, user will be redirected to the home page
+    header('Location: /iHeartCoding/');
+}
+?>

@@ -5,10 +5,12 @@ include "../models/db.php";
 // Including models
 include '../models/article.php';
 include '../models/category.php';
+include '../models/comment.php';
 
 // Creating a object of model classes
 $article = new Article();
 $category = new Category();
+$comment= new Comment();
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +32,10 @@ $category = new Category();
     <link href="../public/admin/css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../public/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../public/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- jQuery DataTable CSS (Customized to bootstrap) -->
+    <link href="../public/admin/css/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

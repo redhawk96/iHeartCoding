@@ -1,4 +1,4 @@
-<table class="table table-hover">
+<table class="table table-striped table-bordered" id="datatable">
     <thead>
         <tr>
             <th>ID</th>
@@ -9,7 +9,8 @@
             <th>Image</th>
             <th>Tags</th>
             <th>Comments</th>
-            <th>Date</th> 
+            <th>Date</th>
+            <tH>Action</th> 
             <th></th> 
             <th></th> 
         </tr>
@@ -44,16 +45,34 @@
             <td><?php echo $a_status; ?></td>
             <td><img src="../public/upload/articles/<?php echo $a_image; ?>" style="width:50px"></td>
             <td><?php echo $a_tags; ?></td>
-            <td><?php echo $a_comment_count; ?></td>
+            <td><a href="article-comments?a=<?php echo $a_id; ?>"><?php echo $a_comment_count; ?></a></td>
             <td><?php echo $a_date; ?></td>
             <td>
                 <form action="../controllers/articleController.php" method="POST">
-                    <input type="text" name="a_image_name" value="<?php echo $a_image; ?>" hidden>
-                    <button type="submit" class="btn btn-primary" name="delete_article" value="<?php echo $a_id; ?>">Delete</button>
+
+                    <?php 
+                    $action = "publish_article";
+                    $icon = "thumbs-up";
+                    $btn_name = "Publish";
+
+                    if($a_status == 'Published') {
+                        $action = "draft_article";
+                        $icon = "thumbs-down";
+                        $btn_name = "Draft";
+                    }
+
+                    echo "<button type='submit' class='btn btn-primary' name='$action' value='$a_id'><i class='fa fa-$icon'></i> $btn_name</button>";
+                    ?>
                 </form>
             </td>
             <td>
-                <a href="publish-article?eart=<?php echo $a_id; ?>" class="btn btn-warning">Edit</a>
+                <a href="publish-article?eart=<?php echo $a_id; ?>" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+            </td>
+            <td>
+                <form action="../controllers/articleController.php" method="POST">
+                    <input type="text" name="a_image_name" value="<?php echo $a_image; ?>" hidden>
+                    <button type="submit" class="btn btn-danger" name="delete_article" value="<?php echo $a_id; ?>"><i class="fa fa-trash"></i> Delete</button>
+                </form>
             </td>
         </tr>
 

@@ -144,6 +144,9 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="./comments"><i class="fa fa-fw fa-comments"></i> Comments</a>
+            </li>
         </ul>
     </div>
     <!-- /.navbar-collapse -->

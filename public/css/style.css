@@ -4994,7 +4994,7 @@ ul.autor-list > li:hover .autor-box {
   float: left;
   width: 80%;
 }
-.forum-table div.table-row div.forum-post img {
+.forum-table div.table-row div.forum-post .img-avatar {
   max-width: 45px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -5002,6 +5002,7 @@ ul.autor-list > li:hover .autor-box {
   border-radius: 50%;
   float: left;
 }
+
 .forum-table div.table-row div.forum-post .post-autor-date {
   margin-left: 60px;
 }

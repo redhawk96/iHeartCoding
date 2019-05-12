@@ -8,11 +8,11 @@ if(isset($_GET['eart'])){
     // Getting the value of eart variable. ecat variable hold the values of the id of a specific article
     $eart_id = $_GET['eart'];
 
-    // Calling displayOneArticle method of Article class
-    $displayOneArticle = $article->displayOneArticle($eart_id);
+    // Calling displaySingleArticle method of Article class
+    $displaySingleArticle = $article->displaySingleArticle($eart_id);
 
     // Stating while loop to display specific article
-    while($row = mysqli_fetch_assoc($displayOneArticle)){
+    while($row = mysqli_fetch_assoc($displaySingleArticle)){
     
     $a_id = $row['article_id'];
     $a_cat_id = $row['article_category_id'];
@@ -86,7 +86,7 @@ if(isset($_GET['eart'])){
         </div>
         <div class="form-group">
             <label>Article Tags</label>
-            <input type="text" class="form-control" placeholder="JavaScriot" name="a_tags">
+            <input type="text" class="form-control" placeholder="JavaScript" name="a_tags">
         </div>
         <div class="form-group">
             <label>Article Category ID</label>

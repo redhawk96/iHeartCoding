@@ -5,14 +5,16 @@
 
 if(isset($_GET['a'])){
 
+    echo "<script src='https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js'></script>";
+
     // Getting the value of eart variable. ecat variable hold the values of the id of a specific article
     $a_id = $_GET['a'];
 
-    // Calling displayOneArticle method of Article class
-    $displayOneArticle = $article->displayOneArticle($a_id);
+    // Calling displaySingleArticle method of Article class
+    $displaySingleArticle = $article->displaySingleArticle($a_id);
 
     // Stating while loop to display specific article
-    while($row = mysqli_fetch_assoc($displayOneArticle)){
+    while($row = mysqli_fetch_assoc($displaySingleArticle)){
     
     $a_id = $row['article_id'];
     $a_cat_id = $row['article_category_id'];
@@ -60,7 +62,7 @@ if(isset($_GET['a'])){
             <?php echo $a_content; ?>
         </div>
 
-        <div class="post-tags-box">
+        <div class="post-tags-box" style="padding:25px 0">
             <ul class="tags-box">
                 <li><i class="fa fa-tags"></i><span>Tags:</span></li>
                 <li><a href="#"><?php echo $a_tags; ?></a></li>
@@ -98,55 +100,32 @@ if(isset($_GET['a'])){
         </div>
 
         <!-- contact form box -->
-        <div class="contact-form-box">
-            <div class="title-section">
-                <h1><span>Leave a Comment</span> <span class="email-not-published">Your email address will not be published.</span></h1>
-            </div>
-            <form id="comment-form">
-                <div class="row">
-                    <div class="col-md-4">
-                        <label for="name">Name*</label>
-                        <input id="name" name="name" type="text">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="mail">E-mail*</label>
-                        <input id="mail" name="mail" type="text">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="website">Website</label>
-                        <input id="website" name="website" type="text">
-                    </div>
-                </div>
-                <label for="comment">Comment*</label>
-                <textarea id="comment" name="comment"></textarea>
-                <button type="submit" id="submit-contact">
-                    <i class="fa fa-comment"></i> Post Comment
-                </button>
-            </form>
-        </div>
+        <?php include "./partials/add-comment.php"; ?>
         <!-- End contact form box -->
+
+
+        <!-- comments -->
+        <?php include "./partials/view-comments.php"; ?>
+        <!-- End of comments -->
 
     </div>
     <!-- End single-post box -->
 
 </div>
     <!-- End Displaying specific article [HTML Content] -->
-
+    
 <?php  
 
     }
-    // End of while loop to display specific article
+    // End of displaying specific article
 
-// Else if the eart is not shown and the url is as below, then content will be show to add new category
-// eg: articles.php
+// Else if a is not shown and the url is as below, then will be redirected to homepage
+// eg: Article?a=1
 
 }else{
 
-?>
+    header('Location: /iHeartCoding/');
 
-
-
-<?php
 }
 // End of displaying add new article content
 ?>

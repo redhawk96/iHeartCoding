@@ -5,10 +5,12 @@ include "models/db.php";
 // Including models
 include 'models/article.php';
 include 'models/category.php';
+include 'models/comment.php';
 
 // Creating a object of model classes
 $article = new Article();
 $category = new Category();
+$comment = new Comment();
 
 ?>
 <!doctype html>

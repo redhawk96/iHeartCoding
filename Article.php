@@ -4,17 +4,28 @@
 <?php include "includes/navigation.php"; ?>
 <!-- End Header -->
 
+
+<!-- <div style="position:fixed; left:80%; bottom:0%">
+	<div class="alert alert-success">
+		<strong>Success!</strong> Indicates a successful or positive action.
+	</div>
+</div> -->
+
 <!-- block-wrapper-section -->
 <section class="block-wrapper">
+
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8">
 			
-			<!-- View All Articles -->
-			<?php include "partials/view-article.php"; ?>
-			<!-- End View All Articles -->
+			
+				<!-- View All Articles -->
+				<?php include "partials/view-article.php"; ?>
+				<!-- End View All Articles -->
 
 			</div>
+
+			
 
 			<div class="col-sm-4">
 

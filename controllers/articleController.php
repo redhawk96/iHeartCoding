@@ -32,14 +32,13 @@ if(isset($_POST['add_new_article'])){
     $a_image_final = round(microtime(true)) ."."."png";
 
     $a_content = $_POST['a_content'];
-    $a_com_count = 1;
     
     if($a_title == "" || empty($a_title) || $a_tags == "" || empty($a_tags) || $a_cat_id == "" || empty($a_cat_id) || $a_author == "" || empty($a_author) || $a_status == "" || empty($a_status) || $a_content == "" || empty($a_content)){
     
         header('Location: ../Admin/publish-article.php?a=false');
     
     }else{
-        $addArticle = $article->addArticle($a_cat_id, $a_title, $a_author, $a_image_final, $a_content, $a_tags, $a_com_count, $a_status);
+        $addArticle = $article->addArticle($a_cat_id, $a_title, $a_author, $a_image_final, $a_content, $a_tags, $a_status);
         if(!$addArticle){
             die('QUERY FAILED '. mysqli_error($serverConnection));
         }else{
@@ -49,6 +48,7 @@ if(isset($_POST['add_new_article'])){
         }
     }
 }
+
 // To update existing article
 if(isset($_POST['update_article'])){
 
@@ -73,14 +73,13 @@ if(isset($_POST['update_article'])){
     $a_image_final = $a_image_name;
 
     $a_content = $_POST['a_content'];
-    $a_com_count = 1;
 
     if($a_title == "" || empty($a_title) || $a_tags == "" || empty($a_tags) || $a_cat_id == "" || empty($a_cat_id) || $a_author == "" || empty($a_author) || $a_status == "" || empty($a_status) || $a_content == "" || empty($a_content)){
     
-        header('Location: ../Admin/publish-article.php?a=false');
+        header('Location: ../Admin/publish-article?a=false');
     
     }else{
-        $updateArticle = $article->updateArticle($a_id, $a_cat_id, $a_title, $a_author, $a_image_final, $a_content, $a_tags, $a_com_count, $a_status);
+        $updateArticle = $article->updateArticle($a_id, $a_cat_id, $a_title, $a_author, $a_image_final, $a_content, $a_tags, $a_status);
         if(!$updateArticle){
             die('QUERY FAILED '. mysqli_error($serverConnection));
             
@@ -88,7 +87,49 @@ if(isset($_POST['update_article'])){
             // If update query was successful then image will be moved into the server
             move_uploaded_file($a_image_temp, "../public/upload/articles/$a_image_final");
             
-            header('Location: ../Admin/articles.php');
+            header('Location: ../Admin/articles');
+        }
+    }
+}
+
+// To publish article
+if(isset($_POST['publish_article'])){
+
+    $a_id = $_POST['publish_article'];
+
+        if($a_id == "" || empty($a_id)){
+        
+            header('Location: ../Admin/articles?p=false');
+        
+        }else{
+
+        $publishArticle = $article->publishArticle($a_id);
+
+        if(!$publishArticle){
+            die('QUERY FAILED '. mysqli_error($serverConnection));
+        }else{
+            header('Location: ../Admin/articles');
+        }
+    }
+}
+
+// To draft article
+if(isset($_POST['draft_article'])){
+
+    $a_id = $_POST['draft_article'];
+
+        if($a_id == "" || empty($a_id)){
+        
+            header('Location: ../Admin/articles?d=false');
+        
+        }else{
+
+        $draftArticle = $article->draftArticle($a_id);
+
+        if(!$draftArticle){
+            die('QUERY FAILED '. mysqli_error($serverConnection));
+        }else{
+            header('Location: ../Admin/articles');
         }
     }
 }

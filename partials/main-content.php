@@ -5,8 +5,7 @@
 <!-- grid box -->
 <div class="grid-box">
     <div class="row">
-
-
+    
         <div class="col-md-12">
 
             <!-- block content -->
@@ -20,13 +19,11 @@
 
                     <?php 
 
-                    
-
                     // Calling displayAllArticles method of Article class
-                    $displayAllArticles = $article->displayAllArticles();
+                    $displayAllPublishedArticles = $article->displayAllPublishedArticles();
 
                     // Stating while loop to display all categories
-                    while($row = mysqli_fetch_assoc($displayAllArticles)){
+                    while($row = mysqli_fetch_assoc($displayAllPublishedArticles)){
                         $a_id = $row['article_id'];
                         $a_author = $row['article_author'];
                         $a_title = $row['article_title'];
@@ -43,7 +40,7 @@
                         <div class="news-post article-post">
                             <div class="row">
                                 <div class="col-sm-4">
-                                <a href="single-post.php">
+                                <a href="Article?a=<?php echo $a_id; ?>">
                                     <div class="post-gallery">
                                         <img alt="" src="<?php echo "public/upload/articles/".$a_image; ?>">
                                     </div>
@@ -85,8 +82,6 @@
                     <p>Page 1 of 9</p>
                 </div>
                 <!-- End pagination box -->
-
-
 
             </div>
             <!-- End block content -->

@@ -46,7 +46,7 @@
             <td>
                 <form action="../controllers/commentController.php" method="POST">
 
-                    <input type="text" name="<?php echo $a_id; ?>" value="<?php echo $c_post_id; ?>" hidden>
+                    <input type="text" name="a_id" value="<?php echo $c_post_id; ?>" hidden>
                     <?php 
                     $action = "approve_comment";
                     $icon = "thumbs-up";

@@ -6,12 +6,13 @@ include "../models/db.php";
 include '../models/article.php';
 include '../models/category.php';
 include '../models/comment.php';
+include '../models/user.php';
 
 // Creating a object of model classes
 $article = new Article();
 $category = new Category();
 $comment= new Comment();
-
+$user = new User();
 ?>
 <!DOCTYPE html>
 <html lang="en">

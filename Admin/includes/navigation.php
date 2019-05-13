@@ -137,10 +137,10 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><i class="fa fa-fw fa-users"></i> Members <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="users_dropdown" class="collapse">
                     <li>
-                        <a href="#">View All Members</a>
+                        <a href="./users">View All Members</a>
                     </li>
                     <li>
-                        <a href="#">Add New Member</a>
+                        <a href="./users?add_user=true">Add New Member</a>
                     </li>
                 </ul>
             </li>

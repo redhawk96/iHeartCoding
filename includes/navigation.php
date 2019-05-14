@@ -12,7 +12,7 @@
                                 <span class="city-weather">Colombo, LK</span>
                             </li>
                             <li><span class="time-now">Thursday 8 January 2015 / 21:20</span></li>
-                            <li><a href="#">Log In</a></li>
+                            <?php echo (isset($_SESSION['s_id'])) ? "<li><a href='Profile'>Profile</a></li><li><a href='Logout'>Log Out</a></li>" : "<li><a href='Login'>Log In</a></li>"; ?>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>

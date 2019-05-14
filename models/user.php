@@ -1,4 +1,6 @@
 <?php
+// User model has the only session_start() function to initiate sessions in the server
+session_start();
 
 class User
 {
@@ -97,6 +99,42 @@ class User
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
+    }
+
+    // To check user credientials from the database against login credentials
+    public static function validateUser($username, $password) {
+
+        $username = mysqli_real_escape_string(self::$serverConnection, $username);
+        $password = mysqli_real_escape_string(self::$serverConnection, $password);
+
+        $query = "SELECT * FROM users WHERE (username = '$username' OR user_email = '$username') AND user_password = '$password' AND user_status = 'Active'";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        if($queryRowCount != 0){
+
+            while($row = mysqli_fetch_assoc($queryResult)){
+
+                $_SESSION['u_id'] = $row['user_id'];
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['u_f_name'] = $row['user_firstName'];
+                $_SESSION['u_l_name'] = $row['user_lastName'];
+                $_SESSION['u_mail'] = $row['user_email'];
+                $_SESSION['u_avatar'] = $row['user_image'];
+                $_SESSION['u_type'] = $row['user_role'];
+                $_SESSION['u_reg_date'] = $row['user_reg_date'];
+                $_SESSION['s_id'] = uniqid();
+            
+            }
+
+            return $queryResult;
+
+        }else{
+            
+            return 0;
+        }
     }
 }
 

@@ -1,5 +1,5 @@
-<?php ob_start(); ?>
-<?php
+<?php ob_start(); 
+
 include "../models/db.php";
 
 // Including models
@@ -13,6 +13,11 @@ $article = new Article();
 $category = new Category();
 $comment= new Comment();
 $user = new User();
+
+//Redirecting non-administrators to the home page
+if($_SESSION['u_type'] != 'Administrator'){
+    header('Location: /iHeartCoding/');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

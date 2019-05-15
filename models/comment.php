@@ -33,6 +33,42 @@ class Comment
         return $queryResult;
     }
 
+    // To get all comment count from the database
+    public static function displayAllCommentCount() {
+
+        $query = "SELECT * FROM comments";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
+    // To get all approved comment count from the database
+    public static function displayAllApprovedCommentCount() {
+
+        $query = "SELECT * FROM comments WHERE comment_status = 'Approved'";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
+    // To get all pending comment count from the database
+    public static function displayAllPendingCommentCount() {
+
+        $query = "SELECT * FROM comments WHERE comment_status = 'Pending'";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
     // To display all commets for a specific article from the database
     public static function displayAllArticleComments($a_id) {
 

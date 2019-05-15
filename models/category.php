@@ -33,6 +33,18 @@ class Category
         return $queryResult;
     }
 
+    // To get category count from the database
+    public static function displayCategoryCount() {
+
+        $query = "SELECT * FROM categories";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
     // To display specific category from the database
     public static function displayOneCategory($cat_id) {
 

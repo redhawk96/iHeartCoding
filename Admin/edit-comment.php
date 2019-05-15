@@ -19,7 +19,7 @@
 
             if(isset($_GET['ec'])){
 
-                echo "<script src='https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js'></script>";
+                echo "<script src='https://cdn.ckeditor.com/ckeditor5/12.1.0/classic/ckeditor.js'></script>";
 
                 // Getting the value of eart variable. ecat variable hold the values of the id of a specific article
                 $c_id = $_GET['ec'];
@@ -97,22 +97,11 @@
 <!-- /#page-wrapper -->
 
 <script>
-    CKEDITOR.replace( 'editor', {
-        toolbar: [
-        { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-        { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
-        { name: 'forms', items: [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ] },
-        { name: 'links', items: [ 'Link', 'Unlink' ] },
-        { name: 'insert', items: [ 'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ] },
-        '/',
-        { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
-        { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ] },
-        { name: 'styles', items: [ 'Styles', 'Font', 'FontSize' ] },
-        { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-        { name: 'tools', items: [ 'ShowBlocks' ] },
-        { name: 'others', items: [ '-' ] }
-        ]
-    });
+ClassicEditor
+    .create( document.querySelector( '#editor' ) )
+    .catch( error => {
+        console.error( error );
+    } );
 </script>
 
 <!-- Footer -->

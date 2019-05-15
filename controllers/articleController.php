@@ -151,4 +151,37 @@ if(isset($_POST['delete_article'])){
         header('Location: ../Admin/articles.php');
     }
 }
+
+// To apply bulk selection [approve / dismiss / delete]
+if(isset($_POST['bulk_apply'])){
+
+    $bulk_option = $_POST['bulk_option'];
+
+    $articleIds = $_POST['articleIdCheckBoxArray'];
+    $articleImages = $_POST['articleImagCheckBoxArray'];
+
+    switch ($bulk_option) {
+        case 'Publish':
+            foreach($articleIds as  $articleId) {
+                $article->publishArticle($articleId);
+            }
+            break;
+        
+        case 'Draft':
+            foreach($articleIds as  $articleId) {
+                $article->draftArticle($articleId);
+            }
+            break;
+
+        case 'Delete':
+            foreach($articleIds as $index => $articleId ) {
+                    $article->deleteArticle($articleId);
+                    unlink("../public/upload/articles/".$articleImages[$index]);
+            }
+            break;
+            
+    }
+
+    header('Location: ../Admin/articles');
+}
 ?>

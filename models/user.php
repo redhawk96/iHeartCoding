@@ -35,6 +35,42 @@ class User
         return $queryResult;
     }
 
+    // To get all user count from the database
+    public static function displayUserCount() {
+
+        $query = "SELECT * FROM users";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
+    // To get all active user count from the database
+    public static function displayActiveUserCount() {
+
+        $query = "SELECT * FROM users WHERE user_status = 'Active'";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
+    // To get all disabled user count from the database
+    public static function displayDisabledUserCount() {
+
+        $query = "SELECT * FROM users WHERE user_status = 'Disabled'";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
     // To display specific user from the database
     public static function displaySingleUser($u_id) {
 

@@ -33,23 +33,43 @@ class Article
         return $queryResult;
     }
 
+    // To get all article count from the database
+    public static function displayAllArticleCount() {
+
+        $query = "SELECT * FROM articles";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
+    // To get all drafted article count from the database
+    public static function displayAllDraftedArticleCount() {
+
+        $query = "SELECT * FROM articles WHERE article_status = 'Drafted'";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
     // To display all published articles from the database
     public static function displayAllPublishedArticles() {
 
-        // All values from the databse in categories table will be returned
         $query = "SELECT * FROM articles WHERE article_status = 'Published' ORDER BY article_date DESC";
 
-        // Executing query to get table values. First parameter is the mysqli object of server connection, second will be the query to be executed
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
-        // Method will return the instance to be called upon to display the tables values
         return $queryResult;
     }
 
     // To display all published articles from the database
     public static function displayAllPublishedArticleCount() {
 
-        // All values from the databse in categories table will be returned
         $query = "SELECT * FROM articles WHERE article_status = 'Published'";
 
         $queryResult = mysqli_query(self::$serverConnection, $query);

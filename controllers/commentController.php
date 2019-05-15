@@ -124,4 +124,35 @@ if(isset($_POST['delete_comment'])){
         header('Location: ../Admin/comments');
     }
 }
+
+// To apply bulk selection [approve / dismiss / delete]
+if(isset($_POST['bulk_apply'])){
+
+    $bulk_option = $_POST['bulk_option'];
+
+    $commentIds = $_POST['commentIdCheckBoxArray'];
+    $articleIds = $_POST['articleIdCheckBoxArray'];
+    
+    switch ($bulk_option) {
+        case 'Approve':
+            foreach($articleIds as $index => $articleId) {
+                $comment->approveComment($commentIds[$index], $articleId);
+            }
+            break;
+        
+        case 'Dismiss':
+            foreach($articleIds as $index => $articleId ) {
+                $comment->dismissComment($commentIds[$index], $articleId);
+            }
+            break;
+
+        case 'Delete':
+            foreach($commentIds as  $commentId) {
+                $comment->approveComment($commentId);
+            }
+            break;
+    }
+
+    header('Location: ../Admin/comments');
+}
 ?>

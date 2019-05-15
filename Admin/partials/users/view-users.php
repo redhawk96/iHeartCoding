@@ -1,6 +1,25 @@
+<form action="../controllers/userController.php" method="POST">
+<div class="row" style="padding-bottom:35px">
+    <div id="bulkOptionsContainer">
+        <div class="col-xs-2" style="padding-right:0">
+            <select class="form-control" name="bulk_option">
+                <option selected>Select Option</option>
+                <option>Activate</option>
+                <option>Disable</option>
+                <option>Delete</option>
+            </select>
+        </div>
+
+        <div class="col-xs-3">
+            <button type="submit" class="btn btn-success" name="bulk_apply"><i class="fa fa-check" style="margin-right:5px"></i> Apply</button>
+            <a href="./users?add_user" class="btn btn-primary"><i class="fa fa-user" style="margin-right:5px"></i>New Member</a>
+        </div>
+    </div>
+</div>
 <table class="table table-striped table-bordered" id="datatable">
     <thead>
         <tr>
+            <th><input id="selectAllBoxes" type="checkbox"></th>
             <th>ID</th>
             <th>Avatar</th>
             <th>First Name</th>
@@ -39,8 +58,12 @@
     <!-- Starting display of articles [HTML Content] -->
 
         <tr>
+            <td><input class="checkBoxes" type="checkbox" name="userIdCheckBoxArray[]" value="<?php echo $u_id; ?>"></td>
             <td><?php echo $u_id; ?></td>
-            <td><img src="../public/upload/users/<?php echo $u_image; ?>" style="width:50px"></td>
+            <td>
+                <img src="../public/upload/users/<?php echo $u_image; ?>" style="width:50px">
+                <input class="checkBoxes" type="checkbox" name="userImagCheckBoxArray[]" value="<?php echo $u_image; ?>" checked hidden>
+            </td>
             <td><?php echo $u_first_name; ?></td>
             <td><?php echo $u_last_name; ?></td>
             <td><?php echo $u_email; ?></td>

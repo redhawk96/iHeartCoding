@@ -157,4 +157,36 @@ if(isset($_POST['delete_user'])){
         header('Location: ../Admin/users');
     }
 }
+
+// To apply bulk selection [approve / dismiss / delete]
+if(isset($_POST['bulk_apply'])){
+
+    $bulk_option = $_POST['bulk_option'];
+
+    $userIds = $_POST['userIdCheckBoxArray'];
+    $userImages = $_POST['userImagCheckBoxArray'];
+
+    switch ($bulk_option) {
+        case 'Activate':
+            foreach($userIds as  $userId) {
+                $user->activateUser($userId);
+            }
+            break;
+        
+        case 'Disable':
+            foreach($userIds as  $userId) {
+                $user->disableUser($userId);
+            }
+            break;
+
+        case 'Delete':
+            foreach($userIds as $index => $userIds ) {
+                $user->deleteUser($userIds);
+                unlink("../public/upload/users/".$userImages[$index]);
+            }
+            break;
+    }
+
+    header('Location: ../Admin/users');
+}
 ?>

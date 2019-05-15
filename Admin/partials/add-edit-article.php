@@ -46,8 +46,21 @@ if(isset($_GET['eart'])){
         <div class="form-group">
             <label>Article Status</label>
             <select class="form-control" name="a_status">
-                <option selected>Draft</option>
-                <option>Publish</option>
+
+                <?php 
+                switch($a_status){
+
+                    case 'Published': echo "<option value='Drafted' selected>Draft</option>
+                                            <option>Publish</option>"; 
+                                            break; 
+
+                    case 'Drafted'  : echo "<option selected>Publish</option>
+                                            <option value='Drafted'>Draft</option>"; 
+                                            break; 
+
+                }
+                ?>
+
             </select>
         </div>
         <div class="form-group">
@@ -86,7 +99,22 @@ if(isset($_GET['eart'])){
         </div>
         <div class="form-group">
             <label>Article Tags</label>
-            <input type="text" class="form-control" placeholder="JavaScript" name="a_tags">
+            <select class="form-control" name="a_tags">
+            <?php 
+            
+            // Calling displayAllCategories method of Category class
+            $displayAllCategories = $category->displayAllCategories();
+
+            // Stating while loop to display specific article
+            while($row = mysqli_fetch_assoc($displayAllCategories)){
+            
+            $c_title = $row['cat_title'];
+            ?>
+                <option><?php echo $c_title; ?></option>
+            <?php 
+            } 
+            ?>
+            </select>
         </div>
         <div class="form-group">
             <label>Article Category ID</label>
@@ -99,7 +127,7 @@ if(isset($_GET['eart'])){
         <div class="form-group">
             <label>Article Status</label>
             <select class="form-control" name="a_status">
-                <option selected>Draft</option>
+                <option value="Drafted" selected>Draft</option>
                 <option>Publish</option>
             </select>
         </div>

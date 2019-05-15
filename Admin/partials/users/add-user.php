@@ -19,8 +19,9 @@
     <div class="form-group">
         <label>Type</label>
         <select class="form-control" name="u_type">
-            <option selected>Member</option>
-            <option>Admin</option>
+            <option selected>Subscriber</option>
+            <option>Moderator</option>
+            <option>Administrator</option>
         </select>
     </div>
     <div class="form-group">

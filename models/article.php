@@ -88,6 +88,15 @@ class Article
         return $queryResult;
     }
 
+    // To display specific article for editing from the database
+    public static function displaySingleArticleToEdit($a_id) {
+
+        $query = "SELECT * FROM articles WHERE article_id = $a_id";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return $queryResult;
+    }
+
     // To display specific article title from the database
     public static function displaySingleArticleTitle($a_id) {
 

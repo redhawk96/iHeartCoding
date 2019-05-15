@@ -8,11 +8,11 @@ if(isset($_GET['eart'])){
     // Getting the value of eart variable. ecat variable hold the values of the id of a specific article
     $eart_id = $_GET['eart'];
 
-    // Calling displaySingleArticle method of Article class
-    $displaySingleArticle = $article->displaySingleArticle($eart_id);
+    // Calling displaySingleArticleToEdit method of Article class
+    $displaySingleArticleToEdit = $article->displaySingleArticleToEdit($eart_id);
 
     // Stating while loop to display specific article
-    while($row = mysqli_fetch_assoc($displaySingleArticle)){
+    while($row = mysqli_fetch_assoc($displaySingleArticleToEdit)){
     
     $a_id = $row['article_id'];
     $a_cat_id = $row['article_category_id'];
@@ -50,12 +50,12 @@ if(isset($_GET['eart'])){
                 <?php 
                 switch($a_status){
 
-                    case 'Published': echo "<option value='Drafted' selected>Draft</option>
-                                            <option>Publish</option>"; 
+                    case 'Published': echo "<option value='Published' selected>Publish</option>
+                                            <option value='Drafted'>Draft</option>";
                                             break; 
 
-                    case 'Drafted'  : echo "<option selected>Publish</option>
-                                            <option value='Drafted'>Draft</option>"; 
+                    case 'Drafted'  : echo "<option value='Drafted' selected>Draft</option>
+                                            <option value='Published'>Publish</option>"; 
                                             break; 
 
                 }
@@ -68,9 +68,9 @@ if(isset($_GET['eart'])){
         </div>
         <div class="form-group">
             <label>Article Image</label>
-            <input type="file" name="a_image" class="form-control">
+            <input type="file" name="a_image" id="a_image" class="form-control" accept="image/*">
             <input type="text" name="a_image_name" value="<?php echo $a_image; ?>" hidden>
-            <p class="help-block">This image will be displayed with title </p>
+            <p class="help-block">This image will be displayed with title (Max 2MB)</p>
         </div>
         <div class="form-group">
             <label>Article Content</label>
@@ -79,7 +79,6 @@ if(isset($_GET['eart'])){
         <button type="submit" class="btn btn-success" name="update_article" value="<?php echo $a_id ;?>">Update</button>
     </form>
     <!-- End Displaying specific article [HTML Content] -->
-
 <?php  
 
     }
@@ -87,6 +86,7 @@ if(isset($_GET['eart'])){
 
 // Else if the eart is not shown and the url is as below, then content will be show to add new category
 // eg: articles.php
+
 
 }else{
 
@@ -133,8 +133,8 @@ if(isset($_GET['eart'])){
         </div>
         <div class="form-group">
             <label>Article Image</label>
-            <input type="file" name="a_image" class="form-control">
-            <p class="help-block">This image will be displayed with title </p>
+            <input type="file" name="a_image" id="a_image" class="form-control" accept="image/*">
+            <p class="help-block">This image will be displayed with title (Max 2MB)</p>
         </div>
         <div class="form-group">
             <label>Article Content</label>
@@ -147,3 +147,14 @@ if(isset($_GET['eart'])){
 }
 // End of displaying add new article content
 ?>
+
+<script>
+var uploadField = document.getElementById("a_image");
+var maxSize = 2 * 1000 * 1000 ; // 2MB
+uploadField.onchange = function() {
+    if(this.files[0].size > maxSize){
+    alert("File is too big!");
+    this.value = "";
+    };
+};
+</script>

@@ -83,6 +83,16 @@ class User
     // To add new user to the database
     public static function addUser($username, $password, $u_first_name, $u_last_name, $u_email, $u_avatar, $u_role) {
 
+        $username = mysqli_real_escape_string(self::$serverConnection, $username);
+        $password = mysqli_real_escape_string(self::$serverConnection, $password);
+        $u_first_name = mysqli_real_escape_string(self::$serverConnection, $u_first_name);
+        $u_last_name = mysqli_real_escape_string(self::$serverConnection, $u_last_name);
+        $u_email = mysqli_real_escape_string(self::$serverConnection, $u_email);
+        $u_avatar = mysqli_real_escape_string(self::$serverConnection, $u_avatar);
+        $u_role = mysqli_real_escape_string(self::$serverConnection, $u_role);
+
+        $password = self::encryptUser($password);
+
         $query = "INSERT INTO users(username, user_password, user_firstName, user_lastName, user_email, user_image, user_role) ";
         $query.= " VALUES ('$username', '$password', '$u_first_name', '$u_last_name', '$u_email', '$u_avatar', '$u_role')";
         $queryResult = mysqli_query(self::$serverConnection, $query);
@@ -92,6 +102,8 @@ class User
 
     // To update existing user from the database
     public static function updateUser($username, $u_first_name, $u_last_name, $u_email, $u_image, $u_role, $u_id) {
+
+        $password = self::encryptUser($password);
 
         $query = "UPDATE users SET ";
         $query .= "username = '$username',";
@@ -143,6 +155,8 @@ class User
         $username = mysqli_real_escape_string(self::$serverConnection, $username);
         $password = mysqli_real_escape_string(self::$serverConnection, $password);
 
+        $password = self::encryptUser($password);
+
         $query = "SELECT * FROM users WHERE (username = '$username' OR user_email = '$username') AND user_password = '$password' AND user_status = 'Active'";
 
         $queryResult = mysqli_query(self::$serverConnection, $query);
@@ -171,6 +185,19 @@ class User
             
             return 0;
         }
+    }
+
+    // To encrypt user password
+    public static function encryptUser($password){
+        
+        $new_password = null;
+
+        for($i = 0; $i<=10; $i++){
+            global $new_password;
+            $new_password = hash('ripemd320', $i*(0.3+2).$password.$i*2);
+        }
+        
+        return $new_password;
     }
 }
 

@@ -17,7 +17,7 @@ if(isset($_POST['register_user'])){
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
     $role = "Subscriber";
 
     // Generating a unique name for the user image

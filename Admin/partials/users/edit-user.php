@@ -35,7 +35,7 @@
         <div class="form-group">
             <label>Avatar</label>
             <input type="text" name="u_image_name" value="<?php echo $u_image; ?>" hidden>
-            <input type="file" name="u_image" class="form-control">
+            <input type="file" name="u_image" class="form-control" id="u_image">
             <p class="help-block">This will be used as your profile picture </p>
         </div>
         <div class="form-group">

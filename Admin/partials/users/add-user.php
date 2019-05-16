@@ -13,7 +13,7 @@
     </div>
     <div class="form-group">
         <label>Avatar</label>
-        <input type="file" name="u_image" class="form-control">
+        <input type="file" name="u_image" class="form-control" id="u_image">
         <p class="help-block">This will be used as your profile picture </p>
     </div>
     <div class="form-group">
@@ -30,7 +30,7 @@
     </div>
     <div class="form-group">
         <label>Password</label>
-        <input type="password" class="form-control" name="password">
+        <input type="password" class="form-control" name="password" autocomplete="new-password">
     </div>
     <button type="submit" class="btn btn-primary" name="add_user">Submit</button>
 </form>

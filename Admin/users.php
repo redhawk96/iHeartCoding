@@ -63,3 +63,14 @@
 <!-- Footer -->
 <?php include 'includes/footer.php'; ?>
 
+<script>
+var uploadField = document.getElementById("u_image");
+var maxSize = 2 * 1000 * 1000 ; // 2MB
+uploadField.onchange = function() {
+    if(this.files[0].size > maxSize){
+    alert("File is too big!");
+    this.value = "";
+    };
+};
+</script>
+

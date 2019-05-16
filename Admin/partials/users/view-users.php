@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-xs-3">
-            <button type="submit" class="btn btn-success" name="bulk_apply"><i class="fa fa-check" style="margin-right:5px"></i> Apply</button>
+            <button type="submit" onclick="javascript: return confirm('Are you sure you want to apply changes?');" class="btn btn-success" name="bulk_apply"><i class="fa fa-check" style="margin-right:5px"></i> Apply</button>
             <a href="./users?add_user" class="btn btn-primary"><i class="fa fa-user" style="margin-right:5px"></i>New Member</a>
         </div>
     </div>
@@ -98,7 +98,7 @@
             <td>
                 <form action="../controllers/userController.php" method="POST">
                     <input type="text" name="u_image_name" value="<?php echo $u_image; ?>" hidden>
-                    <button type="submit" class="btn btn-danger btn-sm" name="delete_user" value="<?php echo $u_id; ?>"><i class="fa fa-trash"></i> Delete</button>
+                    <button type="submit" onclick="javascript: return confirm('Are you sure you want to delete?');" class="btn btn-danger btn-sm" name="delete_user" value="<?php echo $u_id; ?>"><i class="fa fa-trash"></i> Delete</button>
                 </form>
             </td>
         </tr>

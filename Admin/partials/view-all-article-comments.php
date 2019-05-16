@@ -16,12 +16,12 @@
         </div>
 
         <div class="col-xs-3">
-            <button type="submit" class="btn btn-success" name="bulk_apply"><i class="fa fa-check" style="margin-right:5px"></i> Apply</button>
+            <button type="submit" onclick="javascript: return confirm('Are you sure you want to apply changes?');" class="btn btn-success" name="bulk_apply"><i class="fa fa-check" style="margin-right:5px"></i> Apply</button>
             <a href="../Article?a=<?php echo $a_id; ?>" class="btn btn-primary"><i class="fa fa-file-text-o" style="margin-right:5px"></i> Read Article</a>
         </div>
     </div>
 </div>
-<table class="table table-hover display" id="datatable">
+<table class="table table-striped table-bordered" id="datatable">
     <thead>
         <tr>
             <th><input id="selectAllBoxes" type="checkbox"></th>
@@ -91,7 +91,7 @@
             </td>
             <td>
                 <form action="../controllers/commentController.php" method="POST">
-                    <button type="submit" class="btn btn-danger btn-sm" name="delete_comment" value="<?php echo $c_id; ?>"><i class="fa fa-trash"></i> Delete</button>
+                    <button type="submit" onclick="javascript: return confirm('Are you sure you want to delete?');" class="btn btn-danger btn-sm" name="delete_comment" value="<?php echo $c_id; ?>"><i class="fa fa-trash"></i> Delete</button>
                 </form>
             </td>
         </tr>

@@ -54,7 +54,7 @@ a {
 .image-2 {
   position: absolute;
   bottom: -12px;
-  right: -137px;
+  right: -160px;
   z-index: 99;
 }
 
@@ -91,7 +91,6 @@ h3 {
   margin-bottom: 21px; }
   .form-holder span {
     position: absolute;
-    left: 0;
     top: 50%;
     transform: translateY(-50%);
     font-size: 15px;
@@ -193,4 +192,43 @@ button:hover{
   .wrapper {
     background: none; } }
 
-/*# sourceMappingURL=style.css.map */
+    .tooltip {
+      /* position: relative; */
+      /* display: inline-block; */
+      /* border-bottom: 1px dotted black; */
+    }
+    
+    .tooltip .tooltiptext {
+      font-size: 13px;
+      visibility: hidden;
+      width: auto;
+      height: fit-content;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      /* z-index: 4 !important; */
+      top: -10px;
+      right: -56px;
+      /* margin-left: -60px; */
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+    
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }

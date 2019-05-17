@@ -10,6 +10,7 @@
 		
 		<!-- STYLE CSS -->
 		<link rel="stylesheet" href="public/css/login-style.css">
+		
 	</head>
 
 	<body>
@@ -24,19 +25,21 @@
 						<h3>New Account?</h3>
 						<div class="form-holder">
 							<span class="lnr lnr-user"></span>
-							<input type="text" class="form-control" placeholder="Username" name="username">
+							<input type="text" class="form-control" placeholder="Username" name="username" id="username" required> 
+							<div class='tooltip' id="username-availability"></div>
 						</div>
 						<div class="form-holder">
 							<span class="lnr lnr-user"></span>
-							<input type="text" class="form-control" placeholder="First Name" name="first_name">
+							<input type="text" class="form-control" placeholder="First Name" name="first_name" required>
 						</div>
 						<div class="form-holder">
 							<span class="lnr lnr-user"></span>
-							<input type="text" class="form-control" placeholder="Last Name" name="last_name">
+							<input type="text" class="form-control" placeholder="Last Name" name="last_name" required>
 						</div>
 						<div class="form-holder">
 							<span class="lnr lnr-envelope"></span>
-							<input type="email" class="form-control" placeholder="Email" name="email">
+							<input type="email" class="form-control" placeholder="Email" name="email" id="email" required>
+							<div class='tooltip' id="email-availability"></div>
 						</div>
 						<div class="form-holder" style="margin-bottom:50px">
 							<span class="lnr lnr-lock"></span>
@@ -120,6 +123,8 @@
 			
 		</div>
 		
+		
 		<script src="public/js/jquery.min.js"></script>
+		<script src="asynchronous_scripts/validate-registration.js"></script>
 	</body>
 </html>

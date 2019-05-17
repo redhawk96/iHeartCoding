@@ -199,6 +199,27 @@ class User
         
         return $new_password;
     }
+
+    // To check username avaliability form database for new users
+    public static function checkUsernameAvailability($username) {
+
+        $query = "SELECT username FROM users WHERE username = '$username'";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return mysqli_num_rows($queryResult);
+    }
+
+    // To check email avaliability form database for new users
+    public static function checkEmailAvailability($email) {
+
+        $query = "SELECT user_email FROM users WHERE user_email = '$email'";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return mysqli_num_rows($queryResult);
+    }
+
 }
 
 

@@ -17,7 +17,7 @@ if(isset($_POST['register_user'])){
     $first_name = $_POST['first_name'];
     $last_name = $_POST['last_name'];
     $email = $_POST['email'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password'];
     $role = "Subscriber";
 
     // Generating a unique name for the user image
@@ -62,4 +62,35 @@ if(isset($_POST['login_user'])){
         header('Location: ../Login?login=false');
     }
 }
+
+// To check username availability 
+if(isset($_POST['search_username'])){
+
+    $username = $_POST['search_username'];
+
+    $checkUsernameAvailability = $user->checkUsernameAvailability($username);
+        
+    if($checkUsernameAvailability >=1){
+        echo "<span class='lnr lnr-cross-circle' style='right: 0;color: red;'></span><span class='tooltiptext'>Username taken</span>";
+    }else{
+        echo "<span class='lnr lnr-checkmark-circle' style='right: 0;color: green;'></span><span class='tooltiptext'>Username avaliable</span>";
+    }
+}
+
+// To check username availability 
+if(isset($_POST['search_email'])){
+
+    $email = $_POST['search_email'];
+
+    $checkEmailAvailability = $user->checkEmailAvailability($email);
+        
+    if($checkEmailAvailability >=1){
+        echo "<span class='lnr lnr-cross-circle' style='right: 0;color: red;'></span><span class='tooltiptext'>Email taken</span>";
+    }else{
+        echo "<span class='lnr lnr-checkmark-circle' style='right: 0;color: green;'></span><span class='tooltiptext'>Email avaliable</span>";
+    }
+}
+
+
+
 ?>

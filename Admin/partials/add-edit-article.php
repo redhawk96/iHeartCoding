@@ -128,7 +128,7 @@ if(isset($_GET['eart'])){
             <label>Article Status</label>
             <select class="form-control" name="a_status">
                 <option value="Drafted" selected>Draft</option>
-                <option>Publish</option>
+                <option value="Published">Publish</option>
             </select>
         </div>
         <div class="form-group">

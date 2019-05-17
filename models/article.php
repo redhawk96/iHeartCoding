@@ -88,6 +88,15 @@ class Article
         return $queryResult;
     }
 
+    // To display all articles form a specific author from the database
+    public static function displayAuthorArticles($auth_id) {
+
+        $query = "SELECT * FROM articles WHERE author_id = $auth_id AND article_status = 'Published'";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return $queryResult;
+    }
+
     // To display specific article for editing from the database
     public static function displaySingleArticleToEdit($a_id) {
 

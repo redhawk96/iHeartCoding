@@ -4732,7 +4732,7 @@ ul.autor-list > li .autor-box {
   -o-transition: all 0.2s ease-in-out;
 }
 ul.autor-list > li .autor-box img {
-  max-width: 100px;
+  max-width: 90px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -o-border-radius: 50%;

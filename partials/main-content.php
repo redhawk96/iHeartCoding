@@ -30,7 +30,7 @@
                         $a_category_id = $row['article_category_id'];
                         $a_status = $row['article_status'];
                         $a_image = $row['article_image'];
-                        // $a_tags = $row['article_tags'];
+                        $author_id = $row['author_id'];
                         $a_com_count = $row['article_comment_count'];
                         $a_content = $row['article_content'];
                         $a_date = $row['article_date'];
@@ -52,7 +52,7 @@
                                         </h2>
                                         <ul class="post-tags">
                                             <li><i class="fa fa-clock-o"></i><?php echo date('M j Y', strtotime($a_date)); ?></li>
-                                            <li><i class="fa fa-user"></i>by <a href="#"><?php echo $a_author; ?></a></li>
+                                            <li><i class="fa fa-user"></i>by <a href="Articles?Author=<?php echo $author_id; ?>"><?php echo $a_author; ?></a></li>
                                             <li><a href="#"><i class="fa fa-comments-o"></i><span><?php echo $a_com_count; ?></span></a></li>
                                             <li><i class="fa fa-eye"></i>872</li>
                                         </ul>

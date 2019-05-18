@@ -38,20 +38,23 @@
 
     <?php
 
-    // Calling displayAllArticles method of Article class
-    $displayAllArticles = $article->displayAllArticles();
+    // Calling displayAuthorArticles method of Article class
+    $displayAuthorArticles = $article->displayAuthorArticles($author_id);
 
     // Stating while loop to display all categories
-    while($row = mysqli_fetch_assoc($displayAllArticles)){
+    while($row = mysqli_fetch_assoc($displayAuthorArticles)){
         $a_id = $row['article_id'];
-        $a_author = $row['article_author'];
+        $a_cat_id = $row['article_category_id'];
         $a_title = $row['article_title'];
-        $a_category_id = $row['article_category_id'];
-        $a_status = $row['article_status'];
+        $a_author = $row['article_author'];
+        $author_id = $row['author_id'];
         $a_image = $row['article_image'];
+        $a_com_count = $row['article_comment_count'];
+        $a_content = $row['article_content'];
         $a_tags = $row['article_tags'];
-        $a_comment_count = $row['article_comment_count'];
+        $a_status = $row['article_status'];
         $a_date = $row['article_date'];
+        $a_view_count = $row['article_view_count'];  
     ?>
 
     <!-- Starting display of articles [HTML Content] -->
@@ -60,15 +63,15 @@
             <td><input class="checkBoxes" type="checkbox" name="articleIdCheckBoxArray[]" value="<?php echo $a_id; ?>"></td>
             <td><?php echo $a_id; ?></td>
             <td><?php echo $a_author; ?></td>
-            <td><a href="/iHeartCoding/Article?a=<?php echo $a_id; ?>"><?php echo $a_title; ?></a></td>
-            <td><?php echo $a_category_id; ?></td>
+            <td><a href="/iHeartCoding/Article?a=<?php echo $a_author; ?>"><?php echo $a_title; ?></a></td>
+            <td><?php echo $a_cat_id; ?></td>
             <td><?php echo $a_status; ?></td>
             <td>
                 <img src="../public/upload/articles/<?php echo $a_image; ?>" style="width:50px">
                 <input class="checkBoxes" type="checkbox" name="articleImagCheckBoxArray[]" value="<?php echo $a_image; ?>" checked hidden>
             </td>
             <td><?php echo $a_tags; ?></td>
-            <td><a href="article-comments?a=<?php echo $a_id; ?>"><?php echo $a_comment_count; ?></a></td>
+            <td><a href="article-comments?a=<?php echo $a_id; ?>"><?php echo $a_com_count; ?></a></td>
             <td><?php echo $a_date; ?></td>
             <td>
                 <form action="../controllers/articleController.php" method="POST">

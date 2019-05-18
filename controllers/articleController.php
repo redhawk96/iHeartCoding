@@ -173,6 +173,12 @@ if(isset($_POST['bulk_apply'])){
             }
             break;
 
+        case 'Reset':
+            foreach($articleIds as  $articleId) {
+                $article->resetArticleViews($articleId);
+            }
+            break;
+
         case 'Delete':
             foreach($articleIds as $index => $articleId ) {
                     $article->deleteArticle($articleId);
@@ -183,5 +189,20 @@ if(isset($_POST['bulk_apply'])){
     }
 
     header('Location: ../Admin/articles');
+}
+
+// To reset existing article views
+if(isset($_POST['reset_view_count'])){
+    
+    $a_id = $_POST['reset_view_count'];
+    
+    $resetArticleViews = $article->resetArticleViews($a_id);
+
+    if(!$resetArticleViews){
+        
+        die('QUERY FAILED '. mysqli_error($serverConnection));
+    }else{
+        header('Location: ../Admin/articles.php');
+    }
 }
 ?>

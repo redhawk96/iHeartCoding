@@ -34,6 +34,7 @@
                         $a_com_count = $row['article_comment_count'];
                         $a_content = $row['article_content'];
                         $a_date = $row['article_date'];
+                        $a_view_count = $row['article_view_count'];  
                     
                     ?>
 
@@ -54,7 +55,7 @@
                                             <li><i class="fa fa-clock-o"></i><?php echo date('M j Y', strtotime($a_date)); ?></li>
                                             <li><i class="fa fa-user"></i>by <a href="Articles?Author=<?php echo $author_id; ?>"><?php echo $a_author; ?></a></li>
                                             <li><a href="#"><i class="fa fa-comments-o"></i><span><?php echo $a_com_count; ?></span></a></li>
-                                            <li><i class="fa fa-eye"></i>872</li>
+                                            <li><i class="fa fa-eye"></i><?php echo $a_view_count; ?></li>
                                         </ul>
                                         <p><?php echo substr($a_content, 0, 250)."..."; ?></p>
                                     </div>

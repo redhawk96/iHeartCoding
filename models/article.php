@@ -91,7 +91,37 @@ class Article
     // To display all articles form a specific author from the database
     public static function displayAuthorArticles($auth_id) {
 
+        $query = "SELECT * FROM articles WHERE author_id = $auth_id";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return $queryResult;
+    }
+
+    // To display published articles form a specific author from the database
+    public static function displayPublishedAuthorArticles($auth_id) {
+
         $query = "SELECT * FROM articles WHERE author_id = $auth_id AND article_status = 'Published'";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return $queryResult;
+    }
+
+    // To get article count form a specific author from the database
+    public static function displayAuthorArticleCount($auth_id) {
+
+        $query = "SELECT * FROM articles WHERE author_id = $auth_id AND article_status = 'Published'";
+        
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $queryRowCount = mysqli_num_rows($queryResult);
+
+        return $queryRowCount;
+    }
+
+    // To display all categories related to a specific author from the database
+    public static function displayAuthorCategories($auth_id) {
+
+        $query = "SELECT article_tags FROM articles WHERE author_id = $auth_id  AND article_status = 'Published' GROUP BY article_tags";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -163,6 +193,22 @@ class Article
         $query .= "article_tags = '$a_tags',";
         $query .= "article_status = '$a_status' ";
         $query .= "WHERE article_id = $a_id";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return $queryResult;
+    }
+
+    // To update existing article view count from the database
+    public static function updateArticleViews($a_id) {
+
+        $query = "UPDATE articles SET article_view_count = article_view_count + 1 WHERE article_id = $a_id";
+        mysqli_query(self::$serverConnection, $query);
+    }
+
+    // To rest existing article view count from the database
+    public static function resetArticleViews($a_id) {
+
+        $query = "UPDATE articles SET article_view_count = 0 WHERE article_id = $a_id";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;

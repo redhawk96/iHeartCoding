@@ -12,10 +12,32 @@
 
             <div class="col-lg-12">
 
-                <!-- View All Articles -->
-                <?php include "partials/view-all-articles.php"; ?>
-                <!-- End View All Articles -->
+                <?php
+                    if (isset($_GET['Author'])) {
 
+                        $author_id = $_GET['Author'];
+
+                        if ($author_id == '' || empty($author_id)) {
+
+                            // View All Articles By a Specific Author
+                            include "partials/articles/view-articles.php";
+                            // End View All Articles By a Specific Author
+                            
+                        }else{
+
+                            // View All Articles By a Specific Author
+                            include "partials/articles/view-author-articles.php";
+                            // End View All Articles By a Specific Author
+                        }
+
+                    }else{
+                     
+                        // View All Articles By a Specific Author
+                        include "partials/articles/view-articles.php";
+                        // End View All Articles By a Specific Author
+
+                    }
+                ?>
             </div>
             
         </div>

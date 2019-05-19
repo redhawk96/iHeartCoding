@@ -38,7 +38,7 @@
                 </div>
 
                 <!-- Reply comments -->
-                <?php include "./partials/view-reply-comments.php"; ?>
+                <?php include "./partials/article/view-reply-comments.php"; ?>
                 <!-- End of reply comments -->
 
             </div>

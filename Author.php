@@ -36,15 +36,15 @@ if(isset($_GET['A'])){
 				<div class="sidebar">
 
 				<!-- search widget -->
-				<?php include "partials/search-widget.php"; ?>
+				<?php include "partials/widgets/search-widget.php"; ?>
 				<!-- End search widget -->
 
 				<!-- tags widget -->
-				<?php include "partials/tags-widget.php"; ?>
+				<?php include "partials/widgets/tags-widget.php"; ?>
 				<!-- End tags widget -->
 
 				<!-- articles widget -->
-				<?php include "partials/articles-widget.php"; ?>
+				<?php include "partials/widgets/articles-widget.php"; ?>
 				<!-- End articles widget -->
 
 

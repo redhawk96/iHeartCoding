@@ -79,6 +79,26 @@ class Article
         return $queryRowCount;
     }
 
+    // To display all latest published articles from the database
+    public static function displayAllLatestPublishedArticles() {
+
+        $query = "SELECT * FROM articles WHERE article_status = 'Published' ORDER BY article_date DESC LIMIT 3";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return $queryResult;
+    }
+
+    // To display all published articles with pagination from the database
+    public static function displayAllPublishedArticlesWithPagination($start_from, $per_page) {
+
+        $query = "SELECT * FROM articles WHERE article_status = 'Published' ORDER BY article_date DESC LIMIT $start_from, $per_page";
+
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        return $queryResult;
+    }
+
     // To display specific article from the database
     public static function displaySingleArticle($a_id) {
 

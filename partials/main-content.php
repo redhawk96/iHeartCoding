@@ -19,11 +19,11 @@
 
                     <?php 
 
-                    // Calling displayAllArticles method of Article class
-                    $displayAllPublishedArticles = $article->displayAllPublishedArticles();
+                    // Calling displayAllLatestPublishedArticles method of Article class
+                    $displayAllLatestPublishedArticles = $article->displayAllLatestPublishedArticles();
 
                     // Stating while loop to display all categories
-                    while($row = mysqli_fetch_assoc($displayAllPublishedArticles)){
+                    while($row = mysqli_fetch_assoc($displayAllLatestPublishedArticles)){
                         $a_id = $row['article_id'];
                         $a_author = $row['article_author'];
                         $a_title = $row['article_title'];
@@ -69,21 +69,9 @@
 
                 </div>
                 <!-- End masonry box -->
-
-                <!-- pagination box -->
-                <div class="pagination-box">
-                    <ul class="pagination-list">
-                        <li><a class="active" href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><span>...</span></li>
-                        <li><a href="#">9</a></li>
-                        <li><a href="#">Next</a></li>
-                    </ul>
-                    <p>Page 1 of 9</p>
+                <div class="text-right">
+                    <a href="Articles" class="read-more-button text-right"><i class="fa fa-arrow-circle-right"></i>All Articles</a>
                 </div>
-                <!-- End pagination box -->
-
             </div>
             <!-- End block content -->
 

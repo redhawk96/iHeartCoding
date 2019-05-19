@@ -107,12 +107,12 @@ if(isset($_GET['a'])){
         </div>
 
         <!-- contact form box -->
-        <?php include "./partials/add-comment.php"; ?>
+        <?php include "./partials/article/add-comment.php"; ?>
         <!-- End contact form box -->
 
 
         <!-- comments -->
-        <?php include "./partials/view-comments.php"; ?>
+        <?php include "./partials/article/view-comments.php"; ?>
         <!-- End of comments -->
 
     </div>

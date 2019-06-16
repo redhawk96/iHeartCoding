@@ -24,11 +24,7 @@ class Activity
     // To record user first and last logged time to the database
     public static function recordLoggedActivity($u_id) {
 
-<<<<<<< HEAD
-        echo $u_id;
-=======
         $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
->>>>>>> IHC-RH 1.0.9
 
         $getUserActivityQuery = "SELECT * FROM user_activity WHERE user_id = '$u_id'";
 

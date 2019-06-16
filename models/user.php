@@ -74,11 +74,6 @@ class User
     // To display specific user from the database
     public static function displaySingleUser($u_id) {
 
-<<<<<<< HEAD
-=======
-        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
-
->>>>>>> IHC-RH 1.0.9
         $query = "SELECT * FROM users WHERE user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -160,11 +155,6 @@ class User
     // To delete existing user from the database
     public static function deleteUser($u_id) {
 
-<<<<<<< HEAD
-=======
-        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
-
->>>>>>> IHC-RH 1.0.9
         $query = "DELETE FROM users WHERE users.user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -202,8 +192,6 @@ class User
                 $_SESSION['u_type'] = $row['user_role'];
                 $_SESSION['u_reg_date'] = $row['user_reg_date'];
                 $_SESSION['s_id'] = uniqid();
-
-
             
             }
 

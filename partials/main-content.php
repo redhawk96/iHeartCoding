@@ -41,7 +41,7 @@
                         <div class="news-post article-post">
                             <div class="row">
                                 <div class="col-sm-4">
-                                <a href="Article?a=<?php echo $a_id; ?>">
+                                <a href="Article?<?php echo urlencode('a='.$a_id); ?>">
                                     <div class="post-gallery">
                                         <img alt="" src="<?php echo "public/upload/articles/".$a_image; ?>">
                                     </div>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="post-content">
-                                        <h2><a href="Article?a=<?php echo $a_id; ?>"><?php echo $a_title; ?></a>
+                                        <h2><a href="Article?<?php echo urlencode('a='.$a_id);?>"><?php echo $a_title; ?></a>
                                         </h2>
                                         <ul class="post-tags">
                                             <li><i class="fa fa-clock-o"></i><?php echo date('M j Y', strtotime($a_date)); ?></li>

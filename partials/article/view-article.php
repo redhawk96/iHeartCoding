@@ -1,14 +1,20 @@
 <?php 
 
-// If ecat valiable is shown then content will be show to update existing category
-// eg: article.php?e=1
+$decoded_url = urldecode("$_SERVER[REQUEST_URI]");
 
-if(isset($_GET['a'])){
+$a_id = null;
+
+foreach (explode('&', $decoded_url) as $chunk) {
+    $param = explode("=", $chunk);
+
+    if ($param) {
+        $a_id = urldecode($param[1]);
+    }
+}
+
+if(isset($a_id)){
 
     echo "<script src='https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js'></script>";
-
-    // Getting the value of eart variable. ecat variable hold the values of the id of a specific article
-    $a_id = $_GET['a'];
 
     // Updating article view count
     $article->updateArticleViews($a_id);

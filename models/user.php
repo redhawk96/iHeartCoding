@@ -74,7 +74,7 @@ class User
     // To display specific user from the database
     public static function displaySingleUser($u_id) {
 
-        $query = "SELECT * FROM users WHERE user_id = $u_id";
+        $query = "SELECT * FROM users WHERE user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -83,6 +83,7 @@ class User
     // To add new user to the database
     public static function addUser($username, $password, $u_first_name, $u_last_name, $u_email, $u_avatar, $u_role) {
 
+        $u_id =  uniqid();
         $username = mysqli_real_escape_string(self::$serverConnection, $username);
         $password = mysqli_real_escape_string(self::$serverConnection, $password);
         $u_first_name = mysqli_real_escape_string(self::$serverConnection, $u_first_name);
@@ -93,8 +94,8 @@ class User
 
         $password = self::encryptUser($password);
 
-        $query = "INSERT INTO users(username, user_password, user_firstName, user_lastName, user_email, user_image, user_role) ";
-        $query.= " VALUES ('$username', '$password', '$u_first_name', '$u_last_name', '$u_email', '$u_avatar', '$u_role')";
+        $query = "INSERT INTO users(user_id,username, user_password, user_firstName, user_lastName, user_email, user_image, user_role) ";
+        $query.= " VALUES ('$u_id', '$username', '$password', '$u_first_name', '$u_last_name', '$u_email', '$u_avatar', '$u_role')";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -112,7 +113,7 @@ class User
         $query .= "user_email = '$u_email',";
         $query .= "user_image = '$u_image',";
         $query .= "user_role = '$u_role'";
-        $query .= "WHERE user_id = $u_id";
+        $query .= "WHERE user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -123,7 +124,7 @@ class User
 
         $query = "UPDATE users SET ";
         $query .= "user_status = 'Active'";
-        $query .= "WHERE users.user_id = $u_id";
+        $query .= "WHERE users.user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -134,7 +135,7 @@ class User
 
         $query = "UPDATE users SET ";
         $query .= "user_status = 'Disabled'";
-        $query .= "WHERE users.user_id = $u_id";
+        $query .= "WHERE users.user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -143,7 +144,7 @@ class User
     // To delete existing user from the database
     public static function deleteUser($u_id) {
 
-        $query = "DELETE FROM users WHERE users.user_id = $u_id";
+        $query = "DELETE FROM users WHERE users.user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -151,6 +152,9 @@ class User
 
     // To check user credientials from the database against login credentials
     public static function validateUser($username, $password) {
+
+        include 'activity.php';
+        $activity = new Activity();
 
         $username = mysqli_real_escape_string(self::$serverConnection, $username);
         $password = mysqli_real_escape_string(self::$serverConnection, $password);
@@ -168,6 +172,7 @@ class User
             while($row = mysqli_fetch_assoc($queryResult)){
 
                 $_SESSION['u_id'] = $row['user_id'];
+                $activity->recordLoggedActivity($row['user_id']);
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['u_f_name'] = $row['user_firstName'];
                 $_SESSION['u_l_name'] = $row['user_lastName'];
@@ -176,6 +181,8 @@ class User
                 $_SESSION['u_type'] = $row['user_role'];
                 $_SESSION['u_reg_date'] = $row['user_reg_date'];
                 $_SESSION['s_id'] = uniqid();
+
+
             
             }
 

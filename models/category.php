@@ -48,6 +48,8 @@ class Category
     // To display specific category from the database
     public static function displayOneCategory($cat_id) {
 
+        $cat_id = mysqli_real_escape_string(self::$serverConnection, $cat_id);
+
         $query = "SELECT * FROM categories WHERE cat_id = $cat_id";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -56,6 +58,8 @@ class Category
 
     // To add new category to the database
     public static function addCategory($cat_title) {
+
+        $cat_title = mysqli_real_escape_string(self::$serverConnection, $cat_title);
 
         $query = "INSERT INTO categories (cat_title) VALUES ('$cat_title')";
         $queryResult = mysqli_query(self::$serverConnection, $query);
@@ -66,6 +70,9 @@ class Category
     // To update existing category from the database
     public static function updateCategory($cat_id, $cat_title) {
 
+        $cat_id = mysqli_real_escape_string(self::$serverConnection, $cat_id);
+        $cat_title = mysqli_real_escape_string(self::$serverConnection, $cat_title);
+
         $query = "UPDATE categories SET cat_title = '$cat_title' WHERE categories.cat_id = $cat_id";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -75,6 +82,8 @@ class Category
     // To delete existing category from the database
     public static function deleteCategory($cat_id) {
 
+        $cat_id = mysqli_real_escape_string(self::$serverConnection, $cat_id);
+        
         $query = "DELETE FROM categories WHERE categories.cat_id = $cat_id";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 

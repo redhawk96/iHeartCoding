@@ -74,6 +74,11 @@ class User
     // To display specific user from the database
     public static function displaySingleUser($u_id) {
 
+<<<<<<< HEAD
+=======
+        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
+
+>>>>>>> IHC-RH 1.0.9
         $query = "SELECT * FROM users WHERE user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -104,8 +109,15 @@ class User
     // To update existing user from the database
     public static function updateUser($username, $u_first_name, $u_last_name, $u_email, $u_image, $u_role, $u_id) {
 
-        $password = self::encryptUser($password);
+        $username = mysqli_real_escape_string(self::$serverConnection, $username);
+        $u_first_name = mysqli_real_escape_string(self::$serverConnection, $u_first_name);
+        $u_last_name = mysqli_real_escape_string(self::$serverConnection, $u_last_name);
+        $u_email = mysqli_real_escape_string(self::$serverConnection, $u_email);
+        $u_image = mysqli_real_escape_string(self::$serverConnection, $u_image);
+        $u_role = mysqli_real_escape_string(self::$serverConnection, $u_role);
+        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
 
+        
         $query = "UPDATE users SET ";
         $query .= "username = '$username',";
         $query .= "user_firstName = '$u_first_name',";
@@ -122,6 +134,8 @@ class User
     // To activate access for a existing user from the database
     public static function activateUser($u_id) {
 
+        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
+
         $query = "UPDATE users SET ";
         $query .= "user_status = 'Active'";
         $query .= "WHERE users.user_id = '$u_id'";
@@ -132,6 +146,8 @@ class User
 
     // To disable access for an existing user from the database
     public static function disableUser($u_id) {
+
+        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
 
         $query = "UPDATE users SET ";
         $query .= "user_status = 'Disabled'";
@@ -144,6 +160,11 @@ class User
     // To delete existing user from the database
     public static function deleteUser($u_id) {
 
+<<<<<<< HEAD
+=======
+        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
+
+>>>>>>> IHC-RH 1.0.9
         $query = "DELETE FROM users WHERE users.user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -197,6 +218,8 @@ class User
     // To encrypt user password
     public static function encryptUser($password){
         
+        $password = mysqli_real_escape_string(self::$serverConnection, $password);
+
         $new_password = null;
 
         for($i = 0; $i<=10; $i++){
@@ -210,6 +233,8 @@ class User
     // To check username avaliability form database for new users
     public static function checkUsernameAvailability($username) {
 
+        $username = mysqli_real_escape_string(self::$serverConnection, $username);
+
         $query = "SELECT username FROM users WHERE username = '$username'";
 
         $queryResult = mysqli_query(self::$serverConnection, $query);
@@ -219,6 +244,8 @@ class User
 
     // To check email avaliability form database for new users
     public static function checkEmailAvailability($email) {
+
+        $email = mysqli_real_escape_string(self::$serverConnection, $email);
 
         $query = "SELECT user_email FROM users WHERE user_email = '$email'";
 

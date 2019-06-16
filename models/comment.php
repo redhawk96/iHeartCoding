@@ -69,8 +69,8 @@ class Comment
         return $queryRowCount;
     }
 
-    // To display all commets for a specific article from the database
-    public static function displayAllArticleComments($a_id) {
+    // To display all comments from the database
+    public static function displayAllArticleComments() {
 
         $query = "SELECT * FROM comments ORDER BY comment_date DESC";
         $queryResult = mysqli_query(self::$serverConnection, $query);
@@ -81,6 +81,8 @@ class Comment
     // To display specific comment from the database
     public static function displaySingleComment($c_id) {
 
+        $c_id = mysqli_real_escape_string(self::$serverConnection, $c_id);
+
         $query = "SELECT * FROM comments WHERE comment_id = $c_id";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -90,6 +92,8 @@ class Comment
     // To display all commets for a specific article from the database
     public static function displayApprovedArticleComments($a_id) {
 
+        $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
+
         $query = "SELECT * FROM comments WHERE article_id = $a_id AND comment_status = 'Approved' AND parent_comment_id = 0 ORDER BY comment_date DESC";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -98,6 +102,8 @@ class Comment
 
     // To get comment count for a specific article from the database
     public static function displayApprovedArticleCommentCount($a_id) {
+
+        $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
 
         $query = "SELECT * FROM comments WHERE article_id = $a_id AND comment_status = 'Approved' AND parent_comment_id = 0";
         $queryResult = mysqli_query(self::$serverConnection, $query);
@@ -110,6 +116,9 @@ class Comment
     // To display replies for a comment for a specific article from the database
     public static function displayArticleCommentReplies($a_id, $c_id) {
 
+        $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
+        $c_id = mysqli_real_escape_string(self::$serverConnection, $c_id);
+
         $query = "SELECT * FROM comments WHERE article_id = $a_id AND parent_comment_id = $c_id AND comment_status = 'Approved'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -118,6 +127,9 @@ class Comment
 
     // To get reply count for a comment for a specific article from the database
     public static function displayArticleCommentRepyCount($a_id, $c_id) {
+
+        $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
+        $c_id = mysqli_real_escape_string(self::$serverConnection, $c_id);
 
         $query = "SELECT * FROM comments WHERE article_id = $a_id AND parent_comment_id = $c_id AND comment_status = 'Approved'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
@@ -130,6 +142,12 @@ class Comment
     // To add new comment to the database
     public static function addComment($a_id, $parent_c_id, $c_author, $c_author_email, $c_content) {
 
+        $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
+        $parent_c_id = mysqli_real_escape_string(self::$serverConnection, $parent_c_id);
+        $c_author = mysqli_real_escape_string(self::$serverConnection, $c_author);
+        $c_author_email = mysqli_real_escape_string(self::$serverConnection, $c_author_email);
+        $c_content = mysqli_real_escape_string(self::$serverConnection, $c_content);
+
         $query = "INSERT INTO comments(article_id, parent_comment_id, comment_author, comment_email, comment_content)";
         $query.= " VALUES ($a_id, '$parent_c_id', '$c_author', '$c_author_email', '$c_content')";
         $queryResult = mysqli_query(self::$serverConnection, $query);
@@ -139,6 +157,13 @@ class Comment
 
     // To update existing comment from the database
     public static function updateComment($c_id, $p_com_id, $a_id, $c_author, $c_mail, $c_content) {
+
+        $c_id = mysqli_real_escape_string(self::$serverConnection, $c_id);
+        $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
+        $p_com_id = mysqli_real_escape_string(self::$serverConnection, $p_com_id);
+        $c_author = mysqli_real_escape_string(self::$serverConnection, $c_author);
+        $c_mail = mysqli_real_escape_string(self::$serverConnection, $c_mail);
+        $c_content = mysqli_real_escape_string(self::$serverConnection, $c_content);
 
         $query = "UPDATE comments SET ";
         $query .= "article_id = '$a_id',";
@@ -155,6 +180,9 @@ class Comment
     // To approve existing comment status from the database
     public static function approveComment($c_id, $a_id) {
 
+        $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
+        $c_id = mysqli_real_escape_string(self::$serverConnection, $c_id);
+
         $query = "UPDATE comments SET ";
         $query .= "comment_status = 'Approved'";
         $query .= "WHERE comments.comment_id = $c_id";
@@ -170,6 +198,9 @@ class Comment
     // To dismiss existing comment status from the database
     public static function dismissComment($c_id, $a_id) {
 
+        $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
+        $c_id = mysqli_real_escape_string(self::$serverConnection, $c_id);
+
         $query = "UPDATE comments SET ";
         $query .= "comment_status = 'Pending'";
         $query .= "WHERE comments.comment_id = $c_id";
@@ -184,6 +215,8 @@ class Comment
 
     // To delete existing comment from the database
     public static function deleteComment($c_id) {
+
+        $c_id = mysqli_real_escape_string(self::$serverConnection, $c_id);
 
         $query = "DELETE FROM comments WHERE comments.comment_id = $c_id";
         $queryResult = mysqli_query(self::$serverConnection, $query);

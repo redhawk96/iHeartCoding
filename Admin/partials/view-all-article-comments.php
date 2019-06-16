@@ -41,7 +41,7 @@
     <?php
 
     // Calling displayAllArticleComments method of Comment class
-    $displayAllArticleComments = $comment->displayAllArticleComments($a_id);
+    $displayAllArticleComments = $comment->displayAllArticleComments();
 
     // Stating while loop to display all comments related to this article
     while($row = mysqli_fetch_assoc($displayAllArticleComments)){

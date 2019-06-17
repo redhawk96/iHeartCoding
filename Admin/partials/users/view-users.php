@@ -1,35 +1,31 @@
 <form action="../controllers/userController.php" method="POST">
-<div class="row" style="padding-bottom:35px">
-    <div id="bulkOptionsContainer">
-        <div class="col-xs-2" style="padding-right:0">
-            <select class="form-control" name="bulk_option">
-                <option selected>Select Option</option>
-                <option>Activate</option>
-                <option>Disable</option>
-                <option>Delete</option>
-            </select>
-        </div>
 
-        <div class="col-xs-3">
-            <button type="submit" onclick="javascript: return confirm('Are you sure you want to apply changes?');" class="btn btn-success" name="bulk_apply"><i class="fa fa-check" style="margin-right:5px"></i> Apply</button>
-            <a href="./users?add_user" class="btn btn-primary"><i class="fa fa-user" style="margin-right:5px"></i>New Member</a>
-        </div>
+<div class="offset-10 col pr-0 pb-5">
+    <div class="input-group col-2">
+    <select class="custom-select form-control" name="bulk_option">
+        <option selected>Select</option>
+        <option value="Activate">Activate</option>
+        <option value="Disable">Disable</option>
+        <option value="Delete">Delete</option>
+    </select>
+    <div class="input-group-append">
+        <button type="submit" onclick="javascript: return confirm('Are you sure you want to apply changes?');" class="btn btn-outline-success float-right" name="bulk_apply"><i class="ti-save"></i></button>
+    </div>
     </div>
 </div>
-<table class="table table-striped table-bordered" id="datatable">
+
+<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
     <thead>
         <tr>
             <th><input id="selectAllBoxes" type="checkbox"></th>
-            <th>ID</th>
-            <th>Avatar</th>
+            <th class="text-center">Avatar</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
             <th>Username</th>
             <th>Role</th>
-            <th>Status</th> 
-            <th>Registerd on</th> 
-            <th>Account</th> 
+            <th class="text-center">Status</th> 
+            <th class="text-center">Account</th> 
             <th></th> 
             <th></th>
             <th></th>
@@ -52,16 +48,16 @@
         $u_image = $row['user_image'];
         $u_role = $row['user_role'];
         $u_status = $row['user_status'];
-        $u_reg_date = $row['user_reg_date'];
     ?>
 
     <!-- Starting display of articles [HTML Content] -->
 
         <tr>
-            <td><input class="checkBoxes" type="checkbox" name="userIdCheckBoxArray[]" value="<?php echo $u_id; ?>"></td>
-            <td><?php echo $u_id; ?></td>
-            <td>
-                <img src="../public/upload/users/<?php echo $u_image; ?>" style="width:50px">
+            <td class="text-center"><input class="checkBoxes" type="checkbox" name="userIdCheckBoxArray[]" value="<?php echo $u_id; ?>"></td>
+            <td class="text-center">
+                <a class="image-popup-no-margins" href="../public/upload/users/<?php echo $u_image; ?>">
+                    <img class="img-fluid" alt="" src="../public/upload/users/<?php echo $u_image; ?>" width="28">
+                </a>
                 <input class="checkBoxes" type="checkbox" name="userImagCheckBoxArray[]" value="<?php echo $u_image; ?>" checked hidden>
             </td>
             <td><?php echo $u_first_name; ?></td>
@@ -69,36 +65,37 @@
             <td><?php echo $u_email; ?></td>
             <td><?php echo $username; ?></td>  
             <td><?php echo $u_role; ?></td>
-            <td><?php echo $u_status; ?></td>
-            <td><?php echo date('M j Y | h:i A', strtotime($u_reg_date)); ?></td>
-            <td>
+            <td class="text-center"><?php echo $u_status; ?></td>
+            <td class="text-center">
                 <form action="../controllers/userController.php" method="POST">
 
                     <?php 
                     $action = "activate_user";
-                    $icon = "thumbs-up";
+                    $icon = "unlock";
                     $btn_name = "Activate";
+                    $btn_color = "success";
 
                     if($u_status == 'Active') {
                         $action = "disable_user";
-                        $icon = "thumbs-down";
+                        $icon = "lock";
                         $btn_name = "Disable";
+                        $btn_color = "secondary";
                     }
 
-                    echo "<button type='submit' class='btn btn-primary btn-sm' name='$action' value='$u_id'><i class='fa fa-$icon'></i> $btn_name</button>";
+                    echo "<button type='submit' class='btn btn-outline-$btn_color btn-sm' name='$action' value='$u_id'><i class='ti-$icon'></i> $btn_name</button>";
                     ?>
                 </form>
             </td>
-            <td>
-                <a href="./users?user=<?php echo $u_id; ?>" class="btn btn-default btn-sm"><i class="fa fa-edit"></i> View</a>
+            <td class="text-center">
+                <a href="./users?user=<?php echo $u_id; ?>" class="btn btn-outline-info btn-sm"><i class="ti-view-list-alt pr-1"></i> View</a>
             </td>
-            <td>
-                <a href="./users?edit_user=<?php echo $u_id; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
+            <td class="text-center">
+                <a href="./users?edit_user=<?php echo $u_id; ?>" class="btn btn-outline-warning btn-sm"><i class="ti-pencil-alt pr-1"></i> Edit</a>
             </td>
-            <td>
+            <td class="text-center">
                 <form action="../controllers/userController.php" method="POST">
                     <input type="text" name="u_image_name" value="<?php echo $u_image; ?>" hidden>
-                    <button type="submit" onclick="javascript: return confirm('Are you sure you want to delete?');" class="btn btn-danger btn-sm" name="delete_user" value="<?php echo $u_id; ?>"><i class="fa fa-trash"></i> Delete</button>
+                    <button type="submit" onclick="javascript: return confirm('Are you sure you want to delete?');" class="btn btn-outline-danger btn-sm" name="delete_user" value="<?php echo $u_id; ?>"><i class="ti-trash pr-1"></i> Delete</button>
                 </form>
             </td>
         </tr>

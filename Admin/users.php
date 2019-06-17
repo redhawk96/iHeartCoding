@@ -1,71 +1,92 @@
-<!-- Header -->
-<?php include 'includes/header.php'; ?>
+<?php 
+   include 'includes/header.php';
+   include 'includes/top-nav.php'; 
+   include 'includes/left-nav.php'
+?>
 
-<!-- Navigation -->
-<?php include 'includes/navigation.php'; ?>
 
-<div id="page-wrapper">
-
-    <div class="container-fluid">
-
-        <div class="row" style="padding-top:40px">
-
-            <div class="col-lg-12">
-
-                <?php 
-                if(isset($_GET['add_user'])){
-                ?>
-                    
-                    <!-- Add User -->
-                    <?php include "partials/users/add-user.php"; ?>
-                    <!-- End Add User -->
-
-                <?php
-                }else if(isset($_GET['edit_user'])) {
-                ?>
-                    
-                    <!-- Edit User -->
-                    <?php include "partials/users/edit-user.php"; ?>
-                    <!-- End Edit User -->
-                
-                
-                <?php
-                }else if(isset($_GET['user'])) {
-                ?>
-                    
-                    <!-- Edit User -->
-                    <?php include "partials/users/view-user.php"; ?>
-                    <!-- End Edit User -->
-                
-                
-                <?php
-                } else {
-                ?>               
-
-                    <!-- View All Users -->
-                    <?php include "partials/users/view-users.php"; ?>
-                    <!-- End View All Users -->
-
-                <?php
-                }
-                ?>
-
+<!-- Start right Content here -->
+<div class="content-page">
+   <!-- Start content -->
+   <div class="content">
+      <div class="container-fluid">
+         <div class="page-title-box">
+            <div class="row align-items-center">
+               <div class="col-sm-6">
+                  <!-- <h4 class="page-title">Members</h4> -->
+                  <ol class="breadcrumb">
+                     <li class="breadcrumb-item"><a href="javascript:void(0);">Members</a></li>
+                     <li class="breadcrumb-item active">Manage All Memebers</li>
+                  </ol>
+               </div>
             </div>
-            
-        </div>
+         </div>
+         <!-- end row -->
+         <div class="row">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-body">
+                  
+                    <?php 
+                     if(isset($_GET['add_user'])){
+                     ?>
+                        
+                        <!-- Add User -->
+                        <?php include "partials/users/add-user.php"; ?>
+                        <!-- End Add User -->
 
-    </div>
-    <!-- /.container-fluid -->
+                     <?php
+                     }else if(isset($_GET['edit_user'])) {
+                     ?>
+                        
+                        <!-- Edit User -->
+                        <?php include "partials/users/edit-user.php"; ?>
+                        <!-- End Edit User -->
+                     
+                     
+                     <?php
+                     }else if(isset($_GET['user'])) {
+                     ?>
+                        
+                        <!-- Edit User -->
+                        <?php include "partials/users/view-user.php"; ?>
+                        <!-- End Edit User -->
+                     
+                     
+                     <?php
+                     } else {
+                     ?>               
 
+                        <!-- View All Users -->
+                        <?php include "partials/users/view-users.php"; ?>
+                        <!-- End View All Users -->
+
+                     <?php
+                     }
+                     ?>
+
+                  </div>
+               </div>
+            </div>
+            <!-- end col -->
+         </div>
+         <!-- end row -->
+      </div>
+      <!-- container-fluid -->
+   </div>
+   <!-- content -->
 </div>
-<!-- /#page-wrapper -->
+<!-- End Right content here -->
 
-<!-- Footer -->
-<?php include 'includes/footer.php'; ?>
+
+<?php
+   include 'includes/footer.php';
+?>
+
 
 <script>
 var uploadField = document.getElementById("u_image");
-var maxSize = 2 * 1000 * 1000 ; // 2MB
+var maxSize = 9 * 1000 * 1000 ; // 9MB
 uploadField.onchange = function() {
     if(this.files[0].size > maxSize){
     alert("File is too big!");
@@ -73,4 +94,3 @@ uploadField.onchange = function() {
     };
 };
 </script>
-

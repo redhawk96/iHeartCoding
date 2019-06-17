@@ -21,37 +21,26 @@ if($_SESSION['u_type'] != 'Administrator'){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Admin | iHeartCoding</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="../public/admin/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../public/admin/css/sb-admin.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../public/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    
-    <!-- jQuery DataTable CSS (Customized to bootstrap) -->
-    <link href="../public/admin/css/dataTables.bootstrap.min.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-<div id="wrapper">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
+      <title>iHeartCoding | Admin</title>
+      <meta content="Admin Dashboard" name="description">
+      <meta content="Themesbrand" name="author">
+      <link rel="shortcut icon" href="../assets/images/favicon.ico">
+      <!-- Magnific popup -->
+      <link href="../public/admin/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+      <!-- DataTables -->
+      <link href="../public/admin/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+      <link href="../public/admin/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
+      <!--Chartist Chart CSS -->
+      <link rel="stylesheet" href="../public/admin/plugins/chartist/css/chartist.min.css">
+      <link href="../public/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+      <link href="../public/admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
+      <link href="../public/admin/assets/css/icons.css" rel="stylesheet" type="text/css">
+      <link href="../public/admin/assets/css/style.css" rel="stylesheet" type="text/css">
+   </head>
+   <body>
+      <!-- Begin page -->
+      <div id="wrapper">

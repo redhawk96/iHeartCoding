@@ -72,3 +72,70 @@
 <?php
    include 'includes/footer.php';
 ?>
+
+
+<script>
+$(document).ready(function () {
+
+	$("#datatable-buttons").on("click", ".sa-delete-article", function () {
+		var id = $(this).attr("id_ref");
+		var img = $(this).attr("img_ref");
+		Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			type: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#02a499",
+			cancelButtonColor: "#ec4561",
+			confirmButtonText: "Yes, delete it!"
+
+		}).then(function (result) {
+			if (result.value) {
+				$.ajax({
+					url: '../controllers/articleController.php',
+					data: {
+						delete_article: id,
+						a_image_name: img
+					},
+					type: 'POST',
+					success: function (data) {
+						if (!data.error) {
+							Swal.fire("Deleted!", "Your article has been deleted.", "success");
+                     refreshArticleTable();
+						}
+					}
+				})
+			}
+		});
+	});
+});
+
+
+
+function refreshArticleTable() {
+
+
+	var table = $('#datatable-buttons').DataTable({
+         destroy: true,
+			ajax: "../asynchronous_scripts/articles-table",
+			columns : [
+				{"data" : "Id"},
+				{"data" : "Author"},
+				{"data" : "Title"},
+				{"data" : "Status"},
+				{"data" : "Image"},
+				{"data" : "Tags"},
+				{"data" : "Comments"},
+				{"data" : "Views"},
+				{"data" : "Date"},
+				{"data" : "Action"},
+				{"data" : "edit"},
+				{"data" : "delete"},
+				{"data" : "reset"}
+			]
+		});
+
+		
+	table.clear().draw();
+ }
+</script>

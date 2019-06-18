@@ -29,6 +29,8 @@ if($_SESSION['u_type'] != 'Administrator'){
       <meta content="Admin Dashboard" name="description">
       <meta content="Themesbrand" name="author">
       <link rel="shortcut icon" href="../assets/images/favicon.ico">
+      <!-- Sweet Alert -->
+      <link href="../public/admin/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">   
       <!-- Magnific popup -->
       <link href="../public/admin/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
       <!-- DataTables -->

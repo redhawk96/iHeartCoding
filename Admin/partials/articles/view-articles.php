@@ -95,10 +95,7 @@
                 <a href="Publish-Article?eart=<?php echo $a_id; ?>" class="btn btn-outline-warning btn-sm"><i class="ti-pencil-alt pr-1"></i> Edit</a>
             </td>
             <td>
-                <form action="../controllers/articleController.php" method="POST">
-                    <input type="text" name="a_image_name" value="<?php echo $a_image; ?>" hidden>
-                    <button type="submit" onclick="javascript: return confirm('Are you sure you want to delete?');" class="btn btn-outline-danger btn-sm" name="delete_article" value="<?php echo $a_id; ?>"><i class="ti-trash pr-1"></i> Delete</button>
-                </form>
+                <button type="button" class="btn btn-outline-danger btn-sm waves-effect waves-light sa-delete-article" id_ref="<?php echo $a_id; ?>" img_ref="<?php echo $a_image; ?>"><i class="ti-trash pr-1"></i> Delete</button>
             </td>
             <td>
                 <form action="../controllers/articleController.php" method="POST">

@@ -16,28 +16,16 @@ if(isset($a_id)){
 
     echo "<script src='https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js'></script>";
 
-    // Updating article view count
     $article->updateArticleViews($a_id);
 
-    // Calling displaySingleArticle method of Article class
+    // Calling method to display single publish article
     $displaySingleArticle = $article->displaySingleArticle($a_id);
 
-    // Stating while loop to display specific article
-    while($row = mysqli_fetch_assoc($displaySingleArticle)){
-    
-    $a_id = $row['article_id'];
-    $a_cat_id = $row['article_category_id'];
-    $a_title = $row['article_title'];
-    $a_author = $row['article_author'];
-    $author_id = $row['author_id'];
-    $a_image = $row['article_image'];
-    $a_com_count = $row['article_comment_count'];
-    $a_content = $row['article_content'];
-    $a_tags = $row['article_tags'];
-    $a_status = $row['article_status'];
-    $a_date = $row['article_date'];
-    $a_view_count = $row['article_view_count'];  
+    // Binding db records to variables
+    mysqli_stmt_bind_result($displaySingleArticle, $a_id, $a_cat_id, $a_title, $a_author, $author_id, $a_date, $a_image, $a_content, $a_tags, $a_com_count, $a_status, $a_view_count);
 
+    // Printing out db fetched values in a while loop
+    while(mysqli_stmt_fetch($displaySingleArticle)):
 ?>
 
     <!-- Displaying specific article [HTML Content] -->
@@ -129,8 +117,8 @@ if(isset($a_id)){
     
 <?php  
 
-    }
-    // End of displaying specific article
+    endwhile;
+    // End of while loop
 
 // Else if a is not shown and the url is as below, then will be redirected to homepage
 // eg: Article?a=1

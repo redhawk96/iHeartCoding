@@ -107,10 +107,21 @@ class Article
 
         $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
 
-        $query = "SELECT * FROM articles WHERE article_id = $a_id AND article_status = 'Published'";
-        $queryResult = mysqli_query(self::$serverConnection, $query);
+        // Constructing query as a prepared statement
+        $getSingleArticleQuery = mysqli_prepare(self::$serverConnection, "SELECT article_id, article_category_id, article_title, article_author, author_id, article_date, article_image, article_content, article_tags, article_comment_count, article_status, article_view_count FROM articles WHERE article_id = ? AND article_status = ?");
+        
+        // Only variables can be passed into a prepared statement
+        $articleType = 'Published';
+        
+        // i -> integer 
+        // s -> string
+        mysqli_stmt_bind_param($getSingleArticleQuery, "is", $a_id, $articleType);
+        
+        // Executing prepared statement
+        mysqli_stmt_execute($getSingleArticleQuery);
 
-        return $queryResult;
+        // Returning mysqli_stmt Object (Results of the query execution)
+        return $getSingleArticleQuery;
     }
 
     // To display all articles form a specific author from the database

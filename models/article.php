@@ -272,8 +272,13 @@ class Article
 
         $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
 
-        $query = "UPDATE articles SET article_view_count = article_view_count + 1 WHERE article_id = $a_id";
-        mysqli_query(self::$serverConnection, $query);
+        $updateArticleViewsQuery = mysqli_prepare(self::$serverConnection, "UPDATE articles SET article_view_count = article_view_count + 1 WHERE article_id = ?");
+
+        mysqli_stmt_bind_param($updateArticleViewsQuery, "i", $a_id);
+        
+        mysqli_stmt_execute($updateArticleViewsQuery);
+
+        return $updateArticleViewsQuery;
     }
 
     // To rest existing article view count from the database

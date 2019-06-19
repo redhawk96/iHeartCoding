@@ -120,8 +120,12 @@ class Article
         // Executing prepared statement
         mysqli_stmt_execute($getSingleArticleQuery);
 
-        // Returning mysqli_stmt Object (Results of the query execution)
-        return $getSingleArticleQuery;
+        if(!$getSingleArticleQuery){
+            die('QUERY FAILED : '. mysqli_error(self::$serverConnection));
+        }else{
+            // Returning mysqli_stmt Object (Results of the query execution)
+            return $getSingleArticleQuery;
+        }
     }
 
     // To display all articles form a specific author from the database
@@ -278,7 +282,11 @@ class Article
         
         mysqli_stmt_execute($updateArticleViewsQuery);
 
-        return $updateArticleViewsQuery;
+        if(!$updateArticleViewsQuery){
+            die('QUERY FAILED : '. mysqli_error(self::$serverConnection));
+        }else{
+            return $updateArticleViewsQuery;
+        }
     }
 
     // To rest existing article view count from the database

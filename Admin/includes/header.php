@@ -30,18 +30,18 @@ if($_SESSION['u_type'] != 'Administrator'){
       <meta content="Themesbrand" name="author">
       <link rel="shortcut icon" href="../assets/images/favicon.ico">
       <!-- Sweet Alert -->
-      <link href="../public/admin/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">   
+      <link href="/iHeartCoding/public/admin/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">   
       <!-- Magnific popup -->
-      <link href="../public/admin/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+      <link href="/iHeartCoding/public/admin/plugins/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
       <!-- DataTables -->
-      <link href="../public/admin/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
-      <link href="../public/admin/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
+      <link href="/iHeartCoding/public/admin/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+      <link href="/iHeartCoding/public/admin/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css">
       <!--Chartist Chart CSS -->
-      <link rel="stylesheet" href="../public/admin/plugins/chartist/css/chartist.min.css">
-      <link href="../public/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-      <link href="../public/admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
-      <link href="../public/admin/assets/css/icons.css" rel="stylesheet" type="text/css">
-      <link href="../public/admin/assets/css/style.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="/iHeartCoding/public/admin/plugins/chartist/css/chartist.min.css">
+      <link href="/iHeartCoding/public/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+      <link href="/iHeartCoding/public/admin/assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
+      <link href="/iHeartCoding/public/admin/assets/css/icons.css" rel="stylesheet" type="text/css">
+      <link href="/iHeartCoding/public/admin/assets/css/style.css" rel="stylesheet" type="text/css">
    </head>
    <body>
       <!-- Begin page -->

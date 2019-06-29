@@ -11,8 +11,8 @@
                             <li>
                                 <span class="city-weather">Colombo, LK</span>
                             </li>
-                            <li><span class="time-now">Thursday 8 January 2015 / 21:20</span></li>
-                            <?php echo (isset($_SESSION['s_id'])) ? "<li><a href='Profile'>Profile</a></li><li><a href='Logout'>Log Out</a></li>" : "<li><a href='Login'>Log In</a></li>"; ?>
+                            <li><span class="time-now"><?php date_default_timezone_set('Asia/Colombo'); echo date('l jS F Y / H:i', time()); ?></span></li>
+                            <?php echo (isset($_SESSION['s_id'])) ? "<li><a href='Profile'>Profile</a></li><li><a href='/iHeartCoding/Logout'>Log Out</a></li>" : "<li><a href='/iHeartCoding/Login'>Log In</a></li>"; ?>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/iHeartCoding"><img src="public/images/logo.png" alt=""></a>
+                    <a class="navbar-brand" href="/iHeartCoding"><img src="/iHeartCoding/public/images/logo.png" alt=""></a>
                 </div>
             </div>
         </div>

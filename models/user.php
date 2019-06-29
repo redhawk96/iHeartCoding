@@ -71,8 +71,28 @@ class User
         return $queryRowCount;
     }
 
+    // To get user_id form an user from the database
+    public static function getUserId($username){
+
+        $username = mysqli_real_escape_string(self::$serverConnection, $username);
+
+        $query = "SELECT user_id FROM users WHERE username = '$username'";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $u_id = null;
+
+        while($row = mysqli_fetch_assoc($queryResult)){
+            $u_id = $row['user_id'];
+        }
+
+        return $u_id;
+
+    }
+
     // To display specific user from the database
     public static function displaySingleUser($u_id) {
+
+        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
 
         $query = "SELECT * FROM users WHERE user_id = '$u_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);

@@ -1,15 +1,3 @@
-<?php 
-
-if(isset($_GET['A'])){
-
-	$author_id = $_GET['A'];
-
-	if($author_id == '' || empty($author_id)){
-		header('Location: /iHeartCoding/');
-	}
-    
-?>
-
 <?php include "includes/header.php"; ?>
 
 <!-- Header -->
@@ -21,11 +9,22 @@ if(isset($_GET['A'])){
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-8">
-	
+
+
+
 			<!-- main content -->
-            <?php 
-            // include ""; 
-            ?>
+			<?php 
+			
+			if (isset($_GET['author'])) {
+				
+				$author_id = $user->getUserId($_GET['author']);
+
+				include "partials/author/author-articles.php";  
+			
+			}else{
+				header('Location: /iHeartCoding/');
+			}
+			?>
 			<!-- End main content -->
 				
 			</div>
@@ -63,10 +62,3 @@ if(isset($_GET['A'])){
 <?php include "includes/footer.php"; ?>
 <!-- End footer -->
 
-
-
-<?php
-}else{
-    header('Location: /iHeartCoding/');
-}
-?>

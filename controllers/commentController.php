@@ -18,13 +18,14 @@ if(isset($_POST['add_comment'])){
     $c_author = $_POST['c_author'];
     $c_mail = $_POST['c_mail'];
     $c_content = $_POST['c_content'];
+    $a_title = $_POST['article_title'];
 
     // echo $a_id;
     
 
     if($a_id == "" || empty($a_id) || $c_author == "" || empty($c_author) || $c_mail == "" || empty($c_mail) || $c_content == "" || empty($c_content)){
     
-        header('Location: ../Article?a='.$a_id.'&c=false');
+        header('Location: /iHeartCoding/Article/'.$a_id.'/'.preg_replace('/\s+/', '-', $a_title));
     
     }else{
 
@@ -33,7 +34,7 @@ if(isset($_POST['add_comment'])){
         if(!$addComment){
             die('QUERY FAILED '. mysqli_error($serverConnection));
         }else{
-            header('Location: ../Article?a='.$a_id.'&c=true');
+            header('Location: /iHeartCoding/Article/'.$a_id.'/'.preg_replace('/\s+/', '-', $a_title));
         }
     }
 }

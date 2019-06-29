@@ -1,0 +1,9 @@
+RewriteEngine on
+
+RewriteRule ^(Users|Articles|Publish-Article|Users|Comments|Categories|Profile)$ $1.php [NC,L]
+
+RewriteRule ^Users/View$ Users.php [NC,L]
+
+RewriteRule ^User/Add$ Users.php?add_user=true [NC,L]
+
+RewriteRule ^User/([a-zA-Z0-9_.-]+)$ Users.php?user=$1  [NC,L]

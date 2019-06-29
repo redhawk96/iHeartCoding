@@ -112,10 +112,9 @@ class Article
         
         // Only variables can be passed into a prepared statement
         $articleType = 'Published';
-        
-        // i -> integer 
+
         // s -> string
-        mysqli_stmt_bind_param($getSingleArticleQuery, "is", $a_id, $articleType);
+        mysqli_stmt_bind_param($getSingleArticleQuery, "ss", $a_id, $articleType);
         
         // Executing prepared statement
         mysqli_stmt_execute($getSingleArticleQuery);
@@ -133,7 +132,7 @@ class Article
 
         $auth_id = mysqli_real_escape_string(self::$serverConnection, $auth_id);
 
-        $query = "SELECT * FROM articles WHERE author_id = $auth_id";
+        $query = "SELECT * FROM articles WHERE author_id = '$auth_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -144,7 +143,7 @@ class Article
 
         $auth_id = mysqli_real_escape_string(self::$serverConnection, $auth_id);
 
-        $query = "SELECT * FROM articles WHERE author_id = $auth_id AND article_status = 'Published'";
+        $query = "SELECT * FROM articles WHERE author_id = '$auth_id' AND article_status = 'Published'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -155,7 +154,7 @@ class Article
 
         $auth_id = mysqli_real_escape_string(self::$serverConnection, $auth_id);
 
-        $query = "SELECT * FROM articles WHERE author_id = $auth_id AND article_status = 'Published'";
+        $query = "SELECT * FROM articles WHERE author_id = '$auth_id' AND article_status = 'Published'";
         
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
@@ -169,7 +168,7 @@ class Article
 
         $auth_id = mysqli_real_escape_string(self::$serverConnection, $auth_id);
 
-        $query = "SELECT article_tags FROM articles WHERE author_id = $auth_id  AND article_status = 'Published' GROUP BY article_tags";
+        $query = "SELECT article_tags FROM articles WHERE author_id = '$auth_id'  AND article_status = 'Published' GROUP BY article_tags";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -180,7 +179,7 @@ class Article
 
         $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
 
-        $query = "SELECT * FROM articles WHERE article_id = $a_id";
+        $query = "SELECT * FROM articles WHERE article_id = '$a_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -191,7 +190,7 @@ class Article
 
         $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
 
-        $query = "SELECT article_title FROM articles WHERE article_id = $a_id";
+        $query = "SELECT article_title FROM articles WHERE article_id = '$a_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         $a_title = "";
@@ -265,7 +264,7 @@ class Article
         $query .= "article_content = '$a_content',";
         $query .= "article_tags = '$a_tags',";
         $query .= "article_status = '$a_status' ";
-        $query .= "WHERE article_id = $a_id";
+        $query .= "WHERE article_id = '$a_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -278,7 +277,7 @@ class Article
 
         $updateArticleViewsQuery = mysqli_prepare(self::$serverConnection, "UPDATE articles SET article_view_count = article_view_count + 1 WHERE article_id = ?");
 
-        mysqli_stmt_bind_param($updateArticleViewsQuery, "i", $a_id);
+        mysqli_stmt_bind_param($updateArticleViewsQuery, "s", $a_id);
         
         mysqli_stmt_execute($updateArticleViewsQuery);
 
@@ -294,7 +293,7 @@ class Article
 
         $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
 
-        $query = "UPDATE articles SET article_view_count = 0 WHERE article_id = $a_id";
+        $query = "UPDATE articles SET article_view_count = 0 WHERE article_id = '$a_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -307,7 +306,7 @@ class Article
 
         $query = "UPDATE articles SET ";
         $query .= "article_status = 'Published'";
-        $query .= "WHERE articles.article_id = $a_id";
+        $query .= "WHERE articles.article_id = '$a_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -320,7 +319,7 @@ class Article
 
         $query = "UPDATE articles SET ";
         $query .= "article_status = 'Drafted'";
-        $query .= "WHERE articles.article_id = $a_id";
+        $query .= "WHERE articles.article_id = '$a_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
         return $queryResult;
@@ -331,10 +330,10 @@ class Article
 
         $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
 
-        $query = "DELETE FROM articles WHERE articles.article_id = $a_id";
+        $query = "DELETE FROM articles WHERE articles.article_id = '$a_id'";
         $queryResult = mysqli_query(self::$serverConnection, $query);
 
-        $deleteCommentsQuery = "DELETE FROM comments WHERE comments.article_id = $a_id";
+        $deleteCommentsQuery = "DELETE FROM comments WHERE comments.article_id = '$a_id'";
         mysqli_query(self::$serverConnection, $deleteCommentsQuery);
 
         return $queryResult;

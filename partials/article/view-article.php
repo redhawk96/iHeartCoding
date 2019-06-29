@@ -1,18 +1,8 @@
 <?php 
 
-$decoded_url = urldecode("$_SERVER[REQUEST_URI]");
+if(isset($_GET['a'])){
 
-$a_id = null;
-
-foreach (explode('&', $decoded_url) as $chunk) {
-    $param = explode("=", $chunk);
-
-    if ($param) {
-        $a_id = urldecode($param[1]);
-    }
-}
-
-if(isset($a_id)){
+    $a_id = $_GET['a'];
 
     echo "<script src='https://cdn.ckeditor.com/4.11.4/standard/ckeditor.js'></script>";
 
@@ -38,7 +28,7 @@ if(isset($a_id)){
             <h1><?php echo $a_title; ?></h1>
             <ul class="post-tags">
                 <li><i class="fa fa-clock-o"></i><?php echo date('M j Y', strtotime($a_date)); ?></li>
-                <li><i class="fa fa-user"></i>by <a href="Articles?Author=<?php echo $author_id; ?>"><?php echo $a_author; ?></a></li>
+                <li><i class="fa fa-user"></i>by <a href="/iHeartCoding/Author/<?php echo $a_author; ?>/Articles"><?php echo $a_author; ?></a></li>
                 <li><a href="#"><i class="fa fa-comments-o"></i><span><?php echo $a_com_count; ?></span></a></li>
                 <li><i class="fa fa-eye"></i><?php echo $a_view_count; ?></li>
             </ul>
@@ -47,15 +37,13 @@ if(isset($a_id)){
         <div class="share-post-box">
             <ul class="share-box">
                 <li><i class="fa fa-share-alt"></i><span>Share Post</span></li>
-                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i><span>Share on Facebook</span></a></li>
-                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i><span>Share on Twitter</span></a></li>
-                <li><a class="google" href="#"><i class="fa fa-google-plus"></i><span></span></a></li>
-                <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i><span></span></a></li>
+                <li><a class="facebook" href="#"><i class="fa fa-facebook" style="color:inherit !important"></i><span>Share on Facebook</span></a></li>
+                <li><a class="linkedin" href="#"><i class="fa fa-linkedin" style="color:inherit !important; "></i><span></span></a></li>
             </ul>
         </div>
 
         <div class="post-gallery">
-            <img src="public/upload/articles/<?php echo $a_image; ?>" alt="">
+            <img src="/iHeartCoding/public/upload/articles/<?php echo $a_image; ?>" alt="">
             <span class="image-caption">Cras eget sem nec dui volutpat ultrices.</span>
         </div>
 
@@ -76,13 +64,12 @@ if(isset($a_id)){
 
                 <div class="tab-pane active" id="about-autor">
                     <div class="autor-box">
-                        <img src="public/upload/users/avatar1.jpg" alt="">
+                        <img src="/iHeartCoding/public/upload/users/avatar2.jpg" alt="">
                         <div class="autor-content">
                             <div class="autor-title">
-                                <h1><span><?php echo $a_author; ?></span><a href="autor-details.html">18 Posts</a></h1>
+                                <h1><span><?php echo $a_author; ?></span><a href="/iHeartCoding/Author/<?php echo $a_author; ?>/Articles">18 Posts</a></h1>
                                 <ul class="autor-social">
                                     <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
                                     <li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
                                     <li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>

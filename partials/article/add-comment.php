@@ -3,7 +3,7 @@
         <h1><span>Leave a Comment</span> <span class="email-not-published">Your email address will not be published.</span></h1>
     </div>
 
-    <form id="comment-form" action="controllers/commentController.php" method="POST">
+    <form id="comment-form" action="/iHeartCoding/controllers/commentController" method="POST">
         <input name="p_id" type="hidden" value="0">
         <div class="row">
             <div class="col-md-6">
@@ -17,6 +17,8 @@
         </div>
         <label for="comment">Comment</label>
         <textarea id="editor" name="c_content"></textarea>
+
+        <input value="<?php echo $a_title ?>" name="article_title" type="hidden">
 
         <button type="submit" id="submit-contact" name="add_comment" value="<?php echo $a_id ?>" style="margin-top:15px;">
             <i class="fa fa-comment"></i> Post Comment

@@ -11,41 +11,21 @@
 			<div class="col-sm-8">
 
 			<?php 
+				// If url has a page number then that page number will be set as the page
+				if(isset($_GET['Page'])){
 
-			if(isset($_GET['Author'])){
+					$page = $_GET['Page']; 
 
-				$author_id = $_GET['Author'];
-
-				if($author_id != '' || !empty($author_id)){
-
-					// All Articles
-					include "partials/author/author-articles.php";
-					// End All Articles -->
-
+				// If not page number is set to 1
 				}else{
-					header('location: Articles');		
-				}		
 
-			}else if(isset($_GET['Page'])){
+					$page = 1;
+
+				}
 				
-				// If url has the page number then page variable is equal to url page number
-				$page = $_GET['Page']; 
-
-				// All Articles
+				// All page articles
 				include "partials/articles/view-articles.php";
-				// End All Articles -->
-
-			}else{
-
-				// Incase if url is just Articles/ then page number will be set to 1
-				$page = 1;
-
-				// All Articles
-				include "partials/articles/view-articles.php";
-				// End All Articles -->
-
-			}
-				
+				// End all page articles
 			?>
 		
 			</div>

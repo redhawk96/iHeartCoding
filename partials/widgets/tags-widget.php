@@ -16,7 +16,7 @@
         $cat_title = $row['cat_title'];
     ?>
 
-    <li><a href="Search?t=<?php echo $cat_title; ?>"><?php echo $cat_title; ?></a></li>
+    <li><a href="/iHeartCoding/Tag/<?php echo $cat_title; ?>"><?php echo $cat_title; ?></a></li>
 
     <?php
     }

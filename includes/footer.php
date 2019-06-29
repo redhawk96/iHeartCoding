@@ -156,18 +156,18 @@
 </div>
 <!-- End Container -->
 
-<script type="text/javascript" src="./public/js/jquery.min.js"></script>
-<script type="text/javascript" src="./public/js/jquery.migrate.js"></script>
-<script type="text/javascript" src="./public/js/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="./public/js/jquery.magnific-popup.min.js"></script>
-<script type="text/javascript" src="./public/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="./public/js/jquery.ticker.js"></script>
-<script type="text/javascript" src="./public/js/jquery.imagesloaded.min.js"></script>
-<script type="text/javascript" src="./public/js/jquery.isotope.min.js"></script>
-<script type="text/javascript" src="./public/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/jquery.min.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/jquery.migrate.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/jquery.ticker.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/owl.carousel.min.js"></script>
 <!-- <script type="text/javascript" src="js/retina-1.1.0.min.js"></script> -->
-<script type="text/javascript" src="./public/js/plugins-scroll.js"></script>
-<script type="text/javascript" src="./public/js/script.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/plugins-scroll.js"></script>
+<script type="text/javascript" src="/iHeartCoding/public/js/script.js"></script>
 
 </body>
 

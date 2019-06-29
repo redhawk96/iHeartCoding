@@ -1,6 +1,17 @@
 RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php
+
+RewriteRule ^(index|Author|Articles|Article|Search|error|Login|Logout)$ $1.php [NC,L]
+
+RewriteRule ^Articles/Page/(\d+)$ Articles.php?Page=$1 [NC,L]
+
+RewriteRule ^Article/(\d+)/([a-zA-Z0-9_.-]+)$ Article.php?a=$1  [NC,L]
+
+RewriteRule ^Author/([a-zA-Z_]\w*)/Articles$ Author.php?author=$1  [NC,L]
+
+RewriteRule ^Tag/([a-zA-Z_]\w*)$ Search.php?t=$1  [NC,L]
+
+RewriteRule ^Register$ Login.php?Register=true  [NC,L]
+
+RewriteRule ^Reset-Password$ Login.php?Reset=true  [NC,L]
 
 ErrorDocument 404 http://localhost/iHeartCoding/error?e=404

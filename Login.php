@@ -21,7 +21,7 @@
 
 				<?php if(isset($_GET['Register'])){?>
 
-					<form action="controllers/loginController" method="POST">
+					<form action="controllers/loginController.php" method="POST">
 						<h3>New Account?</h3>
 						<div class="form-holder">
 							<span class="lnr lnr-user"></span>
@@ -85,7 +85,7 @@
 
 				<?php }else {?>
 
-					<form action="controllers/loginController" method="POST">
+					<form action="/iHeartCoding/controllers/loginController.php" method="POST">
 						<h3>Existing Account?</h3>
 						<div class="form-holder">
 							<span class="lnr lnr-user"></span>

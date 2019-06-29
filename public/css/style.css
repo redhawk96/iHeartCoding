@@ -3862,18 +3862,19 @@ div.list-post .post-content h2 a:hover {
 }
 .single-post-box .share-post-box {
   margin-bottom: 10px;
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 .single-post-box .share-post-box ul.share-box {
-  margin: 0;
-  padding: 0;
+  /* margin: 0; */
+  /* padding: 0; */
+  float: right;
 }
 .single-post-box .share-post-box ul.share-box li {
   display: inline-block;
   color: #666666;
   font-size: 13px;
   font-family: 'Lato', sans-serif;
-  margin-right: 8px;
+  /* margin-right: 8px; */
   margin-bottom: 2px;
 }
 .single-post-box .share-post-box ul.share-box li i {
@@ -3893,37 +3894,45 @@ div.list-post .post-content h2 a:hover {
   -moz-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
-  color: #ffffff;
+  /* color: #ffffff; */
   padding: 8px 12px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-.single-post-box .share-post-box ul.share-box li a i {
-  color: #ffffff;
-}
+
 .single-post-box .share-post-box ul.share-box li a.facebook {
-  background: #1854dd;
+  background: #4267b2;
+  color: white !important;
+  border: 0.5px solid #4267b2;
 }
-.single-post-box .share-post-box ul.share-box li a.twitter {
-  background: #18a3dd;
+
+.single-post-box .share-post-box ul.share-box li a.facebook:hover {
+  background: transparent;
+  color: #4267b2 !important;
+  border: 0.5px solid #4267b2;
 }
-.single-post-box .share-post-box ul.share-box li a.google {
-  background: #f14133;
-}
-.single-post-box .share-post-box ul.share-box li a.google i {
-  margin-right: 0;
-}
+
+
 .single-post-box .share-post-box ul.share-box li a.linkedin {
-  background: #1879dd;
+  background: #0077b5;
+  color: white !important;
+  border: 0.5px solid #0077b5;
 }
+
+.single-post-box .share-post-box ul.share-box li a.linkedin:hover {
+  background: transparent;
+  color: #0077b5 !important;
+  border: 0.5px solid #0077b5;
+}
+
 .single-post-box .share-post-box ul.share-box li a.linkedin i {
   margin-right: 0;
 }
-.single-post-box .share-post-box ul.share-box li a:hover {
+/* .single-post-box .share-post-box ul.share-box li a:hover {
   opacity: 0.7;
-}
+} */
 .single-post-box .post-gallery {
   text-align: center;
   margin-bottom: 20px;

@@ -41,20 +41,20 @@
                         <div class="news-post article-post">
                             <div class="row">
                                 <div class="col-sm-4">
-                                <a href="Article?<?php echo urlencode('a='.$a_id); ?>">
+                                <a href="/iHeartCoding/Article/<?php echo $a_id; ?>/<?php echo preg_replace('/\s+/', '-', $a_title) ?>">
                                     <div class="post-gallery">
-                                        <img alt="" src="<?php echo "public/upload/articles/".$a_image; ?>">
+                                        <img alt="<?php echo $a_image ?>" src="<?php echo "/iHeartCoding/public/upload/articles/".$a_image; ?>">
                                     </div>
                                 </a>
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="post-content">
-                                        <h2><a href="Article?<?php echo urlencode('a='.$a_id);?>"><?php echo $a_title; ?></a>
+                                        <h2><a href="/iHeartCoding/Article/<?php echo $a_id; ?>/<?php echo preg_replace('/\s+/', '-', $a_title) ?>"><?php echo $a_title; ?></a>
                                         </h2>
                                         <ul class="post-tags">
                                             <li><i class="fa fa-clock-o"></i><?php echo date('M j Y', strtotime($a_date)); ?></li>
-                                            <li><i class="fa fa-user"></i>by <a href="Articles?Author=<?php echo $author_id; ?>"><?php echo $a_author; ?></a></li>
-                                            <li><a href="#"><i class="fa fa-comments-o"></i><span><?php echo $a_com_count; ?></span></a></li>
+                                            <li><i class="fa fa-user"></i>by <a href="/iHeartCoding/Author/<?php echo $a_author; ?>/Articles"><?php echo $a_author; ?></a></li>
+                                            <li><i class="fa fa-comments-o"></i><span><?php echo $a_com_count; ?></span></li>
                                             <li><i class="fa fa-eye"></i><?php echo $a_view_count; ?></li>
                                         </ul>
                                         <p><?php echo substr($a_content, 0, 250)."..."; ?></p>
@@ -63,6 +63,7 @@
                             </div>
                         </div>
 
+
                     <?php 
                     } 
                     ?>
@@ -70,7 +71,7 @@
                 </div>
                 <!-- End masonry box -->
                 <div class="text-right">
-                    <a href="Articles" class="read-more-button text-right"><i class="fa fa-arrow-circle-right"></i>All Articles</a>
+                    <a href="/iHeartCoding/Articles/Page/1" class="read-more-button text-right"><i class="fa fa-arrow-circle-right"></i>All Articles</a>
                 </div>
             </div>
             <!-- End block content -->

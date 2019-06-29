@@ -47,7 +47,7 @@
                         <li>
                             <div class="autor-box" onclick="location.href = 'Author?A=<?php echo $author_id ?>';" style="cursor:pointer !important">
 
-                            <img src="public/upload/users/<?php echo $u_image ?>">
+                            <img src="/iHeartCoding/public/upload/users/<?php echo $u_image ?>">
 
                             <div class="autor-content">
 
@@ -126,30 +126,30 @@
                             
                             ?>
 
-                                <div class="news-post article-post">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                        <a href="single-post.php">
-                                            <div class="post-gallery">
-                                                <img alt="" src="<?php echo "public/upload/articles/".$a_image; ?>">
-                                            </div>
-                                        </a>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="post-content">
-                                                <h2><a href="Article?a=<?php echo $a_id; ?>"><?php echo $a_title; ?></a>
-                                                </h2>
-                                                <ul class="post-tags">
-                                                    <li><i class="fa fa-clock-o"></i><?php echo date('M j Y', strtotime($a_date)); ?></li>
-                                                    <li><i class="fa fa-user"></i>by <a href="Articles?Author=<?php echo $author_id; ?>"><?php echo $a_author; ?></a></li>
-                                                    <li><a href="#"><i class="fa fa-comments-o"></i><span><?php echo $a_com_count; ?></span></a></li>
-                                                    <li><i class="fa fa-eye"></i><?php echo $a_view_count; ?></li>
-                                                </ul>
-                                                <p><?php echo substr($a_content, 0, 250)."..."; ?></p>
-                                            </div>
-                                        </div>
+                        <div class="news-post article-post">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                <a href="/iHeartCoding/Article/<?php echo $a_id; ?>/<?php echo preg_replace('/\s+/', '-', $a_title) ?>">
+                                    <div class="post-gallery">
+                                        <img alt="" src="<?php echo "/iHeartCoding/public/upload/articles/".$a_image; ?>">
+                                    </div>
+                                </a>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="post-content">
+                                        <h2><a href="/iHeartCoding/Article/<?php echo $a_id; ?>/<?php echo preg_replace('/\s+/', '-', $a_title) ?>"><?php echo $a_title; ?></a>
+                                        </h2>
+                                        <ul class="post-tags">
+                                            <li><i class="fa fa-clock-o"></i><?php echo date('M j Y', strtotime($a_date)); ?></li>
+                                            <li><i class="fa fa-user"></i>by <a href="/iHeartCoding/Author/<?php echo $a_author; ?>/Articles"><?php echo $a_author; ?></a></li>
+                                            <li><i class="fa fa-comments-o"></i><span><?php echo $a_com_count; ?></span></li>
+                                            <li><i class="fa fa-eye"></i><?php echo $a_view_count; ?></li>
+                                        </ul>
+                                        <p><?php echo substr($a_content, 0, 250)."..."; ?></p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
                     <?php 
                             } 
                         }

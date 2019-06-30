@@ -1,4 +1,4 @@
-<form action="../controllers/articleController.php" method="POST">
+<form action="/iHeartCoding/controllers/articleController.php" method="POST">
 
 <div class="row">
 <div class="col-10">
@@ -75,11 +75,11 @@
 
         <tr>
             <td><input class="checkBoxes" type="checkbox" name="articleIdCheckBoxArray[]" value="<?php echo $a_id; ?>"></td>
-            <td><a href="/iHeartCoding/Article?a=<?php echo $a_author; ?>"><?php echo $a_title; ?></a></td>
+            <td><a href="/iHeartCoding/Article/<?php echo $a_id; ?>/<?php echo preg_replace('/\s+/', '-', $a_title) ?>"><?php echo $a_title; ?></a></td>
             <td><?php echo $a_status; ?></td>
             <td class="text-center">
-                <a class="image-popup-no-margins" href="../public/upload/articles/<?php echo $a_image; ?>">
-                    <img class="img-fluid" alt="" src="../public/upload/articles/<?php echo $a_image; ?>" width="50">
+                <a class="image-popup-no-margins" href="/iHeartCoding/public/upload/articles/<?php echo $a_image; ?>">
+                    <img class="img-fluid" alt="" src="/iHeartCoding/public/upload/articles/<?php echo $a_image; ?>" width="50">
                 </a>
                 <input class="checkBoxes" type="checkbox" name="articleImagCheckBoxArray[]" value="<?php echo $a_image; ?>" checked hidden>
             </td>
@@ -88,36 +88,28 @@
             <td><?php echo $a_view_count; ?></td>
             <td><?php echo date('M j Y | h:i A', strtotime($a_date)); ?></td>
             <td>
-                <form action="../controllers/articleController.php" method="POST">
+                <?php 
+                $icon = "export";
+                $btn_name = "Publish";
+                $ajax_req_btn_class_name = "publish";
 
-                    <?php 
-                    $action = "publish_article";
-                    $icon = "export";
-                    $btn_name = "Publish";
+                if($a_status == 'Published') {
+                    $icon = "import";
+                    $btn_name = "Draft";
+                    $ajax_req_btn_class_name = "draft";
+                }
 
-                    if($a_status == 'Published') {
-                        $action = "draft_article";
-                        $icon = "import";
-                        $btn_name = "Draft";
-                    }
-
-                    echo "<button type='submit' class='btn btn-outline-secondary btn-sm' name='$action' value='$a_id'><i class='ti-$icon pr-1'></i> $btn_name</button>";
-                    ?>
-                </form>
+                echo "<button type='button' class='btn btn-outline-secondary btn-sm waves-effect waves-light sa-$ajax_req_btn_class_name-article' id_ref='$a_id'><i class='ti-$icon pr-1'></i> $btn_name</button>";
+                ?>
             </td>
-            <td class="text-center">
-                <a href="publish-article?eart=<?php echo $a_id; ?>" class="btn btn-outline-warning btn-sm"><i class="ti-pencil-alt pr-1"></i> Edit</a>
+            <td>
+                <a href="/iHeartCoding/Admin/Article/Edit/<?php echo $a_id; ?>" class="btn btn-outline-warning btn-sm"><i class="ti-pencil-alt pr-1"></i> Edit</a>
             </td>
-            <td class="text-center">
-                <form action="../controllers/articleController.php" method="POST">
-                    <input type="text" name="a_image_name" value="<?php echo $a_image; ?>" hidden>
-                    <button type="submit" onclick="javascript: return confirm('Are you sure you want to delete?');" class="btn btn-outline-danger btn-sm" name="delete_article" value="<?php echo $a_id; ?>"><i class="ti-trash pr-1"></i> Delete</button>
-                </form>
+            <td>
+                <button type="button" class="btn btn-outline-danger btn-sm waves-effect waves-light sa-delete-article" id_ref="<?php echo $a_id; ?>" img_ref="<?php echo $a_image; ?>"><i class="ti-trash pr-1"></i> Delete</button>
             </td>
-            <td class="text-center">
-                <form action="../controllers/articleController.php" method="POST">
-                    <button type="submit" onclick="javascript: return confirm('Are you sure you want to reset view count?');" class="btn btn-outline-dark btn-sm" name="reset_view_count" value="<?php echo $a_id; ?>"><i class="ti-eraser pr-1"></i> Rest</button>
-                </form>
+            <td>
+                <button type="button" class="btn btn-outline-dark btn-sm waves-effect waves-light sa-reset-article-views" id_ref="<?php echo $a_id; ?>"><i class="ti-eraser pr-1"></i> Rest</button>
             </td>
         </tr>
 

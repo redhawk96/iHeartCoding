@@ -35,7 +35,7 @@ if(isset($_POST['add_new_article'])){
     
     if($a_title == "" || empty($a_title) || $a_tags == "" || empty($a_tags) || $a_cat_id == "" || empty($a_cat_id) || $a_author == "" || empty($a_author) || $a_status == "" || empty($a_status) || $a_content == "" || empty($a_content)){
     
-        header('Location: ../Admin/publish-article.php?a=false');
+        header('Location: /iHeartCoding/Admin/Article/Add?false');
     
     }else{
         $addArticle = $article->addArticle($a_cat_id, $a_title, $a_author, $a_image_final, $a_content, $a_tags, $a_status);
@@ -120,7 +120,7 @@ if(isset($_POST['draft_article'])){
 
         if($a_id == "" || empty($a_id)){
         
-            header('Location: ../Admin/articles?d=false');
+            header('Location: /iHeartCoding/Admin/Articles/View?Draft-false');
         
         }else{
 
@@ -128,8 +128,6 @@ if(isset($_POST['draft_article'])){
 
         if(!$draftArticle){
             die('QUERY FAILED '. mysqli_error($serverConnection));
-        }else{
-            header('Location: ../Admin/articles');
         }
     }
 }
@@ -142,13 +140,11 @@ if(isset($_POST['delete_article'])){
     
     $deleteArticle = $article->deleteArticle($a_id);
 
-    if(!$deleteArticle){
-        
+    if(!$deleteArticle){ 
         die('QUERY FAILED '. mysqli_error($serverConnection));
     }else{
         // Deleting image from the server for the specific artice
-        unlink("../public/upload/articles/".$a_image_name);
-        header('Location: ../Admin/articles.php');
+        unlink("/iHeartCoding/public/upload/articles/".$a_image_name);
     }
 }
 
@@ -201,8 +197,6 @@ if(isset($_POST['reset_view_count'])){
     if(!$resetArticleViews){
         
         die('QUERY FAILED '. mysqli_error($serverConnection));
-    }else{
-        header('Location: ../Admin/articles.php');
     }
 }
 ?>

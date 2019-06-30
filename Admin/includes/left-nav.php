@@ -11,8 +11,8 @@
             <li>
                <a href="javascript:void(0);" class="waves-effect"><i class="ti-image"></i> <span>Articles <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                <ul class="submenu">
-                  <li><a href="Articles">Manage All Articles</a></li>
-                  <li><a href="Publish-Article">Add New Article</a></li>
+                  <li><a href="/iHeartCoding/Admin/Articles/View">Manage All Articles</a></li>
+                  <li><a href="/iHeartCoding/Admin/Article/Add">Add New Article</a></li>
                </ul>
             </li>
             <li>

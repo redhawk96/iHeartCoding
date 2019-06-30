@@ -29,6 +29,8 @@ if($_SESSION['u_type'] != 'Administrator'){
       <meta content="Admin Dashboard" name="description">
       <meta content="Themesbrand" name="author">
       <link rel="shortcut icon" href="../assets/images/favicon.ico">
+      <!-- Summernote Editor -->
+      <link rel="stylesheet" href="/iHeartCoding/public/admin/plugins/summernote/summernote-bs4.css">
       <!-- Sweet Alert -->
       <link href="/iHeartCoding/public/admin/plugins/sweet-alert2/sweetalert2.min.css" rel="stylesheet" type="text/css">   
       <!-- Magnific popup -->

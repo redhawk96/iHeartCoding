@@ -22,30 +22,30 @@ while($row = mysqli_fetch_assoc($displayAllArticles)){
     $a_view_count = $row['article_view_count']; 
     $a_date = $row['article_date'];
     
-    $action = 'publish_article';
-    $icon = 'export';
-    $btn_name = 'Publish';
+    $icon = "export";
+    $btn_name = "Publish";
+    $ajax_req_btn_class_name = "publish";
 
     if($a_status == 'Published') {
-        $action = 'draft_article';
-        $icon = 'import';
-        $btn_name = 'Draft';
+        $icon = "import";
+        $btn_name = "Draft";
+        $ajax_req_btn_class_name = "draft";
     }
 
     $article_data[] = array(
         'Id' =>  "<input class='checkBoxes' type='checkbox' name='articleIdCheckBoxArray[]' value='$a_id'>",
-        'Author' => "<a href='Articles?Author=$author_id'>$a_author</a>",
-        'Title' => "<a href='/iHeartCoding/Article?a=$a_id'>$a_title</a>",
+        'Author' => "<a href='/iHeartCoding/Admin/Articles/Author/$author_id'>$a_author</a>",
+        'Title' => "<a href='/iHeartCoding/Article/$a_id/".preg_replace('/\s+/', '-', $a_title)."'>$a_title</a>",
         'Status' =>  "$a_status",
-        'Image' => "<a class='image-popup-no-margins' href='../public/upload/articles/$a_image'><img class='img-fluid' src='../public/upload/articles/$a_image' width='50'></a><input class='checkBoxes' type='checkbox' name='articleImagCheckBoxArray[]' value='$a_image' checked hidden>",
+        'Image' => "<a class='image-popup-no-margins' href='/iHeartCoding/public/upload/articles/$a_image'><img class='img-fluid' src='/iHeartCoding/public/upload/articles/$a_image' width='50'></a><input class='checkBoxes' type='checkbox' name='articleImagCheckBoxArray[]' value='$a_image' checked hidden>",
         'Tags' => ".$a_tags.",
-        'Comments' => "<a href='Article-Comments?a=$a_id'>$a_com_count</a>",
+        'Comments' => "<a href='/iHeartCoding/Admin/Article-Comments.php?a=$a_id'>$a_com_count</a>",
         'Views' => "$a_view_count",
         'Date' => date('M j Y | h:i A', strtotime($a_date)),
-        'Action' => "<form action='../controllers/articleController.php' method='POST'><button type='submit' class='btn btn-outline-secondary btn-sm' name='$action' value='$a_id'><i class='ti-$icon pr-1'></i> $btn_name</button></form>",
-        'edit' => "<a href='Publish-Article?eart=$a_id' class='btn btn-outline-warning btn-sm'><i class='ti-pencil-alt pr-1'></i> Edit</a>",
+        'Action' => "<button type='button' class='btn btn-outline-secondary btn-sm waves-effect waves-light sa-$ajax_req_btn_class_name-article' id_ref='$a_id'><i class='ti-$icon pr-1'></i> $btn_name</button>",
+        'edit' => "<a href='/iHeartCoding/Admin/Article/Edit/$a_id' class='btn btn-outline-warning btn-sm'><i class='ti-pencil-alt pr-1'></i> Edit</a>",
         'delete' => "<button type='button' class='btn btn-outline-danger btn-sm waves-effect waves-light sa-delete-article' id_ref='$a_id' img_ref='$a_image'><i class='ti-trash pr-1'></i> Delete</button>",
-        'reset' => "<form action='../controllers/articleController.php' method='POST'><button type='submit' onclick='javascript: return confirm('Are you sure you want to reset view count?');' class='btn btn-outline-dark btn-sm' name='reset_view_count' value='$a_id'><i class='ti-eraser pr-1'></i> Rest</button></form>"
+        'reset' => " <button type='button' class='btn btn-outline-dark btn-sm waves-effect waves-light sa-reset-article-views' id_ref='$a_id'><i class='ti-eraser pr-1'></i> Rest</button>"
     );
 }
 

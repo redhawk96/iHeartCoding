@@ -50,3 +50,11 @@
 <?php
    include 'includes/footer.php';
 ?>
+
+<script>
+   $('#summernote').summernote({
+      placeholder: 'Place your article content here !',
+      tabsize: 2,
+      height: 500
+   });
+</script>

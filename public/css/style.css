@@ -3905,26 +3905,25 @@ div.list-post .post-content h2 a:hover {
 .single-post-box .share-post-box ul.share-box li a.facebook {
   background: #4267b2;
   color: white !important;
-  border: 0.5px solid #4267b2;
+  border: 1px solid #4267b2 !important;
 }
 
 .single-post-box .share-post-box ul.share-box li a.facebook:hover {
   background: transparent;
   color: #4267b2 !important;
-  border: 0.5px solid #4267b2;
+  border: 1px solid #4267b2 !important;
 }
-
 
 .single-post-box .share-post-box ul.share-box li a.linkedin {
   background: #0077b5;
   color: white !important;
-  border: 0.5px solid #0077b5;
+  border: 1px solid #0077b5;
 }
 
 .single-post-box .share-post-box ul.share-box li a.linkedin:hover {
   background: transparent;
   color: #0077b5 !important;
-  border: 0.5px solid #0077b5;
+  border: 1px solid #0077b5;
 }
 
 .single-post-box .share-post-box ul.share-box li a.linkedin i {

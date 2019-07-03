@@ -96,25 +96,54 @@ if(isset($_POST['edit_user'])){
     }
 }
 
+// To activate single user from view profile 
+if(isset($_POST['resetPassword'])){
+
+    $u_id = $_POST['u_id'];
+    $u_pass = $_POST['u_pass'];
+
+    $resetUserPassword = $user->resetUserPassword($u_pass, $u_id);
+
+    if(!$resetUserPassword){
+        die('QUERY FAILED '. mysqli_error($serverConnection));
+    }
+
+}
+
 // To activate user
 if(isset($_POST['activate_user'])){
 
     $u_id = $_POST['activate_user'];
 
-        if($u_id == "" || empty($u_id)){
-        
-             // su=false -> status update failed
-            header('Location: ../Admin/users?su=false');
-        
-        }else{
+    $activateUser = $user->activateUser($u_id);
 
-        $activateUser = $user->activateUser($u_id);
+    if(!$activateUser){
+        die('QUERY FAILED '. mysqli_error($serverConnection));
+    }
+    
+}
 
-        if(!$activateUser){
-            die('QUERY FAILED '. mysqli_error($serverConnection));
-        }else{
-            header('Location: ../Admin/users');
-        }
+// To activate single user from view profile 
+if(isset($_POST['activate_single_user'])){
+
+    $u_id = $_POST['activate_single_user'];
+
+    $activateUser = $user->activateUser($u_id);
+
+    if(!$activateUser){
+        die('QUERY FAILED '. mysqli_error($serverConnection));
+    }   
+}
+
+// To disable single user from view profile 
+if(isset($_POST['disable_single_user'])){
+
+    $u_id = $_POST['disable_single_user'];
+
+    $disableUser = $user->disableUser($u_id);
+
+    if(!$disableUser){
+        die('QUERY FAILED '. mysqli_error($serverConnection));
     }
 }
 
@@ -123,20 +152,10 @@ if(isset($_POST['disable_user'])){
 
     $u_id = $_POST['disable_user'];
 
-        if($u_id == "" || empty($u_id)){
-        
-            // su=false -> status update failed
-            header('Location: ../Admin/users?su=false');
-        
-        }else{
+    $disableUser = $user->disableUser($u_id);
 
-        $disableUser = $user->disableUser($u_id);
-
-        if(!$disableUser){
-            die('QUERY FAILED '. mysqli_error($serverConnection));
-        }else{
-            header('Location: ../Admin/users');
-        }
+    if(!$disableUser){
+        die('QUERY FAILED '. mysqli_error($serverConnection));
     }
 }
 
@@ -153,8 +172,7 @@ if(isset($_POST['delete_user'])){
         die('QUERY FAILED '. mysqli_error($serverConnection));
     }else{
         // Deleting image from the server for the specific user
-        unlink("../public/upload/users/".$u_image_name);
-        header('Location: ../Admin/users');
+        unlink("/iHeartCoding/public/upload/users/".$u_image_name);
     }
 }
 

@@ -36,15 +36,6 @@
                         <!-- End Add User -->
 
                      <?php
-                     }else if(isset($_GET['edit_user'])) {
-                     ?>
-                        
-                        <!-- Edit User -->
-                        <?php include "partials/users/edit-user.php"; ?>
-                        <!-- End Edit User -->
-                     
-                     
-                     <?php
                      }else if(isset($_GET['user'])) {
                      ?>
                         
@@ -86,11 +77,18 @@
 
 <script>
 var uploadField = document.getElementById("u_image");
-var maxSize = 9 * 1000 * 1000 ; // 9MB
+var maxSize = 4 * 1000 * 1000 ; // 4MB
 uploadField.onchange = function() {
     if(this.files[0].size > maxSize){
     alert("File is too big!");
     this.value = "";
     };
 };
+
+
 </script>
+
+<script src="/iHeartCoding/asynchronous_scripts/users-button-script.js"></script>
+<script src="/iHeartCoding/asynchronous_scripts/user-button-script.js"></script>
+<script src="/iHeartCoding/asynchronous_scripts/single-user-articles-button-script.js"></script>
+<script src="/iHeartCoding/public/admin/assets/js/selector.js"></script>

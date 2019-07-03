@@ -11,16 +11,16 @@
             <li>
                <a href="javascript:void(0);" class="waves-effect"><i class="ti-image"></i> <span>Articles <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                <ul class="submenu">
-                  <li><a href="/iHeartCoding/Admin/Articles/View">Manage All Articles</a></li>
-                  <li><a href="/iHeartCoding/Admin/Article/Add">Add New Article</a></li>
+                  <li><a href="/iHeartCoding/Admin/Articles/View-All">View Articles</a></li>
+                  <li><a href="/iHeartCoding/Admin/Article/Add">New Article</a></li>
                </ul>
             </li>
             <li>
                <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i> <span>Members <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                <ul class="submenu">
-                  <li><a href="/iHeartCoding/Admin/Users">Manage All Members</a></li>
-                  <li><a href="Users">View All Moderator</a></li>
-                  <li><a href="Users">View All Administrators</a></li>
+                  <li><a href="/iHeartCoding/Admin/Users/View-All">View Members</a></li>
+                  <li><a href="/iHeartCoding/Admin/Users">View Moderator</a></li>
+                  <li><a href="/iHeartCoding/Admin/Users">View Administrators</a></li>
                   <li><a href="/iHeartCoding/Admin/User/Add">Add New Member</a></li>
                </ul>
             </li>

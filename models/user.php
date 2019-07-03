@@ -204,6 +204,7 @@ class User
 
                 $_SESSION['u_id'] = $row['user_id'];
                 $activity->recordLoggedActivity($row['user_id']);
+                $activity->recordAccessActivityInfo($row['user_id']);
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['u_f_name'] = $row['user_firstName'];
                 $_SESSION['u_l_name'] = $row['user_lastName'];
@@ -236,6 +237,27 @@ class User
         }
         
         return $new_password;
+    }
+
+    // To reset user password
+    public static function resetUserPassword($password, $user_id){
+
+        // $user_id = mysqli_real_escape_string(self::$serverConnection, $user_id);
+        $password = mysqli_real_escape_string(self::$serverConnection, $password);
+
+        $new_password = self::encryptUser($password);
+
+        $updateCurrentPasswordQuery = mysqli_prepare(self::$serverConnection, "UPDATE users SET user_password=? WHERE users.user_id=?");
+
+        mysqli_stmt_bind_param($updateCurrentPasswordQuery, "ss", $new_password, $user_id);
+        
+        mysqli_stmt_execute($updateCurrentPasswordQuery);
+
+        if(!$updateCurrentPasswordQuery){
+            die('QUERY FAILED : '. mysqli_error(self::$serverConnection));
+        }else{
+            return $updateCurrentPasswordQuery;
+        }
     }
 
     // To check username avaliability form database for new users

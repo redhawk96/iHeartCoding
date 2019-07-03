@@ -1,9 +1,10 @@
 $(document).ready(function () {
 
     // Delete article
-     $("#datatable-buttons").on("click", ".sa-delete-article", function () {
+     $("#datatable-buttons").on("click", ".sa-delete-single-user-article", function () {
          var id = $(this).attr("id_ref");
          var img = $(this).attr("img_ref");
+         var auth_id = $(this).attr("auth_ref");
          Swal.fire({
              title: "Are you sure?",
              text: "You won't be able to revert this!",
@@ -25,7 +26,7 @@ $(document).ready(function () {
                      success: function (data) {
                          if (!data.error) {
                              Swal.fire("Deleted!", "Your article has been deleted.", "success");
-                      refreshArticleTable();
+                      refreshArticleTable(auth_id);
                          }
                      }
                  })
@@ -35,8 +36,9 @@ $(document).ready(function () {
     // End delete article
  
     // Draft article
-    $("#datatable-buttons").on("click", ".sa-draft-article", function () {
+    $("#datatable-buttons").on("click", ".sa-draft-single-user-article", function () {
        var id = $(this).attr("id_ref");
+       var auth_id = $(this).attr("auth_ref");
          $.ajax({
           url: '/iHeartCoding/controllers/articleController.php',
           data: {
@@ -45,7 +47,7 @@ $(document).ready(function () {
           type: 'POST',
           success: function (data) {
              if (!data.error) {
-                refreshArticleTable();
+                refreshArticleTable(auth_id);
              }
           }
        })
@@ -53,8 +55,9 @@ $(document).ready(function () {
     // End draft article
  
     // Publish article
-    $("#datatable-buttons").on("click", ".sa-publish-article", function () {
+    $("#datatable-buttons").on("click", ".sa-publish-single-user-article", function () {
        var id = $(this).attr("id_ref");
+       var auth_id = $(this).attr("auth_ref");
          $.ajax({
           url: '/iHeartCoding/controllers/articleController.php',
           data: {
@@ -63,7 +66,7 @@ $(document).ready(function () {
           type: 'POST',
           success: function (data) {
              if (!data.error) {
-                refreshArticleTable();
+                refreshArticleTable(auth_id);
              }
           }
        })
@@ -71,8 +74,9 @@ $(document).ready(function () {
     // End publish article
  
     // Reset article views
-    $("#datatable-buttons").on("click", ".sa-reset-article-views", function () {
+    $("#datatable-buttons").on("click", ".sa-reset-single-user-article-views", function () {
        var id = $(this).attr("id_ref");
+       var auth_id = $(this).attr("auth_ref");
          $.ajax({
           url: '/iHeartCoding/controllers/articleController.php',
           data: {
@@ -81,7 +85,7 @@ $(document).ready(function () {
           type: 'POST',
           success: function (data) {
              if (!data.error) {
-                refreshArticleTable();
+                refreshArticleTable(auth_id);
              }
           }
        })
@@ -92,20 +96,18 @@ $(document).ready(function () {
   
 
 
- function refreshArticleTable() {
+ function refreshArticleTable(user_id) {
  
      var table = $('#datatable-buttons').DataTable({
           destroy: true,
-             ajax: "/iHeartCoding/asynchronous_scripts/articles-table.php",
+             ajax: "/iHeartCoding/asynchronous_scripts/single-user-articles-table.php?user_id="+user_id,
              columns : [
-                 {"data" : "Id"},
-                 {"data" : "Author"},
                  {"data" : "Title"},
-                 {"data" : "Status"},
                  {"data" : "Image"},
                  {"data" : "Tags"},
-                 {"data" : "Comments"},
+                 {"data" : "Status"},
                  {"data" : "Views"},
+                 {"data" : "Comments"},
                  {"data" : "Date"},
                  {"data" : "Action"},
                  {"data" : "edit"},

@@ -14,7 +14,7 @@ $category = new Category();
 $comment= new Comment();
 $user = new User();
 
-//Redirecting non-administrators to the home page
+//Redirecting non-administrators to the home pagez
 if($_SESSION['u_type'] != 'Administrator'){
     header('Location: /iHeartCoding/');
 }

@@ -52,6 +52,8 @@ if(isset($_POST['login_user'])){
         
     if($validateUser !=0 ){
 
+        
+
         switch($_SESSION['u_type']){
             case 'Subscriber' : header('Location: ../'); break;
             case 'Moderator' : header('Location: ../Admin'); break;

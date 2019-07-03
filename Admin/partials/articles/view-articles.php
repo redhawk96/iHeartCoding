@@ -1,8 +1,8 @@
-<form action="../controllers/articleController.php" method="POST">
+<form action="/iHeartCoding/controllers/articleController.php" method="POST">
 
 <div class="offset-10 col pr-0 pb-5">
-    <div class="input-group col-2">
-        <select class="form-control" name="bulk_option">
+    <div class="input-group col-2" id="bulk_opt">
+        <select class="form-control" name="bulk_option" id="bulk_option">
             <option selected>Select Option</option>
             <option value="Publish">Publish</option>
             <option value="Draft">Draft</option>
@@ -10,7 +10,7 @@
             <option value="Delete">Delete</option>
         </select>
         <div class="input-group-append">
-            <button type="submit" onclick="javascript: return confirm('Are you sure you want to apply changes?');" class="btn btn-outline-success float-right" name="bulk_apply"><i class="ti-save"></i></button>
+            <button type="submit" id="btn-submit" class="btn btn-outline-success float-right" name="bulk_apply"><i class="ti-save"></i></button>
         </div>
         <a href="/iHeartCoding/Admin/Article/Add" class="btn btn-md btn-success rounded-0"><i class="ti-plus"></i></a>
     </div>
@@ -28,7 +28,7 @@
             <th>Comments</th>
             <th>Views</th>
             <th>Date</th>
-            <tH>Action</th> 
+            <tH></th> 
             <th></th> 
             <th></th> 
             <th></th>
@@ -61,8 +61,24 @@
 
         <tr>
             <td><input class="checkBoxes" type="checkbox" name="articleIdCheckBoxArray[]" value="<?php echo $a_id; ?>"></td>
-            <td><a href="/iHeartCoding/Admin/Articles/Author/<?php echo $author_id; ?>"><?php echo $a_author; ?></a></td>
-            <td><a href="/iHeartCoding/Article/<?php echo $a_id; ?>/<?php echo preg_replace('/\s+/', '-', $a_title) ?>"><?php echo $a_title; ?></a></td>
+            <td class="text-truncate">
+                <!-- Article author avatar -->
+                <?php
+                $displaySingleUser = $user->displaySingleUser($author_id);
+                
+                while($row = mysqli_fetch_assoc($displaySingleUser)){
+                    $user_image = $row['user_image'];
+                ?>
+                    <a class="image-popup-no-margins pr-3" href="/iHeartCoding/public/upload/users/<?php echo $user_image; ?>">
+                        <img class="img-fluid rounded-circle" alt="<?php echo $user_image; ?>" src="/iHeartCoding/public/upload/users/<?php echo $user_image; ?>" width="35">
+                    </a>
+                <?php 
+                }
+                ?>
+                <!-- End article author avatar -->
+                <a href="/iHeartCoding/Admin/Articles/Author/<?php echo $author_id; ?>"><?php echo $a_author; ?></a>
+            </td>
+            <td class="text-truncate"><a href="/iHeartCoding/Article/<?php echo $a_id; ?>/<?php echo preg_replace('/\s+/', '-', $a_title) ?>"><?php echo $a_title; ?></a></td>
             <td><?php echo $a_status; ?></td>
             <td class="text-center">
                 <a class="image-popup-no-margins" href="/iHeartCoding/public/upload/articles/<?php echo $a_image; ?>">
@@ -79,14 +95,16 @@
                 $icon = "export";
                 $btn_name = "Publish";
                 $ajax_req_btn_class_name = "publish";
+                $btn_color = "info";
 
                 if($a_status == 'Published') {
                     $icon = "import";
                     $btn_name = "Draft";
                     $ajax_req_btn_class_name = "draft";
+                    $btn_color = "secondary";
                 }
 
-                echo "<button type='button' class='btn btn-outline-secondary btn-sm waves-effect waves-light sa-$ajax_req_btn_class_name-article' id_ref='$a_id'><i class='ti-$icon pr-1'></i> $btn_name</button>";
+                echo "<button type='button' class='btn btn-outline-$btn_color btn-sm waves-effect waves-light sa-$ajax_req_btn_class_name-article' id_ref='$a_id'><i class='ti-$icon pr-1'></i> $btn_name</button>";
                 ?>
             </td>
             <td>

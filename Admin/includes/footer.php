@@ -24,14 +24,11 @@
    <script src="/iHeartCoding/public/admin/plugins/datatables/buttons.print.min.js"></script>
    <script src="/iHeartCoding/public/admin/plugins/datatables/buttons.colVis.min.js"></script>
 
-  
-
    <!-- Datatable init js -->
    <script src="/iHeartCoding/public/admin/assets/pages/datatables.init.js"></script>
 
    <!-- Sweet-Alert  -->
    <script src="/iHeartCoding/public/admin/plugins/sweet-alert2/sweetalert2.min.js"></script>
-   <script src="/iHeartCoding/asynchronous_scripts/remove-articles.js"></script>
    
    <!--Chartist Chart-->
    <script src="/iHeartCoding/public/admin/plugins/chartist/js/chartist.min.js"></script>

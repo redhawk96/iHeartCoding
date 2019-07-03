@@ -1,4 +1,4 @@
-<form action="../controllers/userController.php" method="POST">
+<form action="/iHeartCoding/controllers/userController.php" method="POST">
 
 <div class="offset-10 col pr-0 pb-5">
     <div class="input-group col-2">
@@ -28,7 +28,6 @@
             <th class="text-center">Account</th> 
             <th></th> 
             <th></th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -53,10 +52,10 @@
     <!-- Starting display of articles [HTML Content] -->
 
         <tr>
-            <td class="text-center"><input class="checkBoxes" type="checkbox" name="userIdCheckBoxArray[]" value="<?php echo $u_id; ?>"></td>
+            <td><input class="checkBoxes" type="checkbox" name="userIdCheckBoxArray[]" value="<?php echo $u_id; ?>"></td>
             <td class="text-center">
-                <a class="image-popup-no-margins" href="../public/upload/users/<?php echo $u_image; ?>">
-                    <img class="img-fluid" alt="" src="../public/upload/users/<?php echo $u_image; ?>" width="28">
+                <a class="image-popup-no-margins" href="/iHeartCoding/public/upload/users/<?php echo $u_image; ?>">
+                    <img class='img-fluid rounded-circle' alt="" src="/iHeartCoding/public/upload/users/<?php echo $u_image; ?>" width="35">
                 </a>
                 <input class="checkBoxes" type="checkbox" name="userImagCheckBoxArray[]" value="<?php echo $u_image; ?>" checked hidden>
             </td>
@@ -67,35 +66,27 @@
             <td><?php echo $u_role; ?></td>
             <td class="text-center"><?php echo $u_status; ?></td>
             <td class="text-center">
-                <form action="../controllers/userController.php" method="POST">
+                <?php 
+                $action = "activate-user";
+                $icon = "unlock";
+                $btn_name = "Activate";
+                $btn_color = "success";
 
-                    <?php 
-                    $action = "activate_user";
-                    $icon = "unlock";
-                    $btn_name = "Activate";
-                    $btn_color = "success";
+                if($u_status == 'Active') {
+                    $action = "disable-user";
+                    $icon = "lock";
+                    $btn_name = "Disable";
+                    $btn_color = "secondary";
+                }
 
-                    if($u_status == 'Active') {
-                        $action = "disable_user";
-                        $icon = "lock";
-                        $btn_name = "Disable";
-                        $btn_color = "secondary";
-                    }
-
-                    echo "<button type='submit' class='btn btn-outline-$btn_color btn-sm' name='$action' value='$u_id'><i class='ti-$icon'></i> $btn_name</button>";
-                    ?>
-                </form>
+                echo "<button type='button' class='btn btn-outline-$btn_color btn-sm sa-$action' id_ref='$u_id'><i class='ti-$icon'></i> $btn_name</button>";
+                ?>
             </td>
             <td class="text-center">
-                <a href="./users?user=<?php echo $u_id; ?>" class="btn btn-outline-info btn-sm"><i class="ti-view-list-alt pr-1"></i> View</a>
+                <a href="/iHeartCoding/Admin/User/View/<?php echo $u_id; ?>" class="btn btn-outline-info btn-sm"><i class="ti-view-list-alt pr-1"></i> View</a>
             </td>
             <td class="text-center">
-                <a href="./users?edit_user=<?php echo $u_id; ?>" class="btn btn-outline-warning btn-sm"><i class="ti-pencil-alt pr-1"></i> Edit</a>
-            </td>
-            <td class="text-center">
-                <form action="../controllers/userController.php" method="POST">
-                    <input type="text" name="u_image_name" value="<?php echo $u_image; ?>" hidden>
-                    <button type="submit" onclick="javascript: return confirm('Are you sure you want to delete?');" class="btn btn-outline-danger btn-sm" name="delete_user" value="<?php echo $u_id; ?>"><i class="ti-trash pr-1"></i> Delete</button>
+                    <button type="button" class="btn btn-outline-danger btn-sm sa-delete-user" id_ref="<?php echo $u_id; ?>" img_ref="<?php echo $u_image; ?>"><i class="ti-trash pr-1"></i> Delete</button>
                 </form>
             </td>
         </tr>

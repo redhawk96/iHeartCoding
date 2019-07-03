@@ -1,57 +1,74 @@
 <?php 
 
-// If ecat valiable is shown then content will be show to update existing category
-// eg: article.php?eart=1
-
+// If ecat valiable is shown then content will be show to update existing article
 if(isset($_GET['eart'])){
 
-    // Getting the value of eart variable. ecat variable hold the values of the id of a specific article
+    // Getting the value of eart variable. ecat variable holds the values of the id of a specific article
     $eart_id = $_GET['eart'];
 
-    // Calling displaySingleArticleToEdit method of Article class
     $displaySingleArticleToEdit = $article->displaySingleArticleToEdit($eart_id);
 
-    // Stating while loop to display specific article
-    while($row = mysqli_fetch_assoc($displaySingleArticleToEdit)){
-    
-    $a_id = $row['article_id'];
-    $a_cat_id = $row['article_category_id'];
-    $a_title = $row['article_title'];
-    $a_author = $row['article_author'];
-    $a_date = $row['article_date'];
-    $a_image = $row['article_image'];
-    $a_content = $row['article_content'];
-    $a_tags = $row['article_tags'];
-    $a_status = $row['article_status'];
+    // Binding results to variables
+    mysqli_stmt_bind_result($displaySingleArticleToEdit, $a_id, $a_cat_id, $a_title, $a_author, $author_id, $a_date, $a_image, $a_content, $a_tags, $a_com_count, $a_status, $a_view_count);
 
+    // Specific article
+    while(mysqli_stmt_fetch($displaySingleArticleToEdit)):
 ?>
-
+    <!-- Updating article fields -->
     <form action="/iHeartCoding/controllers/articleController.php" method="POST" enctype="multipart/form-data">
-
     <div class="row">
 
+        <!-- Article details -->
         <div class="col-lg-5 pt-3">
+
+            <!-- Author details -->
             <div class="form-group row pb-2 pt-5">
                 <label class="col-md-3 col-form-label">Author</label>
                 <div class="col-md-9">
                     <div class="input-group mr-sm-2">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <img src="/iHeartCoding/public/upload/users/<?php echo $_SESSION["u_avatar"] ?>" class="rounded-circle" style="width:20px">
+                                <!-- Article author avatar -->
+                                <?php
+                                $displaySingleUser = $user->displaySingleUser($author_id);
+                                
+                                while($row = mysqli_fetch_assoc($displaySingleUser)){
+                                    $user_image = $row['user_image'];
+                                ?>
+                                    <a class="image-popup-no-margins" href="/iHeartCoding/public/upload/users/<?php echo $user_image; ?>">
+                                        <img class="img-fluid rounded-circle" alt="<?php echo $user_image; ?>" src="/iHeartCoding/public/upload/users/<?php echo $user_image; ?>" width="20">
+                                    </a>
+                                <?php 
+                                }
+                                ?>
+                                <!-- End article author avatar -->
                             </div>
                         </div>
                         <input type="text" class="form-control" value="<?php echo $a_author ;?>" name="a_author" readonly>
                     </div>
                 </div>
             </div>
+            <!-- End author details -->
 
+            <!-- Article added date -->
             <div class="form-group row py-1">
                 <label class="col-md-3 col-form-label">Date</label>
                 <div class="col-md-9">
-                    <p><?php echo date('l jS F Y | h:i A', strtotime($a_date));?></p>
+                    <p><i class="ti-time pr-1"></i> <?php echo date('l jS F Y | h:i A', strtotime($a_date));?></p>
                 </div>
             </div>
+            <!-- End article addded date -->
 
+            <!-- Article overview -->
+            <div class="form-group row py-1">
+                <label class="col-md-3 col-form-label">Overview</label>
+                <div class="col-md-9">
+                    <p><span class="pr-5"><i class="ti-comment-alt pr-1"></i> <?php echo $a_com_count?> Comments </span>|<span class="pl-5"><i class="ti-eye pr-1"></i> <?php echo $a_view_count?> Views</span></p>
+                </div>
+            </div>
+            <!-- End article overview -->
+
+            <!-- Categories -->
             <div class="form-group row pb-1">
                 <label class="col-md-3 col-form-label">Description</label>
                 <div class="col-md-6">
@@ -76,7 +93,9 @@ if(isset($_GET['eart'])){
                     </select>
                 </div>
             </div>
+            <!-- End categories -->
 
+            <!-- Article status -->
             <div class="form-group row py-1">
                 <label class="col-md-3 col-form-label">Status</label>
                 <div class="col-md-9">
@@ -91,13 +110,14 @@ if(isset($_GET['eart'])){
                         case 'Drafted'  : echo "<option value='Drafted' selected>Article saved as a draft</option>
                                                 <option value='Published'>Publish article to public</option>"; 
                                                 break; 
-
                     }
                     ?>
                     </select>
                 </div>
             </div>
+            <!-- End article status -->
 
+            <!-- Article thumbnail -->
             <div class="form-group row py-1">
                 <label class="col-md-3 col-form-label">Banner</label>
                 <div class="col-md-9">
@@ -106,7 +126,9 @@ if(isset($_GET['eart'])){
                     <p class="help-block">Banner will be used as the thumbnail (Max 2MB)</p>
                 </div>
             </div>
+            <!-- End article thumbnail -->
 
+            <!-- Previous article thumbnail -->
             <div class="form-group row py-1">
                 <label class="col-md-3 col-form-label"></label>
                 <div class="col-md-4">
@@ -115,57 +137,76 @@ if(isset($_GET['eart'])){
                     </a>
                 </div>
             </div>
-            
+            <!-- End previous article thumbnail -->
+
         </div>  
-        
+        <!-- End article details -->
+
+        <!-- Article content -->
         <div class="col-lg-7">
+
+            <!-- Article submit button -->
             <div class="form-group col-12">
                 <input type="text" class="form-control" placeholder="1" name="a_cat_id" value="<?php echo $a_cat_id ;?>" hidden>
                 <button type="submit" class="btn btn-outline-warning btn-lg col-3 offset-9" name="update_article" value="<?php echo $a_id ;?>"><i class="ti-save pr-2"></i> Update Article</button>
             </div>
+            <!-- End article submit button -->
 
+            <!-- Article body -->
             <div class="form-group col-lg-12">
                 <textarea class="form-control summernote"  id="summernote"  rows="10" name="a_content" style="height: 1000px !important"><?php echo $a_content ;?></textarea>
             </div>
+            <!-- End article body -->
+
         </div>
+        <!-- End article content -->
             
     </div>
     </form>
-
+    <!-- End updating article fields -->
 <?php  
 
-    }
+    endwhile;
+    // End specific article
 
 }else{
 
 ?>
-
+    <!-- New article fields -->
     <form action="/iHeartCoding/controllers/articleController.php" method="POST" enctype="multipart/form-data">
-
     <div class="row">
 
-        <div class="col-lg-5 col-md-12 pt-3">
+        <!-- Article details -->
+        <div class="col-lg-5 pt-3">
+
+            <!-- Author details -->
             <div class="form-group row pb-2 pt-5">
                 <label class="col-md-3 col-form-label">Author</label>
                 <div class="col-md-9">
                     <div class="input-group mr-sm-2">
                         <div class="input-group-prepend">
+                             <!-- Article author avatar -->
                             <div class="input-group-text">
                                 <img src="/iHeartCoding/public/upload/users/<?php echo $_SESSION["u_avatar"] ?>" class="rounded-circle" style="width:20px">
                             </div>
+                             <!-- End article author avatar -->
                         </div>
                         <input type="text" class="form-control" value="<?php echo $_SESSION["username"] ?>" name="a_author" readonly>
                     </div>
                 </div>
             </div>
+            <!-- End author details -->
 
+            <!-- Article added date -->
             <div class="form-group row py-1">
                 <label class="col-md-3 col-form-label">Date</label>
                 <div class="col-md-9">
-                    <p><?php date_default_timezone_set('Asia/Colombo'); echo date('l jS F Y | h:i A', time()); ?></p>
+                    <p><i class="ti-time pr-1"></i> <?php date_default_timezone_set('Asia/Colombo'); echo date('l jS F Y | h:i A', time()); ?></p>
                 </div>
             </div>
+            <!-- End article addded date -->
 
+            <!-- Categories -->
             <div class="form-group row pb-1">
                 <label class="col-md-3 col-form-label">Description</label>
                 <div class="col-md-6">
@@ -190,7 +231,9 @@ if(isset($_GET['eart'])){
                     </select>
                 </div>
             </div>
+            <!-- End categories -->
 
+            <!-- Article status -->
             <div class="form-group row py-1">
                 <label class="col-md-3 col-form-label">Status</label>
                 <div class="col-md-9">
@@ -200,7 +243,9 @@ if(isset($_GET['eart'])){
                     </select>
                 </div>
             </div>
-
+            <!-- End article status -->
+            
+            <!-- Article thumbnail -->
             <div class="form-group row py-1">
                 <label class="col-md-3 col-form-label">Banner</label>
                 <div class="col-md-9">
@@ -208,26 +253,36 @@ if(isset($_GET['eart'])){
                     <p class="help-block">Banner will be used as the thumbnail (Max 4MB)</p>
                 </div>
             </div>
-            
+             <!-- End article thumbnail -->
+
         </div>  
-        
+        <!-- End article details -->
+
+        <!-- Article content -->
         <div class="col-lg-7">
+
+            <!-- Article submit button -->
             <div class="form-group col-12">
                 <input type="text" class="form-control" placeholder="1" name="a_cat_id" value="1" hidden>
                 <button type="submit" class="btn btn-outline-primary btn-lg col-lg-3 offset-9" name="add_new_article"><i class="ti-bookmark-alt pr-2"></i> Publish Article</button>
             </div>
+             <!-- End article submit button -->
 
+
+            <!-- Article body -->
             <div class="form-group col-lg-12">
                 <textarea class="form-control summernote"  id="summernote"  rows="10" name="a_content" style="height: 1000px !important"></textarea>
             </div>
+            <!-- End article body -->
+
         </div>
-            
+        <!-- End article content -->
+
     </div>
     </form>
-
+    <!-- End new article fields -->
 <?php
 }
-// End of displaying add new article content
 ?>
 
 <script>

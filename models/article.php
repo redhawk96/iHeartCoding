@@ -179,10 +179,21 @@ class Article
 
         $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
 
-        $query = "SELECT * FROM articles WHERE article_id = '$a_id'";
-        $queryResult = mysqli_query(self::$serverConnection, $query);
+        // Constructing query as a prepared statement
+        $displaySingleArticleToEdit = mysqli_prepare(self::$serverConnection, "SELECT article_id, article_category_id, article_title, article_author, author_id, article_date, article_image, article_content, article_tags, article_comment_count, article_status, article_view_count FROM articles WHERE article_id = ?");
+        
+        // s -> string
+        mysqli_stmt_bind_param($displaySingleArticleToEdit, "s", $a_id);
+        
+        // Executing prepared statement
+        mysqli_stmt_execute($displaySingleArticleToEdit);
 
-        return $queryResult;
+        if(!$displaySingleArticleToEdit){
+            die('QUERY FAILED : '. mysqli_error(self::$serverConnection));
+        }else{
+            // Returning mysqli_stmt Object (Results of the query execution)
+            return $displaySingleArticleToEdit;
+        }
     }
 
     // To display specific article title from the database

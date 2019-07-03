@@ -2,7 +2,7 @@ RewriteEngine on
 
 RewriteRule ^(Users|Articles|Publish-Article|Users|Comments|Categories|Profile)$ $1.php [NC,L]
 
-RewriteRule ^Articles/View$ Articles.php [NC,L]
+RewriteRule ^Articles/View-All$ Articles.php [NC,L]
 
 RewriteRule ^Article/Add$ Publish-Article.php [NC,L]
 
@@ -10,8 +10,8 @@ RewriteRule ^Article/Edit/(\d+)$ Publish-Article.php?eart=$1 [NC,L]
 
 RewriteRule ^Articles/Author/([a-zA-Z0-9_.-]+)$ Articles.php?Author=$1 [NC,L]
 
-RewriteRule ^Users/View$ Users.php [NC,L]
+RewriteRule ^Users/View-All$ Users.php [NC,L]
 
-RewriteRule ^User/Add$ Users.php?add_user=true [NC,L]
+RewriteRule ^User/Add$ U1sers.php?add_user=true [NC,L]
 
-RewriteRule ^User/([a-zA-Z0-9_.-]+)$ Users.php?user=$1  [NC,L]
+RewriteRule ^User/View/([a-zA-Z0-9_.-]+)$ Users.php?user=$1  [NC,L]

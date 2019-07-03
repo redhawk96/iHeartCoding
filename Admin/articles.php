@@ -74,3 +74,4 @@
 ?>
 
 <script src="/iHeartCoding/asynchronous_scripts/articles-button-script.js"></script>
+<script src="/iHeartCoding/public/admin/assets/js/selector.js"></script>

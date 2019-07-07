@@ -57,14 +57,22 @@ class Category
     }
 
     // To add new category to the database
-    public static function addCategory($cat_title) {
+    public static function addCategory($cat_title, $added_by) {
 
         $cat_title = mysqli_real_escape_string(self::$serverConnection, $cat_title);
+        $added_by = mysqli_real_escape_string(self::$serverConnection, $added_by);
 
-        $query = "INSERT INTO categories (cat_title) VALUES ('$cat_title')";
-        $queryResult = mysqli_query(self::$serverConnection, $query);
+        $addTagQuery = mysqli_prepare(self::$serverConnection, "INSERT INTO categories(cat_title, added_by) VALUES (?, ?)");
 
-        return $queryResult;
+        mysqli_stmt_bind_param($addTagQuery, "ss", $cat_title, $added_by);
+        
+        mysqli_stmt_execute($addTagQuery);
+
+        if(!$addTagQuery){
+            die('QUERY FAILED : '. mysqli_error(self::$serverConnection));
+        }else{
+            return $addTagQuery;
+        }
     }
 
     // To update existing category from the database

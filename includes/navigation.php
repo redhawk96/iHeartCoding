@@ -12,7 +12,19 @@
                                 <span class="city-weather">Colombo, LK</span>
                             </li>
                             <li><span class="time-now"><?php date_default_timezone_set('Asia/Colombo'); echo date('l jS F Y / H:i', time()); ?></span></li>
-                            <?php echo (isset($_SESSION['s_id'])) ? "<li><a href='Profile'>Profile</a></li><li><a href='/iHeartCoding/Logout'>Log Out</a></li>" : "<li><a href='/iHeartCoding/Login'>Log In</a></li>"; ?>
+                            <?php 
+                            if(isset($_SESSION['u_type']) == 'Administrator'){
+                                echo "<li><a href='/iHeartCoding/Admin'>Dashboard</a></li>";
+                                echo "<li><a href='/iHeartCoding/Logout'>Logout</a></li>";
+
+                            }else if(isset($_SESSION['u_type']) == 'Moderator'){
+                                echo "<li><a href='/iHeartCoding/Mod'>Dashboard</a></li>";
+                                echo "<li><a href='/iHeartCoding/Logout'>Logout</a></li>";
+
+                            }else{
+                                echo "<li><a href='/iHeartCoding/Login'>Log In</a></li>";
+                            }
+                            ?>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>

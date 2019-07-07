@@ -89,6 +89,24 @@ class User
 
     }
 
+    // To get username form an user from the database
+    public static function getUsername($u_id){
+
+        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
+
+        $query = "SELECT username FROM users WHERE user_id = '$u_id'";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $username = null;
+
+        while($row = mysqli_fetch_assoc($queryResult)){
+            $username = $row['username'];
+        }
+
+        return $username;
+
+    }
+
     // To display specific user from the database
     public static function displaySingleUser($u_id) {
 
@@ -185,7 +203,9 @@ class User
     public static function validateUser($username, $password) {
 
         include 'activity.php';
+        include 'access.php';
         $activity = new Activity();
+        $access = new Access();
 
         $username = mysqli_real_escape_string(self::$serverConnection, $username);
         $password = mysqli_real_escape_string(self::$serverConnection, $password);
@@ -204,7 +224,7 @@ class User
 
                 $_SESSION['u_id'] = $row['user_id'];
                 $activity->recordLoggedActivity($row['user_id']);
-                $activity->recordAccessActivityInfo($row['user_id']);
+                $access->recordAccessActivityInfo($row['user_id']);
                 $_SESSION['username'] = $row['username'];
                 $_SESSION['u_f_name'] = $row['user_firstName'];
                 $_SESSION['u_l_name'] = $row['user_lastName'];

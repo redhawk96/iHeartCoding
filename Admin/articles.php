@@ -12,12 +12,6 @@
       <div class="container-fluid">
          <div class="page-title-box">
             <div class="row align-items-center">
-               <div class="col-sm-6">
-                  <ol class="breadcrumb">
-                     <li class="breadcrumb-item"><a href="javascript:void(0);">Atricles</a></li>
-                     <li class="breadcrumb-item active">Manage All Articles</li>
-                  </ol>
-               </div>
             </div>
          </div>
          <!-- end row -->

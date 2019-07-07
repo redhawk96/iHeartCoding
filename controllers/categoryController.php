@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php 
+ob_start(); 
+session_start();
+?>
 
 <?php
 // Including Database model
@@ -17,16 +20,18 @@ if(isset($_POST['add_category'])){
 
     if($cat_title == "" || empty($cat_title)){
     
-        header('Location: ../Admin/categories.php?a=false');
+        header('Location: /iHeartCoding/Admin/Tags?a=false');
     
     }else{
+
+        $added_by = $_SESSION['u_id'];
         
-        $addCategory = $category->addCategory($cat_title);
+        $addCategory = $category->addCategory($cat_title, $added_by);
 
         if(!$addCategory){
             die('QUERY FAILED '. mysqli_error($serverConnection));
         }else{
-            header('Location: ../Admin/categories.php');
+            header('Location: /iHeartCoding/Admin/Tags');
         }
     }
 }
@@ -39,7 +44,7 @@ if(isset($_POST['update_category'])){
 
         if($cat_title == "" || empty($cat_title)){
         
-            header('Location: ../Admin/categories.php?u=false');
+            header('Location: /iHeartCoding/Admin/Tags?u=false');
         
         }else{
 
@@ -48,7 +53,7 @@ if(isset($_POST['update_category'])){
         if(!$updateCategory){
             die('QUERY FAILED '. mysqli_error($serverConnection));
         }else{
-            header('Location: ../Admin/categories.php');
+            header('Location: /iHeartCoding/Admin/Tags');
         }
     }
 
@@ -64,7 +69,7 @@ if(isset($_POST['delete_category'])){
     if(!$deleteCategory){
         die('QUERY FAILED '. mysqli_error($serverConnection));
     }else{
-        header('Location: ../Admin/categories.php');
+        header('Location: /iHeartCoding/Admin/Tags');
     }
 
 }

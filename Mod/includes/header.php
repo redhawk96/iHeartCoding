@@ -24,7 +24,7 @@ if(isset($_SESSION['u_type'])){
 
    switch($user_type){
       case 'Administrator' : break;
-      case 'Moderator' : header('Location: /iHeartCoding/Mod/'); break;
+      case 'Moderator' : break;
       default : header('Location: /iHeartCoding/'); break;
    }
     
@@ -38,7 +38,7 @@ if(isset($_SESSION['u_type'])){
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui">
-      <title>iHeartCoding | Admin</title>
+      <title>iHeartCoding | Moderator</title>
       <meta content="Admin Dashboard" name="description">
       <meta content="Themesbrand" name="author">
       <link rel="shortcut icon" href="../assets/images/favicon.ico">

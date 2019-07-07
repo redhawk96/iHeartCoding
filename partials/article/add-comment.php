@@ -3,7 +3,7 @@
         <h1><span>Leave a Comment</span> <span class="email-not-published">Your email address will not be published.</span></h1>
     </div>
 
-    <form id="comment-form" action="/iHeartCoding/controllers/commentController" method="POST">
+    <form id="comment-form" action="/iHeartCoding/controllers/commentController.php" method="POST">
         <input name="p_id" type="hidden" value="0">
         <div class="row">
             <div class="col-md-6">

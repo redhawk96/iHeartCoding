@@ -52,12 +52,10 @@ if(isset($_POST['login_user'])){
         
     if($validateUser !=0 ){
 
-        
-
         switch($_SESSION['u_type']){
-            case 'Subscriber' : header('Location: ../'); break;
-            case 'Moderator' : header('Location: ../Admin'); break;
-            case 'Administrator' : header('Location: ../Admin/'); break;
+            case 'Subscriber' : header('Location: /iHeartCoding/'); break;
+            case 'Moderator' : header('Location: /iHeartCoding/Mod'); break;
+            case 'Administrator' : header('Location: /iHeartCoding/Admin'); break;
         }
 
     }else{

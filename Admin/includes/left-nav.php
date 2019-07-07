@@ -19,13 +19,13 @@
                <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i> <span>Members <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span></span></a>
                <ul class="submenu">
                   <li><a href="/iHeartCoding/Admin/Users/View-All">View Members</a></li>
-                  <li><a href="/iHeartCoding/Admin/Users">View Moderator</a></li>
-                  <li><a href="/iHeartCoding/Admin/Users">View Administrators</a></li>
-                  <li><a href="/iHeartCoding/Admin/User/Add">Add New Member</a></li>
+                  <li><a href="/iHeartCoding/Admin/Users/Administrators">View Administrators</a></li>
+                  <li><a href="/iHeartCoding/Admin/Users/Moderators">View Moderator</a></li>
+                  <li><a href="/iHeartCoding/Admin/User/Add">Add Member</a></li>
                </ul>
             </li>
             <li><a href="/iHeartCoding/Admin/Comments" class="waves-effect"><i class="ti-comment-alt"></i><span>Comments</span></a></li>
-            <li><a href="/iHeartCoding/Admin/Categories" class="waves-effect"><i class="ti-list"></i><span>Categories</span></a></li>
+            <li><a href="/iHeartCoding/Admin/Tags" class="waves-effect"><i class="fa fa-tags"></i><span>Tags</span></a></li>
          </ul>
       </div>
       <!-- Sidebar -->

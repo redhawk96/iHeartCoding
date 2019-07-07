@@ -102,8 +102,8 @@ class Article
         return $queryResult;
     }
 
-    // To display specific article from the database
-    public static function displaySingleArticle($a_id) {
+    // To display specific published article from the database
+    public static function displayPublishedSingleArticle($a_id) {
 
         $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
 
@@ -127,7 +127,29 @@ class Article
         }
     }
 
-    // To display all articles form a specific author from the database
+    // To display specific published/unpublished article from the database
+    public static function displaySingleArticle($a_id) {
+
+        $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
+
+        // Constructing query as a prepared statement
+        $getSingleArticleQuery = mysqli_prepare(self::$serverConnection, "SELECT article_id, article_category_id, article_title, article_author, author_id, article_date, article_image, article_content, article_tags, article_comment_count, article_status, article_view_count FROM articles WHERE article_id = ?");
+        
+        // s -> string
+        mysqli_stmt_bind_param($getSingleArticleQuery, "s", $a_id);
+        
+        // Executing prepared statement
+        mysqli_stmt_execute($getSingleArticleQuery);
+
+        if(!$getSingleArticleQuery){
+            die('QUERY FAILED : '. mysqli_error(self::$serverConnection));
+        }else{
+            // Returning mysqli_stmt Object (Results of the query execution)
+            return $getSingleArticleQuery;
+        }
+    }    
+
+    // To display all articles for a specific author from the database
     public static function displayAuthorArticles($auth_id) {
 
         $auth_id = mysqli_real_escape_string(self::$serverConnection, $auth_id);
@@ -211,6 +233,24 @@ class Article
         }
 
         return $a_title;
+    }
+
+    // To get article category count from the database
+    public static function getArticleCategoryCount($cat_title){
+
+        $cat_title = mysqli_real_escape_string(self::$serverConnection, $cat_title);
+
+        $query = "SELECT COUNT(*) AS 'count' FROM articles WHERE article_tags = '$cat_title'";
+        $queryResult = mysqli_query(self::$serverConnection, $query);
+
+        $tag_count = null;
+
+        while($row = mysqli_fetch_assoc($queryResult)){
+            $tag_count = $row['count'];
+        }
+
+        return $tag_count;
+
     }
 
     // To display searched article from the database

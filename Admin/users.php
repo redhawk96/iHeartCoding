@@ -11,15 +11,6 @@
    <div class="content">
       <div class="container-fluid">
          <div class="page-title-box">
-            <div class="row align-items-center">
-               <div class="col-sm-6">
-                  <!-- <h4 class="page-title">Members</h4> -->
-                  <ol class="breadcrumb">
-                     <li class="breadcrumb-item"><a href="javascript:void(0);">Members</a></li>
-                     <li class="breadcrumb-item active">Manage All Memebers</li>
-                  </ol>
-               </div>
-            </div>
          </div>
          <!-- end row -->
          <div class="row">

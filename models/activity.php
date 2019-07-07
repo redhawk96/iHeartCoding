@@ -43,113 +43,24 @@ class Activity
         }
     }
 
-    public static function recordAccessActivityInfo($user_id){
 
-        $user_id = mysqli_real_escape_string(self::$serverConnection, $user_id);
+    // To display user login activity summary from the database
+    public static function displayLoggedActivitySummary($u_id) {
 
-        $accessInfo = self::getAccessActivityInfo();
+        $u_id = mysqli_real_escape_string(self::$serverConnection, $u_id);
 
-        $page_reffer = $accessInfo['referrer'];
-        $platform = $accessInfo['platform'];
-        $os = $accessInfo['os'];
-        $version = $$accessInfo['version'];
-        $browser_name = $accessInfo['name']; 
-        $ip = $accessInfo['ip'];
-        $city = $accessInfo['city'];
-        $region = $$accessInfo['region'];
-        $country = $accessInfo['country'];
-
-        $recordAccessActivityQuery = mysqli_prepare(self::$serverConnection, "INSERT INTO activity(`user_id`, page_referrer, logged_platform, device_os, os_version, logged_device_browser, logged_ip, logged_city, logged_region, logged_country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-        mysqli_stmt_bind_param($recordAccessActivityQuery, "ssssssssss", $user_id, $page_reffer, $platform, $os, $version, $browser_name, $ip, $city, $region, $country );
+        $getUserLoggedSummaryQuery = mysqli_prepare(self::$serverConnection, "SELECT f_logged, l_logged, v_times FROM user_activity WHERE user_id =  ?");
         
-        mysqli_stmt_execute($recordAccessActivityQuery);
+        mysqli_stmt_bind_param($getUserLoggedSummaryQuery, "s", $u_id);
 
-        if(!$recordAccessActivityQuery){
+        mysqli_stmt_execute($getUserLoggedSummaryQuery);
+
+        if(!$getUserLoggedSummaryQuery){
             die('QUERY FAILED : '. mysqli_error(self::$serverConnection));
         }else{
-            return $recordAccessActivityQuery;
+            return $getUserLoggedSummaryQuery;
         }
-    }
-
-    public static function getAccessActivityInfo(){
-
-        $u_agent = $_SERVER['HTTP_USER_AGENT']; 
-        $ipaddress = $_SERVER['REMOTE_ADDR'];
-        $referrer = $_SERVER['HTTP_REFERER'];
-        $bname = 'Unknown';
-        $platform = 'Unknown';
-
-        //First get the platform
-        if (preg_match('/linux/i', $u_agent)) {
-            $platform = 'Linux';
-        }
-        elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
-            $platform = 'Mac';
-        }
-        elseif (preg_match('/windows|win32/i', $u_agent)) {
-            $platform = 'Windows';
-        }
-        
-        // Next get the name of the useragent seperately
-        if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) 
-        { 
-            $bname = 'Internet Explorer'; 
-            $ub = "MSIE"; 
-        } 
-        elseif(preg_match('/Firefox/i',$u_agent)) 
-        { 
-            $bname = 'Mozilla Firefox'; 
-            $ub = "Firefox"; 
-        } 
-        elseif(preg_match('/Chrome/i',$u_agent)) 
-        { 
-            $bname = 'Google Chrome'; 
-            $ub = "Chrome"; 
-        } 
-        elseif(preg_match('/Safari/i',$u_agent)) 
-        { 
-            $bname = 'Apple Safari'; 
-            $ub = "Safari"; 
-        } 
-        elseif(preg_match('/Opera/i',$u_agent)) 
-        { 
-            $bname = 'Opera'; 
-            $ub = "Opera"; 
-        } 
-        elseif(preg_match('/Netscape/i',$u_agent)) 
-        { 
-            $bname = 'Netscape'; 
-            $ub = "Netscape"; 
-        } 
-
-        function multiexplode ($delimiters,$string) {
-        
-            $ready = str_replace($delimiters, $delimiters[0], $string);
-            $launch = explode($delimiters[0], $ready);
-            return  $launch;
-        }
-        
-        $useragetplatform = multiexplode(array("(",")",";","like","CPU"),$u_agent);
-
-        $geo = unserialize(file_get_contents("http://www.geoplugin.net/php.gp?ip=$ipaddress"));
-        $country = $geo["geoplugin_countryName"];
-        $city = $geo["geoplugin_city"];
-        $regionName = $geo["geoplugin_regionName"];
-
-        return array(
-            'name'      => $bname,
-            'platform'  => $platform,
-            'os'        => $useragetplatform[1],
-            'version'   => $useragetplatform[3],
-            'ip'        => $ipaddress,
-            'referrer'  => $referrer,
-            'city'      => $city,
-            'region'    => $regionName,
-            'country'   => $country
-        );
-    }
-
+    }  
 
 }
 

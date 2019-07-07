@@ -1,6 +1,6 @@
-<?php ob_start(); 
-?>
-<?php
+<?php 
+ob_start();
+
 include "models/db.php";
 
 // Including models

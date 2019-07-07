@@ -89,6 +89,25 @@ class Comment
         return $queryResult;
     }
 
+    // To display specific comment from the database
+    public static function displaySingleAuthorArticleComment($a_id) {
+
+       $a_id = mysqli_real_escape_string(self::$serverConnection, $a_id);
+
+       $getAllAuthorArticleCommentsQuery = mysqli_prepare(self::$serverConnection, "SELECT comment_id, article_id, comment_avatar, comment_author, comment_email, comment_content, comment_status, comment_date FROM comments WHERE article_id = ? ORDER BY comment_date DESC");
+
+       mysqli_stmt_bind_param($getAllAuthorArticleCommentsQuery, "s", $a_id);
+       
+       mysqli_stmt_execute($getAllAuthorArticleCommentsQuery);
+
+       if(!$getAllAuthorArticleCommentsQuery){
+           die('QUERY FAILED : '. mysqli_error(self::$serverConnection));
+       }else{
+           return $getAllAuthorArticleCommentsQuery;
+       }
+
+    }
+
     // To display all commets for a specific article from the database
     public static function displayApprovedArticleComments($a_id) {
 

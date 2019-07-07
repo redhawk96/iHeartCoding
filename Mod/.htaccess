@@ -1,0 +1,16 @@
+RewriteEngine on
+
+RewriteRule ^(View-Articles|View-Article|Publish-Article|View-Comments|Tags|My-Profile)$ $1.php [NC,L]
+
+RewriteRule ^Articles$ View-Articles.php [NC,L]
+
+RewriteRule ^Add-Article$ Publish-Article.php [NC,L]
+
+RewriteRule ^Article/Edit/(\d+)$ Publish-Article.php?eart=$1 [NC,L]
+
+RewriteRule ^Article/(\d+)$ View-Article.php?a=$1 [NC,L]
+
+RewriteRule ^My$ My-Profile.php [NC,L]
+
+RewriteRule ^Comments$ View-Comments.php [NC,L]
+

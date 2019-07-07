@@ -29,6 +29,22 @@
             $icon = "lock";
             $btn_name = "Disable";
         }
+
+        $u_first_logged = null;
+        $u_last_logged = null;
+        $u_no_of_time_logged = null;
+
+        $displayLoggedActivitySummary = $activity->displayLoggedActivitySummary($u_id);
+
+        mysqli_stmt_bind_result($displayLoggedActivitySummary, $u_f_logged, $u_l_logged, $n_t_logged);
+
+        while(mysqli_stmt_fetch($displayLoggedActivitySummary)):
+
+            $u_first_logged = $u_f_logged; 
+            $u_last_logged = $u_l_logged;
+            $u_no_of_time_logged = $n_t_logged;
+
+        endwhile;
 ?>
 
     <div class="row">
@@ -66,9 +82,9 @@
                     <div class="card border border-Muted">
                         <div class="card-body bg-dark text-white">
                             <div class="row">
-                                <div class="col-lg-5"><p class="card-subtitle font-14"><i class="ti-time pr-1"></i> Logged : <?php echo date('M j Y | h:i A', strtotime($u_reg_date)); ?></p></div>
-                                <div class="col-lg-5"><p class="card-subtitle font-14"><i class="ti-time pr-1"></i> Last Logged : <?php echo date('M j Y | h:i A', strtotime($u_reg_date)); ?></p></div>
-                                <div class="col"><p class="card-subtitle font-14 float-right"><i class="ti-signal pr-1"></i> 2</p></div>
+                                <div class="col-lg-5"><p class="card-subtitle font-14"><i class="ti-time pr-1"></i> First Logged : <?php echo date('M j Y | h:i A', strtotime($u_first_logged)); ?></p></div>
+                                <div class="col-lg-5"><p class="card-subtitle font-14"><i class="ti-time pr-1"></i> Last Logged : <?php echo date('M j Y | h:i A', strtotime($u_l_logged)); ?></p></div>
+                                <div class="col"><p class="card-subtitle font-14 float-right"><i class="ti-signal pr-1"></i> <?php echo $u_no_of_time_logged ?></p></div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -137,10 +153,10 @@
                                 <a href="/iHeartCoding/Admin/Article/Edit/<?php echo $a_id; ?>" class="btn btn-outline-warning btn-sm"><i class="ti-pencil-alt pr-1"></i> Edit</a>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-danger btn-sm waves-effect waves-light sa-delete-single-user-article" id_ref="<?php echo $a_id; ?>" img_ref="<?php echo $a_image; ?>" auth_ref="<?php $author_id ?>"><i class="ti-trash pr-1"></i> Delete</button>
+                                <button type="button" class="btn btn-outline-danger btn-sm waves-effect waves-light sa-delete-single-user-article" id_ref="<?php echo $a_id; ?>" img_ref="<?php echo $a_image; ?>" auth_ref="<?php echo $author_id ?>"><i class="ti-trash pr-1"></i> Delete</button>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-outline-dark btn-sm waves-effect waves-light sa-reset-single-user-article-views" id_ref="<?php echo $a_id; ?>" auth_ref="<?php $author_id ?>><i class="ti-eraser pr-1"></i> Rest</button>
+                                <button type="button" class="btn btn-outline-dark btn-sm waves-effect waves-light sa-reset-single-user-article-views" id_ref="<?php echo $a_id; ?>" auth_ref="<?php echo $author_id ?>"><i class="ti-eraser pr-1"></i> Rest</button>
                             </td>
                         </tr>
 

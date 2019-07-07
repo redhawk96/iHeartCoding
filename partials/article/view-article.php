@@ -9,13 +9,13 @@ if(isset($_GET['a'])){
     $article->updateArticleViews($a_id);
 
     // Calling method to display single publish article
-    $displaySingleArticle = $article->displaySingleArticle($a_id);
+    $displayPublishedSingleArticle = $article->displayPublishedSingleArticle($a_id);
 
     // Binding db records to variables
-    mysqli_stmt_bind_result($displaySingleArticle, $a_id, $a_cat_id, $a_title, $a_author, $author_id, $a_date, $a_image, $a_content, $a_tags, $a_com_count, $a_status, $a_view_count);
+    mysqli_stmt_bind_result($displayPublishedSingleArticle, $a_id, $a_cat_id, $a_title, $a_author, $author_id, $a_date, $a_image, $a_content, $a_tags, $a_com_count, $a_status, $a_view_count);
 
     // Printing out db fetched values in a while loop
-    while(mysqli_stmt_fetch($displaySingleArticle)):
+    while(mysqli_stmt_fetch($displayPublishedSingleArticle)):
 ?>
 
     <!-- Displaying specific article [HTML Content] -->

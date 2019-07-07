@@ -11,40 +11,26 @@
    <div class="content">
       <div class="container-fluid">
          <div class="page-title-box">
-            <div class="row align-items-center">
-               <div class="col-sm-6">
-                  <ol class="breadcrumb">
-                     <li class="breadcrumb-item"><a href="javascript:void(0);">Categories</a></li>
-                     <li class="breadcrumb-item active">Manage Categories</li>
-                  </ol>
-               </div>
-            </div>
          </div>
-         <!-- end row -->
 
          <div class="row">
-            <div class="col-6">
-               <div class="card">
-                  <div class="card-body">
-                  
-                    <!-- Add / Edit Category -->
-                    <?php include "partials/categories/add-edit-category.php"; ?>
-                    <!-- End Add / Edit Category -->
+            <div class="col-4">
 
-                  </div>
-               </div>
+               <!-- View All Categories -->
+               <?php include "partials/tags/add-edit-tag.php"; ?>
+               <!-- End View All Categories -->
+
+            </div>
             </div>
             <!-- end col -->
-            <div class="col-6">
-               <div class="card">
-                  <div class="card-body">
-                  
-                    <!-- View All Categories -->
-                    <?php include "partials/categories/view-all-categories.php"; ?>
-                    <!-- End View All Categories -->
+            <div class="col-8">
+               
+               
+                  <!-- View All Categories -->
+                  <?php include "partials/tags/view-all-tags.php"; ?>
+                  <!-- End View All Categories -->
 
-                  </div>
-               </div>
+               
             </div>
             <!-- end col -->
          </div>

@@ -1,4 +1,7 @@
-<?php ob_start(); ?>
+<?php 
+ob_start(); 
+session_start();
+?>
 
 <?php
 // Including Database model
@@ -9,6 +12,8 @@ include '../models/comment.php';
 
 // Creating a object of Comment class
 $comment = new Comment();
+
+$user_type = $_SESSION['u_type'];
 
 // To add comment
 if(isset($_POST['add_comment'])){
@@ -62,7 +67,10 @@ if(isset($_POST['update_comment'])){
             
         }else{
             
-            header('Location: ../Admin/comments');
+            switch($user_type){
+                case 'Administrator' : header('Location: /iHeartCoding/Admin/Comments'); break;
+                case 'Moderator' : header('Location: /iHeartCoding/Mod/Comments'); break;
+            }
         }
     }
 }
@@ -84,7 +92,10 @@ if(isset($_POST['approve_comment'])){
         if(!$approveComment){
             die('QUERY FAILED '. mysqli_error($serverConnection));
         }else{
-            header('Location: ../Admin/comments');
+            switch($user_type){
+                case 'Administrator' : header('Location: /iHeartCoding/Admin/Comments'); break;
+                case 'Moderator' : header('Location: /iHeartCoding/Mod/Comments'); break;
+            }
         }
     }
 }
@@ -106,7 +117,10 @@ if(isset($_POST['dismiss_comment'])){
         if(!$dismissComment){
             die('QUERY FAILED '. mysqli_error($serverConnection));
         }else{
-            header('Location: ../Admin/comments');
+            switch($user_type){
+                case 'Administrator' : header('Location: /iHeartCoding/Admin/Comments'); break;
+                case 'Moderator' : header('Location: /iHeartCoding/Mod/Comments'); break;
+            }
         }
     }
 }
@@ -122,7 +136,10 @@ if(isset($_POST['delete_comment'])){
         
         die('QUERY FAILED '. mysqli_error($serverConnection));
     }else{
-        header('Location: ../Admin/comments');
+        switch($user_type){
+            case 'Administrator' : header('Location: /iHeartCoding/Admin/Comments'); break;
+            case 'Moderator' : header('Location: /iHeartCoding/Mod/Comments'); break;
+        }
     }
 }
 
@@ -149,11 +166,14 @@ if(isset($_POST['bulk_apply'])){
 
         case 'Delete':
             foreach($commentIds as  $commentId) {
-                $comment->approveComment($commentId);
+                $comment->deleteComment($commentId);
             }
             break;
     }
 
-    header('Location: ../Admin/comments');
+    switch($user_type){
+        case 'Administrator' : header('Location: /iHeartCoding/Admin/Comments'); break;
+        case 'Moderator' : header('Location: /iHeartCoding/Mod/Comments'); break;
+    }
 }
 ?>

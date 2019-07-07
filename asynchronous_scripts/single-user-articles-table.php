@@ -47,7 +47,7 @@ while($row = mysqli_fetch_assoc($displayAuthorArticles)){
         'Action' => "<button type='button' class='btn btn-outline-$btn_color btn-sm waves-effect waves-light sa-$ajax_req_btn_class_name-article' id_ref='$a_id' auth_ref='$author_id'><i class='ti-$icon pr-1'></i> $btn_name</button>",
         'edit' => "<a href='/iHeartCoding/Admin/Article/Edit/$a_id' class='btn btn-outline-warning btn-sm'><i class='ti-pencil-alt pr-1'></i> Edit</a>",
         'delete' => "<button type='button' class='btn btn-outline-danger btn-sm waves-effect waves-light sa-delete-single-user-article' id_ref='$a_id' img_ref='$a_image' auth_ref='$author_id'><i class='ti-trash pr-1'></i> Delete</button>",
-        'reset' => " <button type='button' class='btn btn-outline-dark btn-sm waves-effect waves-light sa-reset-single-user-article-views' id_ref='$a_id' auth_ref='$author_id'><i class='ti-eraser pr-1' ></i> Rest</button>"
+        'reset' => " <button type='button' class='btn btn-outline-dark btn-sm waves-effect waves-light sa-reset-single-user-article-views' id_ref='$a_id' auth_ref='$author_id'><i class='ti-eraser pr-1'></i> Rest</button>"
     );
 }
 

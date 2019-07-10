@@ -82,7 +82,7 @@ if(isset($_GET['a'])){
 
 }else{
 
-    header('Location: /iHeartCoding/Admin/Articles/View-All');
+    header('Location: /iHeartCoding/Mod/Articles');
 
 }
 ?>

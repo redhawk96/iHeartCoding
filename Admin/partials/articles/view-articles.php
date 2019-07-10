@@ -38,11 +38,15 @@
 
     <?php
 
-    // Calling displayAllArticles method of Article class
-    $displayAllArticles = $article->displayAllArticles();
+    $displayArticles = null;
 
-    // Stating while loop to display all categories
-    while($row = mysqli_fetch_assoc($displayAllArticles)){
+    if(isset($_GET['published'])){
+        $displayArticles = $article->displayAllPublishedArticles();
+    }else{
+        $displayArticles = $article->displayAllArticles();
+    }
+
+    while($row = mysqli_fetch_assoc($displayArticles)){
         $a_id = $row['article_id'];
         $a_cat_id = $row['article_category_id'];
         $a_title = $row['article_title'];

@@ -14,9 +14,6 @@
             <div class="row align-items-center">
                <div class="col-sm-6">
                   <h4 class="page-title">Dashboard</h4>
-                  <ol class="breadcrumb">
-                     <li class="breadcrumb-item active">Welcome to Veltrix Dashboard</li>
-                  </ol>
                </div>
                <div class="col-sm-6">
                   <div class="float-right d-none d-md-block">
@@ -39,15 +36,15 @@
                   <div class="card-body">
                      <div class="mb-4">
                         <div class="float-left mini-stat-img mr-4"><img src="../public/admin/assets/images/services-icon/01.png" alt=""></div>
-                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Orders</h5>
-                        <h4 class="font-500">1,685 <i class="mdi mdi-arrow-up text-success ml-2"></i></h4>
+                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Articles</h5>
+                        <h4 class="font-500"><?php echo $article->displayAllArticleCount(); ?> <i class="<?php echo $stat->setComparisonStatus($stat->getArticleCountComparison()); ?>  ml-2"></i></h4>
                         <div class="mini-stat-label bg-success">
-                           <p class="mb-0">+ 12%</p>
+                           <p class="mb-0"><?php echo $stat->getArticleCountComparison(); ?>%</p>
                         </div>
                      </div>
                      <div class="pt-2">
-                        <div class="float-right"><a href="#" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a></div>
-                        <p class="text-white-50 mb-0">Since last month</p>
+                        <div class="float-right"><a href="/iHeartCoding/Admin/Articles/View-All" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a></div>
+                        <p class="text-white-50 mb-0">See all articles</p>
                      </div>
                   </div>
                </div>
@@ -57,33 +54,15 @@
                   <div class="card-body">
                      <div class="mb-4">
                         <div class="float-left mini-stat-img mr-4"><img src="../public/admin/assets/images/services-icon/02.png" alt=""></div>
-                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Revenue</h5>
-                        <h4 class="font-500">52,368 <i class="mdi mdi-arrow-down text-danger ml-2"></i></h4>
+                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Published articles</h5>
+                        <h4 class="font-500"><?php echo $article->displayAllPublishedArticleCount(); ?> <i class="<?php echo $stat->setComparisonStatus($stat->getPublishedArticleCountComparison()); ?> ml-2"></i></h4>
                         <div class="mini-stat-label bg-danger">
-                           <p class="mb-0">- 28%</p>
+                           <p class="mb-0"><?php echo $stat->getPublishedArticleCountComparison(); ?>%</p>
                         </div>
                      </div>
                      <div class="pt-2">
-                        <div class="float-right"><a href="#" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a></div>
-                        <p class="text-white-50 mb-0">Since last month</p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-               <div class="card mini-stat bg-primary text-white">
-                  <div class="card-body">
-                     <div class="mb-4">
-                        <div class="float-left mini-stat-img mr-4"><img src="../public/admin/assets/images/services-icon/03.png" alt=""></div>
-                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Average Price</h5>
-                        <h4 class="font-500">15.8 <i class="mdi mdi-arrow-up text-success ml-2"></i></h4>
-                        <div class="mini-stat-label bg-info">
-                           <p class="mb-0">00%</p>
-                        </div>
-                     </div>
-                     <div class="pt-2">
-                        <div class="float-right"><a href="#" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a></div>
-                        <p class="text-white-50 mb-0">Since last month</p>
+                        <div class="float-right"><a href="/iHeartCoding/Admin/Articles/Published" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a></div>
+                        <p class="text-white-50 mb-0">See all published articles</p>
                      </div>
                   </div>
                </div>
@@ -93,15 +72,33 @@
                   <div class="card-body">
                      <div class="mb-4">
                         <div class="float-left mini-stat-img mr-4"><img src="../public/admin/assets/images/services-icon/04.png" alt=""></div>
-                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Product Sold</h5>
-                        <h4 class="font-500">2436 <i class="mdi mdi-arrow-up text-success ml-2"></i></h4>
+                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Comments</h5>
+                        <h4 class="font-500"><?php echo $comment->displayAllCommentCount(); ?> <i class="<?php echo $stat->setComparisonStatus($stat->getCommentCountComparison()); ?> ml-2"></i></h4>
                         <div class="mini-stat-label bg-warning">
-                           <p class="mb-0">+ 84%</p>
+                           <p class="mb-0"><?php echo $stat->getCommentCountComparison(); ?>%</p>
                         </div>
                      </div>
                      <div class="pt-2">
-                        <div class="float-right"><a href="#" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a></div>
-                        <p class="text-white-50 mb-0">Since last month</p>
+                        <div class="float-right"><a href="/iHeartCoding/Admin/Comments" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a></div>
+                        <p class="text-white-50 mb-0">See all comments</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+               <div class="card mini-stat bg-primary text-white">
+                  <div class="card-body">
+                     <div class="mb-4">
+                        <div class="float-left mini-stat-img mr-4"><img src="../public/admin/assets/images/services-icon/03.png" alt=""></div>
+                        <h5 class="font-16 text-uppercase mt-0 text-white-50">Members</h5>
+                        <h4 class="font-500"><?php echo $user->displayUserCount(); ?>  <i class="<?php echo $stat->setComparisonStatus($stat->getMemberCountComparison()); ?> ml-2"></i></h4>
+                        <div class="mini-stat-label bg-info">
+                           <p class="mb-0"><?php echo $stat->getMemberCountComparison(); ?>%</p>
+                        </div>
+                     </div>
+                     <div class="pt-2">
+                        <div class="float-right"><a href="/iHeartCoding/Admin/Users/View-All" class="text-white-50"><i class="mdi mdi-arrow-right h5"></i></a></div>
+                        <p class="text-white-50 mb-0">See All members</p>
                      </div>
                   </div>
                </div>
@@ -148,47 +145,32 @@
             <div class="col-xl-3">
                <div class="card">
                   <div class="card-body">
-                     <div>
-                        <h4 class="mt-0 header-title mb-4">Sales Analytics</h4>
+                     <h4 class="mt-0 header-title mb-4">Sales Report</h4>
+                     <div class="cleafix">
+                        <p class="float-left"><i class="mdi mdi-calendar mr-1 text-primary"></i> Jan 01 - Jan 31</p>
+                        <h5 class="font-18 text-right">$4230</h5>
                      </div>
-                     <div class="wid-peity mb-4">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div>
-                                 <p class="text-muted">Online</p>
-                                 <h5 class="mb-4">1,542</h5>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="mb-4"><span class="peity-line" data-width="100%" data-peity='{ "fill": ["rgba(2, 164, 153,0.3)"],"stroke": ["rgba(2, 164, 153,0.8)"]}' data-height="60">6,2,8,4,3,8,1,3,6,5,9,2,8,1,4,8,9,8,2,1</span></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="wid-peity mb-4">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div>
-                                 <p class="text-muted">Offline</p>
-                                 <h5 class="mb-4">6,451</h5>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="mb-4"><span class="peity-line" data-width="100%" data-peity='{ "fill": ["rgba(2, 164, 153,0.3)"],"stroke": ["rgba(2, 164, 153,0.8)"]}' data-height="60">6,2,8,4,-3,8,1,-3,6,-5,9,2,-8,1,4,8,9,8,2,1</span></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="">
-                        <div class="row">
-                           <div class="col-md-6">
-                              <div>
-                                 <p class="text-muted">Marketing</p>
-                                 <h5>84,574</h5>
-                              </div>
-                           </div>
-                           <div class="col-md-6">
-                              <div class="mb-4"><span class="peity-line" data-width="100%" data-peity='{ "fill": ["rgba(2, 164, 153,0.3)"],"stroke": ["rgba(2, 164, 153,0.8)"]}' data-height="60">6,2,8,4,3,8,1,3,6,5,9,2,8,1,4,8,9,8,2,1</span></div>
-                           </div>
-                        </div>
+                     <div id="ct-donut" class="ct-chart wid"></div>
+                     <div class="mt-4">
+                        <table class="table mb-0">
+                           <tbody>
+                              <tr>
+                                 <td><span class="badge badge-primary">Desk</span></td>
+                                 <td>Desktop</td>
+                                 <td class="text-right">54.5%</td>
+                              </tr>
+                              <tr>
+                                 <td><span class="badge badge-success">Mob</span></td>
+                                 <td>Mobile</td>
+                                 <td class="text-right">28.0%</td>
+                              </tr>
+                              <tr>
+                                 <td><span class="badge badge-warning">Tab</span></td>
+                                 <td>Tablets</td>
+                                 <td class="text-right">17.5%</td>
+                              </tr>
+                           </tbody>
+                        </table>
                      </div>
                   </div>
                </div>

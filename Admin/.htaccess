@@ -4,6 +4,8 @@ RewriteRule ^(Users|Articles|Publish-Article|Users|Comments|Tags|Profile)$ $1.ph
 
 RewriteRule ^Articles/View-All$ Articles.php [NC,L]
 
+RewriteRule ^Articles/Published$ Articles.php?published=true [NC,L]
+
 RewriteRule ^Article/Add$ Publish-Article.php [NC,L]
 
 RewriteRule ^Article/Edit/(\d+)$ Publish-Article.php?eart=$1 [NC,L]

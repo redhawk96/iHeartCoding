@@ -55,6 +55,6 @@
    $('#summernote').summernote({
       placeholder: 'Place your article content here !',
       tabsize: 2,
-      height: 500
+      height: 700
    });
 </script>

@@ -106,103 +106,36 @@
          </div>
          <!-- end row -->
          <div class="row">
-            <div class="col-xl-9">
-               <div class="card">
-                  <div class="card-body">
-                     <h4 class="mt-0 header-title mb-5">Monthly Earning</h4>
-                     <div class="row">
-                        <div class="col-lg-7">
-                           <div>
-                              <div id="chart-with-area" class="ct-chart earning ct-golden-section"></div>
-                           </div>
-                        </div>
-                        <div class="col-lg-5">
-                           <div class="row">
-                              <div class="col-md-6">
-                                 <div class="text-center">
-                                    <p class="text-muted mb-4">This month</p>
-                                    <h4>$34,252</h4>
-                                    <p class="text-muted mb-5">It will be as simple as in fact it will be occidental.</p>
-                                    <span class="peity-donut" data-peity='{ "fill": ["#02a499", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">4/5</span>
-                                 </div>
-                              </div>
-                              <div class="col-md-6">
-                                 <div class="text-center">
-                                    <p class="text-muted mb-4">Last month</p>
-                                    <h4>$36,253</h4>
-                                    <p class="text-muted mb-5">It will be as simple as in fact it will be occidental.</p>
-                                    <span class="peity-donut" data-peity='{ "fill": ["#02a499", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">3/5</span>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- end row -->
-                  </div>
-               </div>
-               <!-- end card -->
-            </div>
             <div class="col-xl-3">
                <div class="card">
                   <div class="card-body">
-                     <h4 class="mt-0 header-title mb-4">Sales Report</h4>
+                     <h4 class="mt-0 header-title mb-4">Logged Platforms</h4>
                      <div class="cleafix">
-                        <p class="float-left"><i class="mdi mdi-calendar mr-1 text-primary"></i> Jan 01 - Jan 31</p>
-                        <h5 class="font-18 text-right">$4230</h5>
+                        <p class="float-left"><i class="mdi mdi-calendar mr-1 text-primary"></i><?php date_default_timezone_set('Asia/Colombo'); echo date('l jS F Y', time()); ?></p>
+                        <h5 class="font-18 text-right"><?php echo $article->displayAllArticleCount(); ?></h5>
                      </div>
-                     <div id="ct-donut" class="ct-chart wid"></div>
+                     <div id="ct-chart" class="ct-chart ct-golden-section simple-pie-chart-chartist"></div>
                      <div class="mt-4">
                         <table class="table mb-0">
                            <tbody>
                               <tr>
-                                 <td><span class="badge badge-primary">Desk</span></td>
-                                 <td>Desktop</td>
-                                 <td class="text-right">54.5%</td>
+                                 <td><span class="badge badge-primary">Windows</span></td>
+                                 <td>Desktops / Windows Phones</td>
+                                 <td class="text-right"><?php echo $access->getAccessedDeviceCount('windows'); ?></td>
                               </tr>
                               <tr>
-                                 <td><span class="badge badge-success">Mob</span></td>
-                                 <td>Mobile</td>
+                                 <td><span class="badge badge-success">Mac</span></td>
+                                 <td>iPhones / iPads / MacBooks</td>
                                  <td class="text-right">28.0%</td>
                               </tr>
                               <tr>
-                                 <td><span class="badge badge-warning">Tab</span></td>
-                                 <td>Tablets</td>
+                                 <td><span class="badge badge-dark">Linux</span></td>
+                                 <td>Linux / Android</td>
                                  <td class="text-right">17.5%</td>
                               </tr>
-                           </tbody>
-                        </table>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- end row -->
-         <div class="row">
-            <div class="col-xl-3">
-               <div class="card">
-                  <div class="card-body">
-                     <h4 class="mt-0 header-title mb-4">Sales Report</h4>
-                     <div class="cleafix">
-                        <p class="float-left"><i class="mdi mdi-calendar mr-1 text-primary"></i> Jan 01 - Jan 31</p>
-                        <h5 class="font-18 text-right">$4230</h5>
-                     </div>
-                     <div id="ct-donut" class="ct-chart wid"></div>
-                     <div class="mt-4">
-                        <table class="table mb-0">
-                           <tbody>
                               <tr>
-                                 <td><span class="badge badge-primary">Desk</span></td>
-                                 <td>Desktop</td>
-                                 <td class="text-right">54.5%</td>
-                              </tr>
-                              <tr>
-                                 <td><span class="badge badge-success">Mob</span></td>
-                                 <td>Mobile</td>
-                                 <td class="text-right">28.0%</td>
-                              </tr>
-                              <tr>
-                                 <td><span class="badge badge-warning">Tab</span></td>
-                                 <td>Tablets</td>
+                                 <td><span class="badge badge-warning" style="background-color:#D17905">Other</span></td>
+                                 <td>BlackBerry / etc.   </td>
                                  <td class="text-right">17.5%</td>
                               </tr>
                            </tbody>
@@ -214,64 +147,99 @@
             <div class="col-xl-4">
                <div class="card">
                   <div class="card-body">
-                     <h4 class="mt-0 header-title mb-4">Activity</h4>
+                     <h4 class="mt-0 header-title mb-4">Atricle Comments</h4>
+                     <div class="slimscroll" style="min-height:485px; max-height:485px">
                      <ol class="activity-feed">
+                        <?php 
+                        $displayAllComments = $comment->displayAllComments();
+
+                        // Stating while loop to display all comments
+                        while($row = mysqli_fetch_assoc($displayAllComments)){
+                           $c_id = $row['comment_id'];
+                           $c_author = $row['comment_author'];
+                           $c_email = $row['comment_email'];
+                           $c_post_id = $row['article_id'];
+                           $c_content = $row['comment_content'];
+                           $c_status = $row['comment_status'];
+                           $c_date = $row['comment_date'];
+
+                           ?>
                         <li class="feed-item">
-                           <div class="feed-item-list"><span class="date">Jan 22</span> <span class="activity-text">Responded to need “Volunteer Activities”</span></div>
+                           <div class="feed-item-list"><span class="date"><?php echo date("F d - 'y | h:i A", strtotime($c_date)); ?></span>
+                           <p class="activity-text m-0">Response To : 
+                           <?php
+                           $displaySingleArticle = $article->displaySingleArticle($c_post_id);
+
+                           mysqli_stmt_bind_result($displaySingleArticle, $a_id, $a_cat_id, $a_title, $a_author, $author_id, $a_date, $a_image, $a_content, $a_tags, $a_com_count, $a_status, $a_view_count);
+                     
+                           while(mysqli_stmt_fetch($displaySingleArticle)):
+                            echo "<a href='/iHeartCoding/Admin/Article/View/$c_post_id'>$a_title</a>";
+                           endwhile;
+                           ?>
+                           </p>
+                           <p class="activity-text">Comment St  : <?php echo $c_status ?></p>
+                           <span class="activity-text"><?php echo $c_content ?></span>
+                        </div>
                         </li>
-                        <li class="feed-item">
-                           <div class="feed-item-list"><span class="date">Jan 20</span> <span class="activity-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui deleniti atque...<a href="#" class="text-success">Read more</a></span></div>
-                        </li>
-                        <li class="feed-item">
-                           <div class="feed-item-list"><span class="date">Jan 19</span> <span class="activity-text">Joined the group “Boardsmanship Forum”</span></div>
-                        </li>
-                        <li class="feed-item">
-                           <div class="feed-item-list"><span class="date">Jan 17</span> <span class="activity-text">Responded to need “In-Kind Opportunity”</span></div>
-                        </li>
-                        <li class="feed-item">
-                           <div class="feed-item-list"><span class="date">Jan 16</span> <span class="activity-text">Sed ut perspiciatis unde omnis iste natus error sit rem.</span></div>
-                        </li>
+
+                        <?php } ?>
+                        
                      </ol>
+                     </div>
+                  </div>
+                  <div class="card-body">
                      <div class="text-center"><a href="#" class="btn btn-primary">Load More</a></div>
                   </div>
                </div>
             </div>
             <div class="col-xl-5">
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="card text-center">
-                        <div class="card-body">
-                           <div class="py-4">
-                              <i class="ion ion-ios-checkmark-circle-outline display-4 text-success"></i>
-                              <h5 class="text-primary mt-4">Order Successful</h5>
-                              <p class="text-muted">Thanks you so much for your order.</p>
-                              <div class="mt-4"><a href="#" class="btn btn-primary btn-sm">Chack Status</a></div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="card bg-primary">
-                        <div class="card-body">
-                           <div class="text-center text-white py-4">
-                              <h5 class="mt-0 mb-4 text-white-50 font-16">Top Product Sale</h5>
-                              <h1>1452</h1>
-                              <p>Computer</p>
-                              <p class="text-white-50 mb-0">At solmen va esser necessi far uniform myth... <a href="#" class="text-white">View more</a></p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="row">
-                  <div class="col-md-12">
-                     <div class="card">
-                        <div class="card-body">
-                           <h4 class="mt-0 header-title mb-4">Client Reviews</h4>
-                           <p class="text-muted mb-5">" Everyone realizes why a new common language would be desirable one could refuse to pay expensive translators it would be necessary. "</p>
-                           <div class="float-right mt-2"><a href="#" class="text-primary"><i class="mdi mdi-arrow-right h5"></i></a></div>
-                           <h6 class="mb-0"><img src="assets/images/users/user-3.jpg" alt="" class="thumb-sm rounded-circle mr-2"> James Athey</h6>
-                        </div>
+               <div class="card">
+                  <div class="card-body">
+                     <h4 class="mt-0 header-title mb-4">Latest Articles</h4>
+                     <div class="table-responsive slimscroll" style="min-height:555px; max-height:555px">
+                        <table class="table table-hover">
+                           <tbody>
+                              <?php 
+                              $displayArticles = $article->displayAllArticles();
+
+                       
+                                 while($row = mysqli_fetch_assoc($displayArticles)){
+                                    $a_id = $row['article_id'];
+                                    $a_cat_id = $row['article_category_id'];
+                                    $a_title = $row['article_title'];
+                                    $a_author = $row['article_author'];
+                                    $author_id = $row['author_id'];
+                                    $a_image = $row['article_image'];
+                                    $a_com_count = $row['article_comment_count'];
+                                    $a_content = $row['article_content'];
+                                    $a_tags = $row['article_tags'];
+                                    $a_status = $row['article_status'];
+                                    $a_date = $row['article_date'];
+                                    $a_view_count = $row['article_view_count']; 
+                                 ?>
+                              <tr>
+                                 <td><img class="img-fluid rounded-circle mr-2" alt="<?php echo $a_image; ?>" src="/iHeartCoding/public/upload/articles/<?php echo $a_image; ?>" style="width:40px"><?php echo $a_title; ?></td>
+                                 <td>
+                                    <div>
+                                    <?php
+                                       $displaySingleUser = $user->displaySingleUser($author_id);
+                
+                                       while($row = mysqli_fetch_assoc($displaySingleUser)){
+                                           $user_image = $row['user_image'];
+                                    ?>
+                                    <img class="img-fluid rounded-circle mr-2" alt="<?php echo $user_image; ?>" src="/iHeartCoding/public/upload/users/<?php echo $user_image; ?>" style="width:40px"><?php echo $a_author; ?>
+                                       <?php } ?>
+                                    </div>
+                                 </td>
+                                 <td><?php echo date('M d Y | h:i A', strtotime($a_date)); ?></td>
+                                 <td>$112</td>
+                                 <td><span class="badge <?php echo ($a_status == 'Published') ? 'badge-success' : 'badge-warning' ; ?> p-1"><?php echo $a_status; ?></span></td>
+                              </tr>
+                              <?php
+                                 }
+                              ?>
+                           </tbody>
+                        </table>
                      </div>
                   </div>
                </div>
@@ -282,79 +250,58 @@
             <div class="col-xl-8">
                <div class="card">
                   <div class="card-body">
-                     <h4 class="mt-0 header-title mb-4">Latest Trasaction</h4>
-                     <div class="table-responsive">
+                     <h4 class="mt-0 header-title mb-4">Members</h4>
+                     <div class="table-responsive slimscroll" style="min-height:495px; max-height:495px">
                         <table class="table table-hover">
-                           <thead>
-                              <tr>
-                                 <th scope="col">(#) Id</th>
-                                 <th scope="col">Name</th>
-                                 <th scope="col">Date</th>
-                                 <th scope="col">Amount</th>
-                                 <th scope="col" colspan="2">Status</th>
-                              </tr>
-                           </thead>
                            <tbody>
+                           <?php
+
+                              $displayAllUsers = $user->displayAllUsers();
+
+                              while($row = mysqli_fetch_assoc($displayAllUsers)){
+                                 $u_id = $row['user_id'];
+                                 $username = $row['username'];
+                                 $u_first_name = $row['user_firstName'];
+                                 $u_last_name = $row['user_lastName'];
+                                 $u_email = $row['user_email'];
+                                 $u_image = $row['user_image'];
+                                 $u_role = $row['user_role'];
+                                 $u_status = $row['user_status'];
+
+                                 $u_last_logged = null;
+                                 $u_no_of_time_logged = null;
+
+                                 $displayLoggedActivitySummary = $activity->displayLoggedActivitySummary($u_id);
+
+                                 mysqli_stmt_bind_result($displayLoggedActivitySummary, $u_f_logged, $u_l_logged, $n_t_logged);
+
+                                 while(mysqli_stmt_fetch($displayLoggedActivitySummary)):
+
+                                       $u_last_logged = $u_l_logged;
+                                       $u_no_of_time_logged = $n_t_logged;
+
+                                 endwhile;
+                              ?>
+
                               <tr>
-                                 <th scope="row">#14256</th>
+                                 <td><?php echo $username?></td>
                                  <td>
-                                    <div><img src="../public/admin/assets/images/users/user-2.jpg" alt="" class="thumb-md rounded-circle mr-2"> Philip Smead</div>
+                                    <div>
+                                       <img src="/iHeartCoding/public/upload/users/<?php echo $u_image?>" alt="<?php echo $u_image?>" class="img-fluid rounded-circle mr-2" style="width:40px"> <?php echo $u_first_name." ".$u_last_name ?>
+                                    </div>
                                  </td>
-                                 <td>15/1/2018</td>
-                                 <td>$94</td>
-                                 <td><span class="badge badge-success">Delivered</span></td>
+                                 <td><?php echo $u_role?></td>
+                                 <td><span class="badge p-1 badge-<?php echo ($u_status == 'Active') ? 'success' : 'warning' ; ?>"><?php echo $u_status ?></span></td>
+                                 <td><?php echo date('M d Y | h:i A', strtotime($u_last_logged)); ?></td>
+                                 <td><?php echo $u_no_of_time_logged?></td>
                                  <td>
-                                    <div><a href="#" class="btn btn-primary btn-sm">Edit</a></div>
+                                    <div><a href="/iHeartCoding/Admin/User/View/<?php echo $u_id ?>" class="btn btn-outline-primary btn-sm"><i class="ti-view-list-alt pr-1"></i> View</a></div>
                                  </td>
                               </tr>
-                              <tr>
-                                 <th scope="row">#14257</th>
-                                 <td>
-                                    <div><img src="../public/admin/assets/images/users/user-3.jpg" alt="" class="thumb-md rounded-circle mr-2"> Brent Shipley</div>
-                                 </td>
-                                 <td>16/1/2019</td>
-                                 <td>$112</td>
-                                 <td><span class="badge badge-warning">Pending</span></td>
-                                 <td>
-                                    <div><a href="#" class="btn btn-primary btn-sm">Edit</a></div>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th scope="row">#14258</th>
-                                 <td>
-                                    <div><img src="../public/admin/assets/images/users/user-4.jpg" alt="" class="thumb-md rounded-circle mr-2"> Robert Sitton</div>
-                                 </td>
-                                 <td>17/1/2019</td>
-                                 <td>$116</td>
-                                 <td><span class="badge badge-success">Delivered</span></td>
-                                 <td>
-                                    <div><a href="#" class="btn btn-primary btn-sm">Edit</a></div>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th scope="row">#14259</th>
-                                 <td>
-                                    <div><img src="../public/admin/assets/images/users/user-5.jpg" alt="" class="thumb-md rounded-circle mr-2"> Alberto Jackson</div>
-                                 </td>
-                                 <td>18/1/2019</td>
-                                 <td>$109</td>
-                                 <td><span class="badge badge-danger">Cancel</span></td>
-                                 <td>
-                                    <div><a href="#" class="btn btn-primary btn-sm">Edit</a></div>
-                                 </td>
-                              </tr>
-                              <tr>
-                                 <th scope="row">#14260</th>
-                                 <td>
-                                    <div><img src="../public/admin/assets/images/users/user-6.jpg" alt="" class="thumb-md rounded-circle mr-2"> David Sanchez</div>
-                                 </td>
-                                 <td>19/1/2019</td>
-                                 <td>$120</td>
-                                 <td><span class="badge badge-success">Delivered</span></td>
-                                 <td>
-                                    <div><a href="#" class="btn btn-primary btn-sm">Edit</a></div>
-                                 </td>
-                              </tr>
+
+                              <?php 
+                              } 
+                              ?>
                            </tbody>
                         </table>
                      </div>
@@ -364,56 +311,19 @@
             <div class="col-xl-4">
                <div class="card">
                   <div class="card-body">
-                     <h4 class="mt-0 header-title mb-4">Chat</h4>
+                     <h4 class="mt-0 header-title mb-4">Error Console</h4>
                      <div class="chat-conversation">
-                        <ul class="conversation-list slimscroll" style="max-height: 400px;">
+                        <ul class="conversation-list slimscroll" style="min-height:480px; max-height:480px">
                            <li class="clearfix">
                               <div class="chat-avatar"><img src="../public/admin/assets/images/users/user-2.jpg" alt="male"> <span class="time">10:00</span></div>
                               <div class="conversation-text">
                                  <div class="ctext-wrap">
                                     <span class="user-name">John Deo</span>
-                                    <p>Hello!</p>
+                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui deleniti atque At vero eos et accusamus et iusto odio dignissimos ducimus qui deleniti atque...!</p>
                                  </div>
-                              </div>
-                           </li>
-                           <li class="clearfix odd">
-                              <div class="chat-avatar"><img src="../public/admin/assets/images/users/user-3.jpg" alt="Female"> <span class="time">10:01</span></div>
-                              <div class="conversation-text">
-                                 <div class="ctext-wrap">
-                                    <span class="user-name">Smith</span>
-                                    <p>Hi, How are you? What about our next meeting?</p>
-                                 </div>
-                              </div>
-                           </li>
-                           <li class="clearfix">
-                              <div class="chat-avatar"><img src="../public/admin/assets/images/users/user-2.jpg" alt="male"> <span class="time">10:04</span></div>
-                              <div class="conversation-text">
-                                 <div class="ctext-wrap">
-                                    <span class="user-name">John Deo</span>
-                                    <p>Yeah everything is fine</p>
-                                 </div>
-                              </div>
-                           </li>
-                           <li class="clearfix odd">
-                              <div class="chat-avatar"><img src="../public/admin/assets/images/users/user-3.jpg" alt="male"> <span class="time">10:05</span></div>
-                              <div class="conversation-text">
-                                 <div class="ctext-wrap">
-                                    <span class="user-name">Smith</span>
-                                    <p>Wow that's great</p>
-                                 </div>
-                              </div>
-                           </li>
-                           <li class="clearfix odd">
-                              <div class="chat-avatar"><img src="../public/admin/assets/images/users/user-3.jpg" alt="male"> <span class="time">10:08</span></div>
-                              <div class="conversation-text">
-                                 <div class="ctext-wrap"><span class="user-name mb-2">Smith</span> <img src="../public/admin/assets/images/small/img-1.jpg" alt="" height="48px" class="rounded mr-2"> <img src="assets/images/small/img-2.jpg" alt="" height="48px" class="rounded"></div>
                               </div>
                            </li>
                         </ul>
-                        <div class="row">
-                           <div class="col-sm-9 col-8 chat-inputbar"><input type="text" class="form-control chat-input" placeholder="Enter your text"></div>
-                           <div class="col-sm-3 col-4 chat-send"><button type="submit" class="btn btn-success btn-block">Send</button></div>
-                        </div>
                      </div>
                   </div>
                </div>
@@ -432,3 +342,17 @@
 <?php
    include 'includes/footer.php';
 ?>
+
+<script>
+var data = {
+  series: [5, 3, 4, 4]
+};
+
+var sum = function(a, b) { return a + b };
+
+new Chartist.Pie('.ct-chart', data, {
+  labelInterpolationFnc: function(value) {
+    return Math.round(value / data.series.reduce(sum) * 100) + '%';
+  }
+});
+</script>

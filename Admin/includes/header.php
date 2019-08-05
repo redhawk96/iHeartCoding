@@ -10,6 +10,7 @@ include '../models/comment.php';
 include '../models/user.php';
 include '../models/activity.php';
 include '../models/statistics.php';
+include '../models/access.php';
 
 // Creating a object of model classes
 $article = new Article();
@@ -18,6 +19,7 @@ $comment= new Comment();
 $user = new User();
 $activity = new Activity();
 $stat = new Satistics();
+$access = new Access();
 
 //Redirecting non-administrators to the home pagez
 if(isset($_SESSION['u_type'])){

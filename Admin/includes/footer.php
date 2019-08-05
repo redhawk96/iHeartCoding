@@ -23,6 +23,7 @@
    <script src="/iHeartCoding/public/admin/plugins/datatables/buttons.html5.min.js"></script>
    <script src="/iHeartCoding/public/admin/plugins/datatables/buttons.print.min.js"></script>
    <script src="/iHeartCoding/public/admin/plugins/datatables/buttons.colVis.min.js"></script>
+   
 
    <!-- Datatable init js -->
    <script src="/iHeartCoding/public/admin/assets/pages/datatables.init.js"></script>
@@ -33,6 +34,7 @@
    <!--Chartist Chart-->
    <script src="/iHeartCoding/public/admin/plugins/chartist/js/chartist.min.js"></script>
    <script src="/iHeartCoding/public/admin/plugins/chartist/js/chartist-plugin-tooltip.min.js"></script>
+
 
    <!-- peity JS -->
    <script src="/iHeartCoding/public/admin/plugins/peity-chart/jquery.peity.min.js"></script>

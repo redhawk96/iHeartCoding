@@ -129,6 +129,28 @@ class Access
         }
     }
 
+    public static function getAccessedDeviceCount($platform){
+
+        $platform = mysqli_real_escape_string(self::$serverConnection, $platform);
+
+        $cccessedDeviceCountQuery = mysqli_prepare(self::$serverConnection, "SELECT COUNT(logged_platform) AS 'P_COUNT' FROM logged_info WHERE logged_platform = ?");
+
+        mysqli_stmt_bind_param($cccessedDeviceCountQuery, "s", $platform);
+        
+        mysqli_stmt_execute($cccessedDeviceCountQuery);
+
+        mysqli_stmt_bind_result($cccessedDeviceCountQuery, $l_platform);
+
+        $logged_platform = null; 
+
+        while(mysqli_stmt_fetch($cccessedDeviceCountQuery)):
+
+            $logged_platform = $l_platform; 
+
+        endwhile;
+
+        return $logged_platform;
+    }
 
 }
 
